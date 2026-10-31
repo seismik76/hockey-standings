@@ -15,7 +15,9 @@ Hosting: one scale-to-zero Container App and one collector job in the shared `ca
 
 - `packages/core`: logic that isn't tied to a source. So far, standings computed from games (2 points a win, 1 a tie), which reproduce TeamLinkt's table in order for the captured league.
 
-Still to come: the HC calendar feed adapter, the 2020-26 history import, `packages/db`, `apps/collector` and `apps/web`. Where the data comes from, and why, is in [docs/SOURCES.md](docs/SOURCES.md).
+- `packages/db`: the Drizzle schema, migrations and the collector's upserts; the only place SQL lives. Tests run against a real local Postgres, and prove the web app's role cannot write.
+
+Still to come: the HC calendar feed adapter, the 2020-26 history import, `apps/collector` and `apps/web`. Where the data comes from, and why, is in [docs/SOURCES.md](docs/SOURCES.md).
 
 ## Develop
 
@@ -23,5 +25,9 @@ Node 22+ and pnpm 9.
 
 ```bash
 pnpm install
+pnpm db:install  # once: local Postgres 17 on :5433 in ~/.hockey, no Docker
+pnpm db:up       # after a reboot
 pnpm test        # also: pnpm lint, pnpm typecheck, pnpm format:check
 ```
+
+The database is Neon in production; see [infra/neon/](infra/neon/).

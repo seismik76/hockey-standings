@@ -20,7 +20,12 @@ BEGIN
 END
 $$;
 
-GRANT CONNECT ON DATABASE hockey TO hockey_read, hockey_write;
+-- current_database(), so the same file sets up the local and test databases.
+DO $$
+BEGIN
+  EXECUTE format('GRANT CONNECT ON DATABASE %I TO hockey_read, hockey_write', current_database());
+END
+$$;
 GRANT USAGE ON SCHEMA public TO hockey_read, hockey_write;
 
 -- The web app reads; only the collector writes. Neither can create or alter

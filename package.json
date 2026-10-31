@@ -11,7 +11,14 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "turbo run typecheck",
-    "test": "turbo run test --concurrency=3"
+    "test": "turbo run test --concurrency=3",
+    "db:install": "node scripts/pg-local.mjs install && node scripts/pg-local.mjs start && node scripts/pg-local.mjs bootstrap",
+    "db:up": "node scripts/pg-local.mjs start",
+    "db:down": "node scripts/pg-local.mjs stop",
+    "db:status": "node scripts/pg-local.mjs status",
+    "db:reset": "node scripts/pg-local.mjs reset",
+    "db:generate": "pnpm --filter @hockey/db generate",
+    "db:migrate": "pnpm --filter @hockey/db migrate"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",

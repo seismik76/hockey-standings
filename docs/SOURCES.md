@@ -48,6 +48,11 @@ We don't reuse this. TeamLinkt's `robots.txt` disallows `/leagues/get*` in all f
 - `u11-tier-1-south` redirects to the league index, so some U11 leagues have no league page yet.
 - Two weeks into seeding (Oct 17 to Nov 15), Hockey Calgary's site shows no scores for any league sampled. Scores seem to exist only in TeamLinkt.
 
+## Leagues and communities
+
+- **League slugs are shared.** All 59 Community Council slugs on the HC league index match a TeamLinkt division slug, except `junior-c`, which is `u21-junior-c` on TeamLinkt. TeamLinkt's other 32 divisions are female, AA/AAA, rec and Junior B leagues outside Community Council.
+- **12 associations.** TeamLinkt's `teams` list for 2026-27 seeding has 492 teams, U9 to U18, from 12 associations: Bow River, Bow Valley, Girls Hockey Calgary, Glenlake, Knights, McKnight, Northwest, Raiders, Southwest, Springbank, Trails West and Wolverines. These are the old scraper's 11 plus Girls Hockey Calgary, so its history probably already covers every association. U7 and Junior C teams are not in the seeding list.
+
 ## Waiting on
 
 - [ ] **Hockey Calgary:** permission to read `/standings` and `/schedule/scores`, or the `leagueID` and `typeID` list for the calendar feeds, or a supported results feed.

@@ -8,9 +8,12 @@ Hosting: one scale-to-zero Container App and one collector job in the shared `ca
 
 ## Layout
 
-- `packages/sources`: one adapter per upstream, as pure functions (response in, normalized records out) with tests against captured fixtures. So far: TeamLinkt's public site API (seasons, divisions, scores, standings).
+- `packages/sources`: one adapter per upstream, as pure functions (response in, normalized records out) with tests against captured fixtures. So far:
+  - TeamLinkt's public site API: seasons, divisions, scores, standings, teams.
+  - Hockey Calgary's Community Council league index, which marks which TeamLinkt divisions are Community Council leagues.
+  - The community catalogue: the 12 associations and a team-name parser ("U15 Glenlake Hawks NBC 1" → Glenlake, U15, NBC, team 1).
 
-Still to come: the HC calendar feed and league index adapters, the 2020-26 history import, `packages/db`, `apps/collector` and `apps/web`. Where the data comes from, and why, is in [docs/SOURCES.md](docs/SOURCES.md).
+Still to come: the HC calendar feed adapter, the 2020-26 history import, `packages/db`, `apps/collector` and `apps/web`. Where the data comes from, and why, is in [docs/SOURCES.md](docs/SOURCES.md).
 
 ## Develop
 

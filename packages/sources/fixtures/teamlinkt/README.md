@@ -8,6 +8,7 @@ Real responses from TeamLinkt's public site API for Hockey Calgary, captured on 
 | `divisions-61563.json` | `GET /api/public/sites/hockeycalgary/divisions?season_id=61563` |
 | `scores-61563-332824.json` | `POST /api/public/sites/hockeycalgary/scores` with `{"season_id":61563,"division_id":332824,"limit":50,"from":"2026-10-17","to":"2026-11-15"}` |
 | `standings-61563-332824.json` | `POST /api/public/sites/hockeycalgary/standings` with `{"season_id":61563,"division_id":332824}` |
+| `teams-61563.json` | `POST /api/public/sites/hockeycalgary/teams` with `{"season_id":61563}` |
 
 Season 61563 is 2026-27 Seeding; division 332824 is U13 Tier 2 South. The base URL is `https://app.teamlinkt.com`.
 

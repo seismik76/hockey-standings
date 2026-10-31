@@ -1,0 +1,3446 @@
+[
+  {
+    "id": 946211,
+    "name": "U11 Bow River Bruins 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946211/images/logo_800.png?1792349553",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946212,
+    "name": "U11 Bow River Bruins 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946212/images/logo_800.png?1792460089",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946213,
+    "name": "U11 Bow River Bruins 2 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946213/images/logo_800.png?1791307294",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946214,
+    "name": "U11 Bow River Bruins 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946214/images/logo_800.png?1789681138",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946215,
+    "name": "U11 Bow River Bruins 4 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946215/images/logo_800.png?1792288284",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946216,
+    "name": "U11 Bow River Bruins 4 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946216/images/logo_800.png?1789670430",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946217,
+    "name": "U11 Bow River Bruins 5",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946217/images/logo_800.png?1791088705",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946145,
+    "name": "U11 Bow Valley Flames 1 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946145/images/logo_800.png?1791254933",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946146,
+    "name": "U11 Bow Valley Flames 1 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946146/images/logo_800.png?1791254950",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946147,
+    "name": "U11 Bow Valley Flames 1 Yellow",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946147/images/logo_800.png?1791389241",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946148,
+    "name": "U11 Bow Valley Flames 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946148/images/logo_800.png?1791254990",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946149,
+    "name": "U11 Bow Valley Flames 2 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946149/images/logo_800.png?1791255007",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946150,
+    "name": "U11 Bow Valley Flames 2 Yellow",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946150/images/logo_800.png?1791255042",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946151,
+    "name": "U11 Bow Valley Flames 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946151/images/logo_800.png?1789736005",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946152,
+    "name": "U11 Bow Valley Flames 3 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946152/images/logo_800.png?1791255064",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946153,
+    "name": "U11 Bow Valley Flames 3 Yellow",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946153/images/logo_800.png?1791255095",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946154,
+    "name": "U11 Bow Valley Flames 4 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946154/images/logo_800.png?1791255135",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946155,
+    "name": "U11 Bow Valley Flames 4 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946155/images/logo_800.png?1791255173",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946156,
+    "name": "U11 Bow Valley Flames 4 Yellow",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946156/images/logo_800.png?1791255113",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946157,
+    "name": "U11 Bow Valley Flames 5 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946157/images/logo_800.png?1791255152",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946158,
+    "name": "U11 Bow Valley Flames 5 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946158/images/logo_800.png?1791255191",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955619,
+    "name": "U11 GHC Inferno Blaze",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955619/images/logo_800.png?1792075771",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955620,
+    "name": "U11 GHC Inferno Flames",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955620/images/logo_800.png?1791159618",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955621,
+    "name": "U11 GHC Inferno Heat",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955621/images/logo_800.png?1790616873",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955622,
+    "name": "U11 GHC Inferno Ignite",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955622/images/logo_800.png?1790305771",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955623,
+    "name": "U11 GHC Inferno Scorch",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955623/images/logo_800.png?1793376897",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955624,
+    "name": "U11 GHC Inferno Spark",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955624/images/logo_800.png?1790289308",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945175,
+    "name": "U11 Glenlake Hawks 1 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945175/images/logo_800.png?1791170937",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945176,
+    "name": "U11 Glenlake Hawks 1 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945176/images/logo_800.png?1792274772",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945177,
+    "name": "U11 Glenlake Hawks 1 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945177/images/logo_800.png?1790257502",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945178,
+    "name": "U11 Glenlake Hawks 2 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945178/images/logo_800.png?1790216146",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945179,
+    "name": "U11 Glenlake Hawks 2 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945179/images/logo_800.png?1790296612",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945180,
+    "name": "U11 Glenlake Hawks 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945180/images/logo_800.png?1792623254",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945181,
+    "name": "U11 Glenlake Hawks 3 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945181/images/logo_800.png?1790447864",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945182,
+    "name": "U11 Glenlake Hawks 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945182/images/logo_800.png?1790956614",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945183,
+    "name": "U11 Glenlake Hawks 4 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945183/images/logo_800.png?1792958196",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945184,
+    "name": "U11 Glenlake Hawks 4 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945184/images/logo_800.png?1791853347",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945185,
+    "name": "U11 Glenlake Hawks 4 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945185/images/logo_800.png?1790696151",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945186,
+    "name": "U11 Glenlake Hawks 5 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945186/images/logo_800.png?1790547364",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945187,
+    "name": "U11 Glenlake Hawks 5 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945187/images/logo_800.png?1791311377",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948259,
+    "name": "U11 Knights 1 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948259/images/logo_800.png?1790087923",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948260,
+    "name": "U11 Knights 1 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948260/images/logo_800.png?1793369365",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948261,
+    "name": "U11 Knights 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948261/images/logo_800.png?1790087992",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948262,
+    "name": "U11 Knights 2 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948262/images/logo_800.png?1790088011",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948263,
+    "name": "U11 Knights 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948263/images/logo_800.png?1790088036",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948264,
+    "name": "U11 Knights 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948264/images/logo_800.png?1790088056",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948265,
+    "name": "U11 Knights 3 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948265/images/logo_800.png?1790088080",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948266,
+    "name": "U11 Knights 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948266/images/logo_800.png?1790088103",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948267,
+    "name": "U11 Knights 4 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948267/images/logo_800.png?1790088128",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948268,
+    "name": "U11 Knights 4 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948268/images/logo_800.png?1790088153",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948269,
+    "name": "U11 Knights 5",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948269/images/logo_800.png?1790088176",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955082,
+    "name": "U11 McKnight Mustangs 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955082/images/logo_800.png?1791084654",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955083,
+    "name": "U11 McKnight Mustangs 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955083/images/logo_800.png?1789710533",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955084,
+    "name": "U11 McKnight Mustangs 3 Black",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955085,
+    "name": "U11 McKnight Mustangs 3 Orange",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955086,
+    "name": "U11 McKnight Mustangs 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955086/images/logo_800.png?1792503912",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955087,
+    "name": "U11 McKnight Mustangs 5",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955087/images/logo_800.png?1792436191",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955693,
+    "name": "U11 Northwest Warriors 1 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955693/images/logo_800.png?1790197365",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955694,
+    "name": "U11 Northwest Warriors 1 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955694/images/logo_800.png?1790804061",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955695,
+    "name": "U11 Northwest Warriors 2 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955695/images/logo_800.png?1790479247",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955696,
+    "name": "U11 Northwest Warriors 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955696/images/logo_800.png?1790816083",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955697,
+    "name": "U11 Northwest Warriors 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955697/images/logo_800.png?1790799021",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955698,
+    "name": "U11 Northwest Warriors 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955698/images/logo_800.png?1792243175",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955699,
+    "name": "U11 Northwest Warriors 4 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955699/images/logo_800.png?1791477929",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955700,
+    "name": "U11 Northwest Warriors 4 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955700/images/logo_800.png?1792631383",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955701,
+    "name": "U11 Northwest Warriors 5",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955701/images/logo_800.png?1790390443",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955728,
+    "name": "U11 Raiders 1",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955729,
+    "name": "U11 Raiders 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955729/images/logo_800.png?1790959371",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955730,
+    "name": "U11 Raiders 2 White",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955731,
+    "name": "U11 Raiders 3 Black",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955732,
+    "name": "U11 Raiders 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955732/images/logo_800.png?1790222120",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955733,
+    "name": "U11 Raiders 4 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955733/images/logo_800.png?1791136283",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955734,
+    "name": "U11 Raiders 4 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955734/images/logo_800.png?1792306258",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955735,
+    "name": "U11 Raiders 5 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955735/images/logo_800.png?1792433604",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955736,
+    "name": "U11 Raiders 5 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955736/images/logo_800.png?1791647565",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946241,
+    "name": "U11 Southwest 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946241/images/logo_800.png?1791515015",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946242,
+    "name": "U11 Southwest 2 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946242/images/logo_800.png?1791515031",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948203,
+    "name": "U11 Southwest 2 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948203/images/logo_800.png?1791515046",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946243,
+    "name": "U11 Southwest 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946243/images/logo_800.png?1791515062",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946244,
+    "name": "U11 Southwest 3 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946244/images/logo_800.png?1791515084",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946245,
+    "name": "U11 Southwest 4 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946245/images/logo_800.png?1791515102",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946246,
+    "name": "U11 Southwest 4 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946246/images/logo_800.png?1791515118",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946247,
+    "name": "U11 Southwest 5 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946247/images/logo_800.png?1791515137",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946248,
+    "name": "U11 Southwest 5 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946248/images/logo_800.png?1791515153",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950569,
+    "name": "U11 Springbank Rockies 1 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950569/images/logo_800.png?1790273109",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950570,
+    "name": "U11 Springbank Rockies 1 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950570/images/logo_800.png?1790288448",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950571,
+    "name": "U11 Springbank Rockies 2 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950571/images/logo_800.png?1790255788",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950572,
+    "name": "U11 Springbank Rockies 2 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950572/images/logo_800.png?1790353650",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950573,
+    "name": "U11 Springbank Rockies 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950573/images/logo_800.png?1790266622",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950574,
+    "name": "U11 Springbank Rockies 3 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950574/images/logo_800.png?1790743472",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950575,
+    "name": "U11 Springbank Rockies 4 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950575/images/logo_800.png?1792022612",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950576,
+    "name": "U11 Springbank Rockies 4 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950576/images/logo_800.png?1790265289",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950577,
+    "name": "U11 Springbank Rockies 5",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950577/images/logo_800.png?1790250804",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945218,
+    "name": "U11 Trails West Wolves 1 Red",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945219,
+    "name": "U11 Trails West Wolves 1 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945219/images/logo_800.png?1789951997",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945220,
+    "name": "U11 Trails West Wolves 2 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945220/images/logo_800.png?1792956052",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945221,
+    "name": "U11 Trails West Wolves 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945221/images/logo_800.png?1793311409",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945222,
+    "name": "U11 Trails West Wolves 3 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945222/images/logo_800.png?1793332446",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945223,
+    "name": "U11 Trails West Wolves 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945223/images/logo_800.png?1790361085",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945224,
+    "name": "U11 Trails West Wolves 4 Red",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945225,
+    "name": "U11 Trails West Wolves 4 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945225/images/logo_800.png?1791302170",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945226,
+    "name": "U11 Trails West Wolves 5",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945226/images/logo_800.png?1793129011",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948222,
+    "name": "U11 Wolverines 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948222/images/logo_800.png?1790694183",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948223,
+    "name": "U11 Wolverines 2 Blue",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948224,
+    "name": "U11 Wolverines 2 Gold",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948225,
+    "name": "U11 Wolverines 3 Blue",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948226,
+    "name": "U11 Wolverines 3 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948226/images/logo_800.png?1791062275",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948227,
+    "name": "U11 Wolverines 4 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948227/images/logo_800.png?1789882459",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948228,
+    "name": "U11 Wolverines 4 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948228/images/logo_800.png?1790266459",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948229,
+    "name": "U11 Wolverines 5 Blue",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948230,
+    "name": "U11 Wolverines 5 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948230/images/logo_800.png?1790085604",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955679,
+    "name": "U13 Bow River Bruins 1",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955680,
+    "name": "U13 Bow River Bruins 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955680/images/logo_800.png?1790690199",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955681,
+    "name": "U13 Bow River Bruins 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955681/images/logo_800.png?1791558403",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955682,
+    "name": "U13 Bow River Bruins 3 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955682/images/logo_800.png?1790801123",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955683,
+    "name": "U13 Bow River Bruins 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955683/images/logo_800.png?1790912587",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955684,
+    "name": "U13 Bow River Bruins 5",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946159,
+    "name": "U13 Bow Valley Flames 1 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946159/images/logo_800.png?1791255393",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946160,
+    "name": "U13 Bow Valley Flames 1 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946160/images/logo_800.png?1791255436",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946161,
+    "name": "U13 Bow Valley Flames 1 Yellow",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946161/images/logo_800.png?1791255460",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946162,
+    "name": "U13 Bow Valley Flames 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946162/images/logo_800.png?1791255490",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946163,
+    "name": "U13 Bow Valley Flames 2 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946163/images/logo_800.png?1790434484",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946164,
+    "name": "U13 Bow Valley Flames 2 Yellow",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946164/images/logo_800.png?1790805046",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946165,
+    "name": "U13 Bow Valley Flames 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946165/images/logo_800.png?1791983953",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946166,
+    "name": "U13 Bow Valley Flames 3 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946166/images/logo_800.png?1791255550",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946167,
+    "name": "U13 Bow Valley Flames 3 Yellow",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946167/images/logo_800.png?1791255582",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946168,
+    "name": "U13 Bow Valley Flames 4 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946168/images/logo_800.png?1791255602",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946169,
+    "name": "U13 Bow Valley Flames 4 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946169/images/logo_800.png?1791255621",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946170,
+    "name": "U13 Bow Valley Flames 4 Yellow",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946170/images/logo_800.png?1791255653",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946171,
+    "name": "U13 Bow Valley Flames 5 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946171/images/logo_800.png?1791255668",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946172,
+    "name": "U13 Bow Valley Flames 5 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946172/images/logo_800.png?1791255687",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946173,
+    "name": "U13 Bow Valley Flames 5 Yellow",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946173/images/logo_800.png?1791255717",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945188,
+    "name": "U13 Glenlake Hawks 1 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945188/images/logo_800.png?1790971369",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945189,
+    "name": "U13 Glenlake Hawks 1 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945189/images/logo_800.png?1790890479",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945190,
+    "name": "U13 Glenlake Hawks 2 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945190/images/logo_800.png?1791519153",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945191,
+    "name": "U13 Glenlake Hawks 2 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945191/images/logo_800.png?1791006092",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945192,
+    "name": "U13 Glenlake Hawks 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945192/images/logo_800.png?1791896398",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945193,
+    "name": "U13 Glenlake Hawks 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945193/images/logo_800.png?1790798796",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945194,
+    "name": "U13 Glenlake Hawks 3 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945194/images/logo_800.png?1791126579",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945195,
+    "name": "U13 Glenlake Hawks 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945195/images/logo_800.png?1791173186",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945196,
+    "name": "U13 Glenlake Hawks 4 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945196/images/logo_800.png?1791915595",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945197,
+    "name": "U13 Glenlake Hawks 4 Green",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945198,
+    "name": "U13 Glenlake Hawks 5",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948270,
+    "name": "U13 Knights 1 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948270/images/logo_800.png?1790088963",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948271,
+    "name": "U13 Knights 1 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948271/images/logo_800.png?1790089000",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948272,
+    "name": "U13 Knights 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948272/images/logo_800.png?1790089022",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948273,
+    "name": "U13 Knights 2 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948273/images/logo_800.png?1790089045",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948274,
+    "name": "U13 Knights 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948274/images/logo_800.png?1790089069",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948275,
+    "name": "U13 Knights 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948275/images/logo_800.png?1790089089",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948276,
+    "name": "U13 Knights 3 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948276/images/logo_800.png?1790089115",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948277,
+    "name": "U13 Knights 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948277/images/logo_800.png?1790089136",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948278,
+    "name": "U13 Knights 4 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948278/images/logo_800.png?1790627717",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948279,
+    "name": "U13 Knights 4 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948279/images/logo_800.png?1790089192",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948280,
+    "name": "U13 Knights 5",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948280/images/logo_800.png?1790088941",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955088,
+    "name": "U13 McKnight Mustangs 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955088/images/logo_800.png?1790210355",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955089,
+    "name": "U13 McKnight Mustangs 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955089/images/logo_800.png?1791254956",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955090,
+    "name": "U13 McKnight Mustangs 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955090/images/logo_800.png?1791583882",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955091,
+    "name": "U13 McKnight Mustangs 3 Orange",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955091/images/logo_800.png?1790541579",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955092,
+    "name": "U13 McKnight Mustangs 4 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955092/images/logo_800.png?1790260880",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955093,
+    "name": "U13 McKnight Mustangs 4 Orange",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955093/images/logo_800.png?1792349952",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955094,
+    "name": "U13 McKnight Mustangs 5",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955094/images/logo_800.png?1790461231",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955702,
+    "name": "U13 Northwest Warriors 1 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955702/images/logo_800.png?1792288218",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955703,
+    "name": "U13 Northwest Warriors 1 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955703/images/logo_800.png?1790444429",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955704,
+    "name": "U13 Northwest Warriors 2 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955704/images/logo_800.png?1790366440",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955705,
+    "name": "U13 Northwest Warriors 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955705/images/logo_800.png?1790440378",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955706,
+    "name": "U13 Northwest Warriors 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955706/images/logo_800.png?1792504952",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955707,
+    "name": "U13 Northwest Warriors 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955707/images/logo_800.png?1790619537",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955708,
+    "name": "U13 Northwest Warriors 4 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955708/images/logo_800.png?1790519478",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955709,
+    "name": "U13 Northwest Warriors 4 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955709/images/logo_800.png?1791423043",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955710,
+    "name": "U13 Northwest Warriors 5",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955737,
+    "name": "U13 Raiders Hockey Club 1 Black",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955738,
+    "name": "U13 Raiders Hockey Club 1 White",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955739,
+    "name": "U13 Raiders Hockey Club 2 Black",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955740,
+    "name": "U13 Raiders Hockey Club 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955740/images/logo_800.png?1791427425",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955741,
+    "name": "U13 Raiders Hockey Club 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955741/images/logo_800.png?1791650454",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955742,
+    "name": "U13 Raiders Hockey Club 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955742/images/logo_800.png?1792248305",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955743,
+    "name": "U13 Raiders Hockey Club 4 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955743/images/logo_800.png?1791897842",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955744,
+    "name": "U13 Raiders Hockey Club 4 White",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955745,
+    "name": "U13 Raiders Hockey Club 5 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955745/images/logo_800.png?1792531295",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955746,
+    "name": "U13 Raiders Hockey Club 5 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955746/images/logo_800.png?1792186284",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955747,
+    "name": "U13 Southwest 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955747/images/logo_800.png?1791515188",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955748,
+    "name": "U13 Southwest 2 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955748/images/logo_800.png?1791515208",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 962279,
+    "name": "U13 Southwest 2 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/962279/images/logo_800.png?1791515226",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955749,
+    "name": "U13 Southwest 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955749/images/logo_800.png?1791515241",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955750,
+    "name": "U13 Southwest 3 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955750/images/logo_800.png?1791515257",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955751,
+    "name": "U13 Southwest 4 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955751/images/logo_800.png?1791515273",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955752,
+    "name": "U13 Southwest 4 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955752/images/logo_800.png?1791515302",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955753,
+    "name": "U13 Southwest 5 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955753/images/logo_800.png?1791515287",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955754,
+    "name": "U13 Southwest 5 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955754/images/logo_800.png?1791515318",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950578,
+    "name": "U13 Springbank Rockies 1 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950578/images/logo_800.png?1790830430",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950579,
+    "name": "U13 Springbank Rockies 1 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950579/images/logo_800.png?1791136171",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950580,
+    "name": "U13 Springbank Rockies 2 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950580/images/logo_800.png?1792721136",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950581,
+    "name": "U13 Springbank Rockies 2 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950581/images/logo_800.png?1792900787",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950582,
+    "name": "U13 Springbank Rockies 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950582/images/logo_800.png?1790737688",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950583,
+    "name": "U13 Springbank Rockies 3 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950583/images/logo_800.png?1790618276",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950584,
+    "name": "U13 Springbank Rockies 4 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950584/images/logo_800.png?1792821885",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950585,
+    "name": "U13 Springbank Rockies 4 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950585/images/logo_800.png?1791045982",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950586,
+    "name": "U13 Springbank Rockies 5",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 954932,
+    "name": "U13 Trails West Wolves 1",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 954933,
+    "name": "U13 Trails West Wolves 2 Red",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 954934,
+    "name": "U13 Trails West Wolves 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/954934/images/logo_800.png?1791252877",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 954936,
+    "name": "U13 Trails West Wolves 3 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/954936/images/logo_800.png?1791322955",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 954937,
+    "name": "U13 Trails West Wolves 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/954937/images/logo_800.png?1791727581",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 954938,
+    "name": "U13 Trails West Wolves 4 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/954938/images/logo_800.png?1790697822",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 954939,
+    "name": "U13 Trails West Wolves 4 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/954939/images/logo_800.png?1792440516",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 954940,
+    "name": "U13 Trails West Wolves 5",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/954940/images/logo_800.png?1790697887",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955671,
+    "name": "U13 Wolverines 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955671/images/logo_800.png?1790443272",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955672,
+    "name": "U13 Wolverines 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955672/images/logo_800.png?1790346088",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955673,
+    "name": "U13 Wolverines 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955673/images/logo_800.png?1790268663",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955674,
+    "name": "U13 Wolverines 3 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955674/images/logo_800.png?1790367195",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955675,
+    "name": "U13 Wolverines 4 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955675/images/logo_800.png?1790269969",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955676,
+    "name": "U13 Wolverines 4 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955676/images/logo_800.png?1791152288",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955677,
+    "name": "U13 Wolverines 5 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955677/images/logo_800.png?1792567079",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955678,
+    "name": "U13 Wolverines 5 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955678/images/logo_800.png?1790786462",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964681,
+    "name": "U15 Bow River Bruins BC 1",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964682,
+    "name": "U15 Bow River Bruins BC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964682/images/logo_800.png?1790611934",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964683,
+    "name": "U15 Bow River Bruins BC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964683/images/logo_800.png?1792285307",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964684,
+    "name": "U15 Bow River Bruins NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964684/images/logo_800.png?1791052763",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964685,
+    "name": "U15 Bow River Bruins NBC 2",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964686,
+    "name": "U15 Bow River Bruins NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964686/images/logo_800.png?1791290682",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964687,
+    "name": "U15 Bow River Bruins NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964687/images/logo_800.png?1792697182",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946174,
+    "name": "U15 Bow Valley Flames BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946174/images/logo_800.png?1791255774",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946175,
+    "name": "U15 Bow Valley Flames BC 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946175/images/logo_800.png?1791255804",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946176,
+    "name": "U15 Bow Valley Flames BC 2 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946176/images/logo_800.png?1791255834",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946177,
+    "name": "U15 Bow Valley Flames BC 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946177/images/logo_800.png?1791255879",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946178,
+    "name": "U15 Bow Valley Flames BC 3 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946178/images/logo_800.png?1791255911",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946179,
+    "name": "U15 Bow Valley Flames NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946179/images/logo_800.png?1791256073",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946180,
+    "name": "U15 Bow Valley Flames NBC 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946180/images/logo_800.png?1791256114",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946181,
+    "name": "U15 Bow Valley Flames NBC 2 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946181/images/logo_800.png?1791256145",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946182,
+    "name": "U15 Bow Valley Flames NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946182/images/logo_800.png?1791256208",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946183,
+    "name": "U15 Bow Valley Flames NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946183/images/logo_800.png?1790951824",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964671,
+    "name": "U15 Glenlake Hawks BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964671/images/logo_800.png?1790704483",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964672,
+    "name": "U15 Glenlake Hawks BC 2 Blue",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964673,
+    "name": "U15 Glenlake Hawks BC 2 Green",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964674,
+    "name": "U15 Glenlake Hawks BC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964674/images/logo_800.png?1790872181",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964675,
+    "name": "U15 Glenlake Hawks NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964675/images/logo_800.png?1791218055",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964676,
+    "name": "U15 Glenlake Hawks NBC 2 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964676/images/logo_800.png?1791051974",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964677,
+    "name": "U15 Glenlake Hawks NBC 2 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964677/images/logo_800.png?1790690760",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964678,
+    "name": "U15 Glenlake Hawks NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964678/images/logo_800.png?1790646671",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964679,
+    "name": "U15 Glenlake Hawks NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964679/images/logo_800.png?1791316796",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963091,
+    "name": "U15 Knights BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963091/images/logo_800.png?1790437572",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963092,
+    "name": "U15 Knights BC 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963092/images/logo_800.png?1790437592",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963093,
+    "name": "U15 Knights BC 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963093/images/logo_800.png?1790437611",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963094,
+    "name": "U15 Knights BC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963094/images/logo_800.png?1790437630",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963095,
+    "name": "U15 Knights NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963095/images/logo_800.png?1790437649",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963096,
+    "name": "U15 Knights NBC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963096/images/logo_800.png?1790437671",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963097,
+    "name": "U15 Knights NBC 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963097/images/logo_800.png?1790437715",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963098,
+    "name": "U15 Knights NBC 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963098/images/logo_800.png?1790437742",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963099,
+    "name": "U15 Knights NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963099/images/logo_800.png?1790437777",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 961223,
+    "name": "U15 McKnight Mustangs BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/961223/images/logo_800.png?1790183235",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 961224,
+    "name": "U15 McKnight Mustangs BC 2",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 961225,
+    "name": "U15 McKnight Mustangs BC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/961225/images/logo_800.png?1792350604",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 961226,
+    "name": "U15 McKnight Mustangs NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/961226/images/logo_800.png?1791660164",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 961227,
+    "name": "U15 McKnight Mustangs NBC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/961227/images/logo_800.png?1790953854",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 961228,
+    "name": "U15 McKnight Mustangs NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/961228/images/logo_800.png?1792911546",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 961229,
+    "name": "U15 McKnight Mustangs NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/961229/images/logo_800.png?1790974794",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965763,
+    "name": "U15 Northwest Warriors BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/965763/images/logo_800.png?1791130470",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965764,
+    "name": "U15 Northwest Warriors BC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/965764/images/logo_800.png?1791652992",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965765,
+    "name": "U15 Northwest Warriors BC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/965765/images/logo_800.png?1790825477",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965766,
+    "name": "U15 Northwest Warriors NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/965766/images/logo_800.png?1792336292",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965767,
+    "name": "U15 Northwest Warriors NBC 2",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965768,
+    "name": "U15 Northwest Warriors NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/965768/images/logo_800.png?1791037131",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965769,
+    "name": "U15 Northwest Warriors NBC 4",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966642,
+    "name": "U15 Raiders Hockey Club BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966642/images/logo_800.png?1790829657",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966643,
+    "name": "U15 Raiders Hockey Club BC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966643/images/logo_800.png?1790975918",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966644,
+    "name": "U15 Raiders Hockey Club BC 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966644/images/logo_800.png?1791349569",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966645,
+    "name": "U15 Raiders Hockey Club BC 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966645/images/logo_800.png?1792082118",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966646,
+    "name": "U15 Raiders Hockey Club NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966646/images/logo_800.png?1792438967",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966647,
+    "name": "U15 Raiders Hockey Club NBC 2",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966648,
+    "name": "U15 Raiders Hockey Club NBC 3",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966649,
+    "name": "U15 Raiders Hockey Club NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966649/images/logo_800.png?1792459404",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966224,
+    "name": "U15 Southwest BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966224/images/logo_800.png?1791515342",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966225,
+    "name": "U15 Southwest BC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966225/images/logo_800.png?1791515359",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966226,
+    "name": "U15 Southwest BC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966226/images/logo_800.png?1791515378",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966227,
+    "name": "U15 Southwest NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966227/images/logo_800.png?1791515392",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966228,
+    "name": "U15 Southwest NBC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966228/images/logo_800.png?1791515409",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966229,
+    "name": "U15 Southwest NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966229/images/logo_800.png?1791515422",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966230,
+    "name": "U15 Southwest NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966230/images/logo_800.png?1791515439",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 962684,
+    "name": "U15 Springbank Rockies BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/962684/images/logo_800.png?1790914761",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 962685,
+    "name": "U15 Springbank Rockies BC 2 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/962685/images/logo_800.png?1790951572",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 962686,
+    "name": "U15 Springbank Rockies BC 2 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/962686/images/logo_800.png?1791616333",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 962687,
+    "name": "U15 Springbank Rockies BC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/962687/images/logo_800.png?1790902999",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 962688,
+    "name": "U15 Springbank Rockies NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/962688/images/logo_800.png?1791232843",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 962689,
+    "name": "U15 Springbank Rockies NBC 2",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 962690,
+    "name": "U15 Springbank Rockies NBC 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/962690/images/logo_800.png?1793200155",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 962691,
+    "name": "U15 Springbank Rockies NBC 3 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/962691/images/logo_800.png?1790951157",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 962692,
+    "name": "U15 Springbank Rockies NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/962692/images/logo_800.png?1791943703",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964190,
+    "name": "U15 Trails West Wolves BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964190/images/logo_800.png?1791239411",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964191,
+    "name": "U15 Trails West Wolves BC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964191/images/logo_800.png?1791918410",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964192,
+    "name": "U15 Trails West Wolves BC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964192/images/logo_800.png?1791947981",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964193,
+    "name": "U15 Trails West Wolves NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964193/images/logo_800.png?1791314917",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964194,
+    "name": "U15 Trails West Wolves NBC 2 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964194/images/logo_800.png?1793221776",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964195,
+    "name": "U15 Trails West Wolves NBC 2 White",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964196,
+    "name": "U15 Trails West Wolves NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964196/images/logo_800.png?1793311459",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964197,
+    "name": "U15 Trails West Wolves NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964197/images/logo_800.png?1791239116",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966957,
+    "name": "U15 Wolverines BC 1",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966958,
+    "name": "U15 Wolverines BC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966958/images/logo_800.png?1791597351",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966959,
+    "name": "U15 Wolverines BC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966959/images/logo_800.png?1792345611",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966960,
+    "name": "U15 Wolverines NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966960/images/logo_800.png?1791251074",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966961,
+    "name": "U15 Wolverines NBC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966961/images/logo_800.png?1791299449",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966962,
+    "name": "U15 Wolverines NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966962/images/logo_800.png?1793156352",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966963,
+    "name": "U15 Wolverines NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966963/images/logo_800.png?1792370918",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966275,
+    "name": "U18 Bow River Bruins BC 1",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966276,
+    "name": "U18 Bow River Bruins BC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966276/images/logo_800.png?1791002572",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966277,
+    "name": "U18 Bow River Bruins BC 3",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966278,
+    "name": "U18 Bow River Bruins NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966278/images/logo_800.png?1792288481",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966279,
+    "name": "U18 Bow River Bruins NBC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966279/images/logo_800.png?1791814332",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966280,
+    "name": "U18 Bow River Bruins NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966280/images/logo_800.png?1791990049",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966282,
+    "name": "U18 Bow River Bruins NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966282/images/logo_800.png?1791225806",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946184,
+    "name": "U18 Bow Valley Flames BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946184/images/logo_800.png?1791256939",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946185,
+    "name": "U18 Bow Valley Flames BC 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946185/images/logo_800.png?1791256964",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946186,
+    "name": "U18 Bow Valley Flames BC 2 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946186/images/logo_800.png?1791123461",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946187,
+    "name": "U18 Bow Valley Flames BC 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946187/images/logo_800.png?1791256980",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946188,
+    "name": "U18 Bow Valley Flames BC 3 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946188/images/logo_800.png?1791257013",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946189,
+    "name": "U18 Bow Valley Flames NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946189/images/logo_800.png?1791226146",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946190,
+    "name": "U18 Bow Valley Flames NBC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946190/images/logo_800.png?1791257030",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946192,
+    "name": "U18 Bow Valley Flames NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946192/images/logo_800.png?1791257052",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946193,
+    "name": "U18 Bow Valley Flames NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946193/images/logo_800.png?1791257165",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966175,
+    "name": "U18 Glenlake Hawks BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966175/images/logo_800.png?1790905606",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966176,
+    "name": "U18 Glenlake Hawks BC 2 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966176/images/logo_800.png?1791056537",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966177,
+    "name": "U18 Glenlake Hawks BC 2 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966177/images/logo_800.png?1791983540",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966178,
+    "name": "U18 Glenlake Hawks BC 3",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966180,
+    "name": "U18 Glenlake Hawks NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966180/images/logo_800.png?1790948949",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966181,
+    "name": "U18 Glenlake Hawks NBC 2 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966181/images/logo_800.png?1792220873",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966182,
+    "name": "U18 Glenlake Hawks NBC 2 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966182/images/logo_800.png?1792510413",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966183,
+    "name": "U18 Glenlake Hawks NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966183/images/logo_800.png?1791304743",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966184,
+    "name": "U18 Glenlake Hawks NBC 4",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963100,
+    "name": "U18 Knights BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963100/images/logo_800.png?1790640043",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963101,
+    "name": "U18 Knights BC 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963101/images/logo_800.png?1790640064",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963102,
+    "name": "U18 Knights BC 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963102/images/logo_800.png?1790640086",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963103,
+    "name": "U18 Knights BC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963103/images/logo_800.png?1790640104",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963104,
+    "name": "U18 Knights NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963104/images/logo_800.png?1790640122",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963105,
+    "name": "U18 Knights NBC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963105/images/logo_800.png?1790640142",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963106,
+    "name": "U18 Knights NBC 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963106/images/logo_800.png?1790640158",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963107,
+    "name": "U18 Knights NBC 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963107/images/logo_800.png?1790640176",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 963108,
+    "name": "U18 Knights NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/963108/images/logo_800.png?1790640194",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965280,
+    "name": "U18 McKnight Mustangs BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/965280/images/logo_800.png?1792165111",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965281,
+    "name": "U18 McKnight Mustangs BC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/965281/images/logo_800.png?1791131581",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965282,
+    "name": "U18 McKnight Mustangs BC 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/965282/images/logo_800.png?1791038754",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965283,
+    "name": "U18 McKnight Mustangs BC 3 Orange",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965284,
+    "name": "U18 McKnight Mustangs NBC 1",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965285,
+    "name": "U18 McKnight Mustangs NBC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/965285/images/logo_800.png?1792096877",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965286,
+    "name": "U18 McKnight Mustangs NBC 3",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965287,
+    "name": "U18 McKnight Mustangs NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/965287/images/logo_800.png?1792013841",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965770,
+    "name": "U18 Northwest Warriors BC 1",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965771,
+    "name": "U18 Northwest Warriors BC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/965771/images/logo_800.png?1792853559",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965772,
+    "name": "U18 Northwest Warriors BC 3 Blue",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965773,
+    "name": "U18 Northwest Warriors BC 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/965773/images/logo_800.png?1791181967",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965774,
+    "name": "U18 Northwest Warriors NBC 1",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965775,
+    "name": "U18 Northwest Warriors NBC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/965775/images/logo_800.png?1790631880",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965776,
+    "name": "U18 Northwest Warriors NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/965776/images/logo_800.png?1791832507",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 965777,
+    "name": "U18 Northwest Warriors NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/965777/images/logo_800.png?1790695423",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966650,
+    "name": "U18 Raiders Hockey Club BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966650/images/logo_800.png?1793081706",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966651,
+    "name": "U18 Raiders Hockey Club BC 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966651/images/logo_800.png?1791299119",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966652,
+    "name": "U18 Raiders Hockey Club BC 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966652/images/logo_800.png?1791430761",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966653,
+    "name": "U18 Raiders Hockey Club BC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966653/images/logo_800.png?1792269706",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966654,
+    "name": "U18 Raiders Hockey Club NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966654/images/logo_800.png?1791824875",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966655,
+    "name": "U18 Raiders Hockey Club NBC 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966655/images/logo_800.png?1791656271",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966656,
+    "name": "U18 Raiders Hockey Club NBC 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966656/images/logo_800.png?1792438926",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966657,
+    "name": "U18 Raiders Hockey Club NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966657/images/logo_800.png?1791253048",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966658,
+    "name": "U18 Raiders Hockey Club NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966658/images/logo_800.png?1792178746",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966231,
+    "name": "U18 Southwest BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966231/images/logo_800.png?1791515459",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966232,
+    "name": "U18 Southwest BC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966232/images/logo_800.png?1791515475",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966233,
+    "name": "U18 Southwest BC 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966233/images/logo_800.png?1791515489",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966234,
+    "name": "U18 Southwest BC 3 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966234/images/logo_800.png?1791515505",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966235,
+    "name": "U18 Southwest NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966235/images/logo_800.png?1791515520",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966236,
+    "name": "U18 Southwest NBC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966236/images/logo_800.png?1791515537",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966237,
+    "name": "U18 Southwest NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966237/images/logo_800.png?1791515554",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966238,
+    "name": "U18 Southwest NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966238/images/logo_800.png?1791515573",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 967375,
+    "name": "U18 Springbank Rockies BC 1",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 967376,
+    "name": "U18 Springbank Rockies BC 2",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 967377,
+    "name": "U18 Springbank Rockies BC 3",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 967378,
+    "name": "U18 Springbank Rockies NBC 1 Blue",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 967379,
+    "name": "U18 Springbank Rockies NBC 1 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/967379/images/logo_800.png?1792255719",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 967380,
+    "name": "U18 Springbank Rockies NBC 2 Blue",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 967381,
+    "name": "U18 Springbank Rockies NBC 2 Green",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 967382,
+    "name": "U18 Springbank Rockies NBC 3",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 967383,
+    "name": "U18 Springbank Rockies NBC 4 Blue",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 967384,
+    "name": "U18 Springbank Rockies NBC 4 Green",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964198,
+    "name": "U18 Trails West Wolves BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964198/images/logo_800.png?1791929029",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964199,
+    "name": "U18 Trails West Wolves BC 2 Red",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964200,
+    "name": "U18 Trails West Wolves BC 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964200/images/logo_800.png?1791943141",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964201,
+    "name": "U18 Trails West Wolves BC 3 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964201/images/logo_800.png?1793021816",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964202,
+    "name": "U18 Trails West Wolves BC 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964202/images/logo_800.png?1792552292",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964203,
+    "name": "U18 Trails West Wolves NBC 1 Red",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964204,
+    "name": "U18 Trails West Wolves NBC 1 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964204/images/logo_800.png?1792957081",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964205,
+    "name": "U18 Trails West Wolves NBC 2 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964205/images/logo_800.png?1791748790",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964206,
+    "name": "U18 Trails West Wolves NBC 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964206/images/logo_800.png?1791749179",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964207,
+    "name": "U18 Trails West Wolves NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/964207/images/logo_800.png?1792786635",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 964208,
+    "name": "U18 Trails West Wolves NBC 4",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966964,
+    "name": "U18 Wolverines BC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966964/images/logo_800.png?1791076970",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966965,
+    "name": "U18 Wolverines BC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966965/images/logo_800.png?1791075279",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966966,
+    "name": "U18 Wolverines BC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966966/images/logo_800.png?1792337591",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966967,
+    "name": "U18 Wolverines NBC 1",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966967/images/logo_800.png?1791328723",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966968,
+    "name": "U18 Wolverines NBC 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966968/images/logo_800.png?1791124901",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966969,
+    "name": "U18 Wolverines NBC 3",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966969/images/logo_800.png?1791595587",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 966970,
+    "name": "U18 Wolverines NBC 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/966970/images/logo_800.png?1792108592",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946203,
+    "name": "U9 Bow River Bruins 1 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946203/images/logo_800.png?1791916781",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946204,
+    "name": "U9 Bow River Bruins 1 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946204/images/logo_800.png?1790567378",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946205,
+    "name": "U9 Bow River Bruins 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946205/images/logo_800.png?1789857361",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946206,
+    "name": "U9 Bow River Bruins 2 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946206/images/logo_800.png?1792341144",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946207,
+    "name": "U9 Bow River Bruins 3 Black",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946208,
+    "name": "U9 Bow River Bruins 3 Gold",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946209,
+    "name": "U9 Bow River Bruins 4",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946209/images/logo_800.png?1789872491",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 944102,
+    "name": "U9 Bow Valley Flames 1 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/944102/images/logo_800.png?1791254551",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 944103,
+    "name": "U9 Bow Valley Flames 1 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/944103/images/logo_800.png?1791254573",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 944104,
+    "name": "U9 Bow Valley Flames 1 Yellow",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/944104/images/logo_800.png?1791254606",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 944105,
+    "name": "U9 Bow Valley Flames 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/944105/images/logo_800.png?1791254649",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 944106,
+    "name": "U9 Bow Valley Flames 2 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/944106/images/logo_800.png?1791254668",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 944107,
+    "name": "U9 Bow Valley Flames 2 Yellow",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/944107/images/logo_800.png?1791254688",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 944108,
+    "name": "U9 Bow Valley Flames 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/944108/images/logo_800.png?1791254711",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 944111,
+    "name": "U9 Bow Valley Flames 3 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/944111/images/logo_800.png?1791254733",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 944109,
+    "name": "U9 Bow Valley Flames 3 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/944109/images/logo_800.png?1791254754",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 944110,
+    "name": "U9 Bow Valley Flames 3 Yellow",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/944110/images/logo_800.png?1791254780",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 944112,
+    "name": "U9 Bow Valley Flames 4 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/944112/images/logo_800.png?1791254801",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 944113,
+    "name": "U9 Bow Valley Flames 4 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/944113/images/logo_800.png?1791254822",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 944114,
+    "name": "U9 Bow Valley Flames 4 Yellow",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/944114/images/logo_800.png?1791254840",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945162,
+    "name": "U9 Glenlake Hawks 1 Blue",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945163,
+    "name": "U9 Glenlake Hawks 1 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945163/images/logo_800.png?1790636219",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945164,
+    "name": "U9 Glenlake Hawks 1 White",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945165,
+    "name": "U9 Glenlake Hawks 2 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945165/images/logo_800.png?1791055353",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945166,
+    "name": "U9 Glenlake Hawks 2 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945166/images/logo_800.png?1790014275",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945167,
+    "name": "U9 Glenlake Hawks 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945167/images/logo_800.png?1792881162",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945168,
+    "name": "U9 Glenlake Hawks 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945168/images/logo_800.png?1791950850",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945169,
+    "name": "U9 Glenlake Hawks 3 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945169/images/logo_800.png?1790549278",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945170,
+    "name": "U9 Glenlake Hawks 3 White",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945171,
+    "name": "U9 Glenlake Hawks 4 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945171/images/logo_800.png?1790199506",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945172,
+    "name": "U9 Glenlake Hawks 4 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945172/images/logo_800.png?1790782855",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945173,
+    "name": "U9 Glenlake Hawks 4 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945173/images/logo_800.png?1792210697",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948250,
+    "name": "U9 Knights 1 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948250/images/logo_800.png?1790089424",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948251,
+    "name": "U9 Knights 1 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948251/images/logo_800.png?1790089445",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948252,
+    "name": "U9 Knights 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948252/images/logo_800.png?1790089463",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948253,
+    "name": "U9 Knights 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948253/images/logo_800.png?1790089483",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948254,
+    "name": "U9 Knights 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948254/images/logo_800.png?1790089501",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948255,
+    "name": "U9 Knights 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948255/images/logo_800.png?1790089520",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948256,
+    "name": "U9 Knights 4 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948256/images/logo_800.png?1790089538",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948257,
+    "name": "U9 Knights 4 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948257/images/logo_800.png?1790089557",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955073,
+    "name": "U9 McKnight Mustangs 1 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955073/images/logo_800.png?1793368519",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955074,
+    "name": "U9 McKnight Mustangs 1 Orange",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955075,
+    "name": "U9 McKnight Mustangs 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955075/images/logo_800.png?1792163978",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955076,
+    "name": "U9 McKnight Mustangs 2 Orange",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955076/images/logo_800.png?1792266938",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955077,
+    "name": "U9 McKnight Mustangs 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955077/images/logo_800.png?1792186846",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955078,
+    "name": "U9 McKnight Mustangs 3 Orange",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955078/images/logo_800.png?1790023299",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955079,
+    "name": "U9 McKnight Mustangs 4 Black",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955080,
+    "name": "U9 McKnight Mustangs 4 Orange",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955080/images/logo_800.png?1792265063",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955685,
+    "name": "U9 Northwest Warriors 1 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955685/images/logo_800.png?1789618581",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955686,
+    "name": "U9 Northwest Warriors 1 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955686/images/logo_800.png?1789941619",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955687,
+    "name": "U9 Northwest Warriors 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955687/images/logo_800.png?1789670830",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955688,
+    "name": "U9 Northwest Warriors 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955688/images/logo_800.png?1790283838",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955689,
+    "name": "U9 Northwest Warriors 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955689/images/logo_800.png?1790562609",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955690,
+    "name": "U9 Northwest Warriors 4 Blue",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955691,
+    "name": "U9 Northwest Warriors 4 White",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955719,
+    "name": "U9 Raiders Hockey Club 1 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955719/images/logo_800.png?1790433031",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955720,
+    "name": "U9 Raiders Hockey Club 1 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955720/images/logo_800.png?1792700207",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955721,
+    "name": "U9 Raiders Hockey Club 2 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955721/images/logo_800.png?1790522176",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955722,
+    "name": "U9 Raiders Hockey Club 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955722/images/logo_800.png?1790871814",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955723,
+    "name": "U9 Raiders Hockey Club 3 Black",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955723/images/logo_800.png?1790356908",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955724,
+    "name": "U9 Raiders Hockey Club 3 White",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955725,
+    "name": "U9 Raiders Hockey Club 4 Black",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 955726,
+    "name": "U9 Raiders Hockey Club 4 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/955726/images/logo_800.png?1790434903",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946232,
+    "name": "U9 Southwest 1 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946232/images/logo_800.png?1791514763",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946233,
+    "name": "U9 Southwest 1 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946233/images/logo_800.png?1791514782",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946234,
+    "name": "U9 Southwest 2 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946234/images/logo_800.png?1791514799",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946235,
+    "name": "U9 Southwest 2 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946235/images/logo_800.png?1791514817",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946236,
+    "name": "U9 Southwest 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946236/images/logo_800.png?1791514835",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946237,
+    "name": "U9 Southwest 3 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946237/images/logo_800.png?1791514851",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946238,
+    "name": "U9 Southwest 4 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946238/images/logo_800.png?1791514867",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 946239,
+    "name": "U9 Southwest 4 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/946239/images/logo_800.png?1791514941",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950561,
+    "name": "U9 Springbank Rockies 1 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950561/images/logo_800.png?1793287715",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950562,
+    "name": "U9 Springbank Rockies 1 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950562/images/logo_800.png?1793194258",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950563,
+    "name": "U9 Springbank Rockies 2",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950563/images/logo_800.png?1791149078",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950564,
+    "name": "U9 Springbank Rockies 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950564/images/logo_800.png?1790771166",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950565,
+    "name": "U9 Springbank Rockies 3 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950565/images/logo_800.png?1790534142",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950566,
+    "name": "U9 Springbank Rockies 4 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950566/images/logo_800.png?1792385243",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 950567,
+    "name": "U9 Springbank Rockies 4 Green",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/950567/images/logo_800.png?1791673968",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945209,
+    "name": "U9 Trails West Wolves 1 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945209/images/logo_800.png?1790134773",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945210,
+    "name": "U9 Trails West Wolves 1 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945210/images/logo_800.png?1792128375",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945211,
+    "name": "U9 Trails West Wolves 2 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945211/images/logo_800.png?1792419125",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945212,
+    "name": "U9 Trails West Wolves 2 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945212/images/logo_800.png?1790567444",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945213,
+    "name": "U9 Trails West Wolves 3 Red",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945213/images/logo_800.png?1789960593",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945214,
+    "name": "U9 Trails West Wolves 3 White",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945215,
+    "name": "U9 Trails West Wolves 4 Red",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 945216,
+    "name": "U9 Trails West Wolves 4 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/945216/images/logo_800.png?1790184044",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948212,
+    "name": "U9 Wolverines 1 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948212/images/logo_800.png?1789665595",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948213,
+    "name": "U9 Wolverines 1 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948213/images/logo_800.png?1790458224",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948214,
+    "name": "U9 Wolverines 2 Blue",
+    "logoUrl": "",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948215,
+    "name": "U9 Wolverines 2 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948215/images/logo_800.png?1792255839",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948216,
+    "name": "U9 Wolverines 3 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948216/images/logo_800.png?1790191667",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948217,
+    "name": "U9 Wolverines 3 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948217/images/logo_800.png?1791553869",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948218,
+    "name": "U9 Wolverines 3 White",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948218/images/logo_800.png?1789567838",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948219,
+    "name": "U9 Wolverines 4 Blue",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948219/images/logo_800.png?1791830451",
+    "city": "Calgary",
+    "divisionName": null
+  },
+  {
+    "id": 948220,
+    "name": "U9 Wolverines 4 Gold",
+    "logoUrl": "https://cdn-app.teamlinkt.com/media/team_data/948220/images/logo_800.png?1789484199",
+    "city": "Calgary",
+    "divisionName": null
+  }
+]

@@ -12,6 +12,7 @@ import {
   scoresRequest,
   seasonsRequest,
   standingsRequest,
+  teamsRequest,
 } from "../teamlinkt.js";
 
 // Captured 2026-10-31; see fixtures/teamlinkt/README.md for the requests.
@@ -53,6 +54,11 @@ describe("requests", () => {
     expect(standingsRequest({ seasonId: SEEDING, divisionId: U13_T2_SOUTH }).body).toEqual({
       season_id: 61563,
       division_id: 332824,
+    });
+    expect(teamsRequest(SEEDING)).toEqual({
+      method: "POST",
+      url: "https://app.teamlinkt.com/api/public/sites/hockeycalgary/teams",
+      body: { season_id: 61563 },
     });
   });
 });

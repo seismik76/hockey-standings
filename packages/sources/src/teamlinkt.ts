@@ -349,3 +349,23 @@ export function parseStandings(json: unknown): TeamLinktStanding[] {
     streak: t.streak,
   }));
 }
+
+// ------------------------------------------------------------------ teams --
+
+/**
+ * Every team in a season, in one response, without its division: 492 teams
+ * for 2026-27 seeding. Standings carry the team-to-division link; this list is
+ * for checking that every team name resolves to a community.
+ */
+const teamsSchema = z.array(z.object({ id, name: z.string() }));
+
+export function teamsRequest(seasonId: number, site = HOCKEY_CALGARY_SITE): TeamLinktRequest {
+  return { method: "POST", url: siteUrl(site, "teams"), body: { season_id: seasonId } };
+}
+
+export function parseTeams(json: unknown): TeamRef[] {
+  return parseWith("teams", teamsSchema, json).map((t) => ({
+    sourceId: t.id,
+    name: t.name.trim(),
+  }));
+}

@@ -13,6 +13,8 @@ Hosting: one scale-to-zero Container App and one collector job in the shared `ca
   - Hockey Calgary's Community Council league index, which marks which TeamLinkt divisions are Community Council leagues.
   - The community catalogue: the 12 associations and a team-name parser ("U15 Glenlake Hawks NBC 1" → Glenlake, U15, NBC, team 1).
 
+- `packages/core`: logic that isn't tied to a source. So far, standings computed from games (2 points a win, 1 a tie), which reproduce TeamLinkt's table in order for the captured league.
+
 Still to come: the HC calendar feed adapter, the 2020-26 history import, `packages/db`, `apps/collector` and `apps/web`. Where the data comes from, and why, is in [docs/SOURCES.md](docs/SOURCES.md).
 
 ## Develop

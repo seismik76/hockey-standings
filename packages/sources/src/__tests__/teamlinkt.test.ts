@@ -212,43 +212,4 @@ describe("parseStandings", () => {
       streak: "W2",
     });
   });
-
-  it("agrees with a table computed from the same day's games", () => {
-    // The app computes standings from games; this pins that the two sources
-    // agree, with 2 points a win and 1 a tie.
-    const { games } = parseScores(fixture("scores-61563-332824.json"));
-    const computed = new Map<
-      number,
-      { gp: number; w: number; l: number; t: number; gf: number; ga: number }
-    >();
-    const row = (id: number) => {
-      let r = computed.get(id);
-      if (!r) computed.set(id, (r = { gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0 }));
-      return r;
-    };
-    for (const g of games) {
-      const sides = [
-        [g.home.sourceId, g.homeScore!, g.awayScore!],
-        [g.away.sourceId, g.awayScore!, g.homeScore!],
-      ] as const;
-      for (const [team, own, other] of sides) {
-        const r = row(team);
-        r.gp++;
-        r.gf += own;
-        r.ga += other;
-        if (own > other) r.w++;
-        else if (own < other) r.l++;
-        else r.t++;
-      }
-    }
-
-    for (const s of standings) {
-      const c = computed.get(s.team.sourceId) ?? { gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0 };
-      expect({ team: s.team.name, gp: s.gp, w: s.w, l: s.l, t: s.t, gf: s.gf, ga: s.ga }).toEqual({
-        team: s.team.name,
-        ...c,
-      });
-      expect(s.pts).toBe(2 * s.w + s.t);
-    }
-  });
 });

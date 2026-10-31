@@ -4,7 +4,17 @@ Where hockey-standings gets its data, what each source allows, and what is still
 
 ## Stance
 
-We read only what a source's `robots.txt` allows, and we don't work around access controls: no browser-mimicking headers, no loopholes like `/index.php/standings/...`. We don't guess at undocumented APIs. Anything else we ask for first. We store team names only, never coach, manager or player names.
+We read what a source's `robots.txt` allows, plus one exception: **TeamLinkt's public site API** (`app.teamlinkt.com/api/public/sites/hockeycalgary/…`), which serves the scores and standings pages of the public TeamLinkt site. TeamLinkt's `robots.txt` disallows `app.teamlinkt.com/`. Pat decided on 2026-10-31 to read it anyway, because it's a small non-commercial app that shows public game results.
+
+How we read it:
+
+- The User-Agent names the app and links this repo. No browser-imitating headers: no Chrome User-Agent, `X-Requested-With` or `Referer`.
+- TLS verification stays on.
+- Requests go one at a time, about one a second, at most hourly from 7 am to 11 pm.
+- We only call what the public site's own script calls. No `/leagues/get*` endpoints and no guessing at IDs: season and division IDs come from the API's own `seasons` and `divisions` lists.
+- We stop at once if Hockey Calgary or TeamLinkt asks.
+
+Everywhere else we follow `robots.txt` and don't work around access controls, including loopholes like `/index.php/standings/...`. We store team names only, never coach, manager or player names.
 
 ## Sources
 
@@ -15,8 +25,8 @@ We read only what a source's `robots.txt` allows, and we don't work around acces
 | HC league page `/league/view/stream/community-council/league/{slug}` | 5 recent and 5 upcoming games, team slugs, a score slot per team (`recent-games-win-bg`), the league chair's name and email | Allowed | Works. Every score is `-` in all 5 leagues sampled (U13 T2 South, U13 T1 North, U15 T1 BC, U18 T1 BC, Junior C). The Summary links are commented out. | Team discovery. Don't store the chair contact. |
 | HC team page `/team/view/league/{slug}/team/{team}` | Team games, mini standings, staff names | Allowed | Works | Team list only |
 | HC standings `/standings/*` and scores `/schedule/*` | Standings and completed scores | **Disallowed** | Not fetched | Only with permission |
-| TeamLinkt site `leagues.teamlinkt.com/hockeycalgary` | Builder pages "U11/U13/U15/U18/U21 Scores", "… Standings", "… Schedule". Each holds a client-side widget configured with TeamLinkt division IDs (53 for U13). Its chrome is still template placeholder text. | `/` allowed, `/leagues/get*` disallowed | The page loads; the data comes from an undocumented JSON API the browser script calls (`/api/public/sites/hockeycalgary/{scores,standings,schedule,divisions,seasons,…}`, POST). A plain POST to that path on `leagues.teamlinkt.com` returned 404. Stopped there. | **Likely the only public source of 2026-27 scores. Ask before using.** |
-| `app.teamlinkt.com` | TeamLinkt's app, which serves the site script | **Disallows `/`** apart from login, signup and registration paths | Only the static script was fetched | None |
+| TeamLinkt site `leagues.teamlinkt.com/hockeycalgary` | Builder pages "U11/U13/U15/U18/U21 Scores", "… Standings", "… Schedule". Each holds a client-side widget configured with TeamLinkt division IDs (53 for U13). Its chrome is still template placeholder text. | `/` allowed, `/leagues/get*` disallowed | The page loads; the data comes from the public API on `app.teamlinkt.com` (next row). The old `/hockeycalgary/Standings` page now returns 404. | Pages themselves: none |
+| TeamLinkt public API `app.teamlinkt.com/api/public/sites/hockeycalgary/{seasons,divisions,scores,standings,schedule,teams}` | JSON. `seasons` and `divisions` by GET, the rest by JSON POST with `season_id` and `division_id` | **Disallows `/`** apart from login, signup and registration paths | **Used, by Pat's decision (see Stance).** `seasons` works: 2026-27 Seeding `61563`, 2026-27 Regular Season `60742`. `divisions?season_id=61563` returns 90 leagues (U7 6, U9 14, U11 18, U13 18, U15 14, U18 17, U21 3); U13 Tier 2 South is `332824`. `scores` answered 201 with no games for the old division ID 53. | **Scores, standings, league and team discovery** |
 | `games.teamlinkt.com` | Digital gamesheets | `robots.txt` returns 403 | Root loads; not explored | Unknown |
 | Old seed DB `hockey-calgary-scraper/data/seed/hockey_calgary.db` | 9,003 standings rows, 2020-21 to 2025-26, 12 communities | n/a | In repo | Frozen history import |
 
@@ -30,7 +40,7 @@ We read only what a source's `robots.txt` allows, and we don't work around acces
 | `leagueID` | 400 = U13 Tier 2 South; the other 58 unknown | Not on any allowed page. It appears to come from the schedule pages, which are disallowed. |
 | `typeID` | 5 = seeding; regular season and playoffs unknown | Same |
 
-So the calendar feed works, but the collector can't find its IDs for 58 of the 59 leagues without either the disallowed pages or a list from Hockey Calgary. Guessing IDs against the feed endpoint is enumeration, so we don't do it.
+So the calendar feed works, but the collector can't find its IDs for 58 of the 59 leagues without either the disallowed pages or a list from Hockey Calgary. Guessing IDs against the feed endpoint is enumeration, so we don't do it. With the TeamLinkt API in use, the calendar feed is a cross-check for times and arenas, not the main schedule source.
 
 ## How the old scraper read TeamLinkt
 
@@ -39,7 +49,7 @@ So the calendar feed works, but the collector can't find its IDs for 58 of the 5
 - `scraper.py`: it read the `hierarchy_filter` dropdown on `/hockeycalgary/Standings` for league IDs (`{division}-{tier}`), then POSTed `season_id` and `group_ids[division]`/`group_ids[tier]` to `/leagues/getStandings/23957/{season_id}`. The response is JSON with `team_name`, `games_played`, `total_wins`, `total_losses`, `total_ties`, `total_points`, `score_for` and `score_against`.
 - `games_scraper.py`: it POSTed `season_id` to `/leagues/getAllEvents/23957` for every event in the season. Scores come back inside the team-name HTML as a trailing `(N)`, and the game ID is in the event link `/Leagues/event/23957/{id}`.
 
-We don't reuse this. TeamLinkt's `robots.txt` disallows `/leagues/get*` in all four casings, which covers both endpoints. The old scraper also sent a Chrome User-Agent, `X-Requested-With` and `Referer` headers, and turned off TLS verification. Its findings are still useful: they name exactly what to ask TeamLinkt for, and its field mapping will carry over if permission comes.
+We don't reuse this. TeamLinkt's `robots.txt` disallows `/leagues/get*` in all four casings, which covers both endpoints. The old scraper also sent a Chrome User-Agent, `X-Requested-With` and `Referer` headers, and turned off TLS verification. The method is also dead now: `/hockeycalgary/Standings` returns 404 since TeamLinkt rebuilt the site, and `getAllEvents` timed out (504) when called without a season. The new public API replaces it.
 
 ## Other findings
 
@@ -49,4 +59,5 @@ We don't reuse this. TeamLinkt's `robots.txt` disallows `/leagues/get*` in all f
 ## Waiting on
 
 - [ ] **Hockey Calgary:** permission to read `/standings` and `/schedule/scores`, or the `leagueID` and `typeID` list for the calendar feeds, or a supported results feed.
-- [ ] **Hockey Calgary or TeamLinkt:** whether the public TeamLinkt site's scores and standings data may be read by a non-commercial app, and how. Name the two endpoints above (`getStandings`, `getAllEvents` for association 23957) in the ask.
+- [ ] **TeamLinkt API check:** confirm `scores` and `standings` return 2026-27 games for division `332824`, then record the response shapes as fixtures.
+- [ ] **Optional courtesy note to Hockey Calgary or TeamLinkt:** say the app reads the public site API, at what rate, and how to ask us to stop.

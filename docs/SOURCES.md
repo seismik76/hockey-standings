@@ -51,5 +51,8 @@ We don't reuse this. TeamLinkt's `robots.txt` disallows `/leagues/get*` in all f
 ## Waiting on
 
 - [ ] **Hockey Calgary:** permission to read `/standings` and `/schedule/scores`, or the `leagueID` and `typeID` list for the calendar feeds, or a supported results feed.
-- [ ] **TeamLinkt API check:** confirm `scores` and `standings` return 2026-27 games for division `332824`, then record the response shapes as fixtures.
+- [x] **TeamLinkt API check (2026-10-31):** for division `332824` in season `61563`:
+  - `scores` returned 10 completed games (Oct 25 to 31), each with `id`, `date`, home and away team names and IDs, `homeScore`, `awayScore` and `resultType`. With 12 teams at 4 games each, about 24 should exist, so 10 looks like a default page size; the `limit`, `from` and `to` body fields need testing.
+  - `standings` returned all 12 teams with GP, W, L, T, points, goals for and against, streak, and the column list.
+- [ ] Record both responses as adapter fixtures.
 - [ ] **Optional courtesy note to Hockey Calgary or TeamLinkt:** say the app reads the public site API, at what rate, and how to ask us to stop.

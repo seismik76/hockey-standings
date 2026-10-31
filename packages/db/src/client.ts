@@ -78,5 +78,8 @@ export function createDirectPool(): pg.Pool {
 
 export type Database = NodePgDatabase<typeof schema>;
 /** A Database or a transaction handle, so helpers can run inside a caller's transaction. */
-export type Queryable = Pick<Database, "select" | "insert" | "update" | "delete" | "execute">;
+export type Queryable = Pick<
+  Database,
+  "select" | "selectDistinct" | "insert" | "update" | "delete" | "execute"
+>;
 export { schema };

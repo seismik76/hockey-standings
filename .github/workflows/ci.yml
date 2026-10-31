@@ -39,3 +39,5 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm db:migrate
       - run: pnpm test
+      # The web build must not need a database: every page renders per request.
+      - run: pnpm build

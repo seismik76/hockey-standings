@@ -19,7 +19,9 @@ Hosting: one scale-to-zero Container App and one collector job in the shared `ca
 
 - `apps/collector`: one run collects every Community Council league of the current season from TeamLinkt into the database, politely (one request a second, app User-Agent) and logging every request. `pnpm collector` runs it against `.env.local`'s database.
 
-Still to come: the HC calendar feed adapter (start times and arenas), the 2020-26 history import, deployment as a scheduled Container Apps Job, and `apps/web`. Where the data comes from, and why, is in [docs/SOURCES.md](docs/SOURCES.md).
+- `apps/web`: the read-only Next.js site. `/` picks a community; `/c/glenlake` shows every Glenlake team with its rank, record, last results and next game, and its league table; `/leagues` lists every league; `/l/seeding/u13-tier-2-south` is one league's table and results. Standings are computed from games (`packages/core`). Pages render per request, so building needs no database.
+
+Still to come: deployment (the collector as an hourly Container Apps Job, the web app, Key Vault and the login roles), caching, the HC calendar feed adapter (start times and arenas), and the 2020-26 history import. Where the data comes from, and why, is in [docs/SOURCES.md](docs/SOURCES.md).
 
 ## Develop
 
@@ -29,7 +31,9 @@ Node 22+ and pnpm 9.
 pnpm install
 pnpm db:install  # once: local Postgres 17 on :5433 in ~/.hockey, no Docker
 pnpm db:up       # after a reboot
-pnpm test        # also: pnpm lint, pnpm typecheck, pnpm format:check
+pnpm collector   # fill the local database from TeamLinkt (about 4 minutes)
+pnpm dev         # the site on http://localhost:3001
+pnpm test        # also: pnpm lint, pnpm typecheck, pnpm format:check, pnpm build
 ```
 
 The database is Neon in production; see [infra/neon/](infra/neon/).

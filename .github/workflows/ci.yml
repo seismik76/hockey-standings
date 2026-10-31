@@ -1,7 +1,14 @@
-# Audit, lint, typecheck and test on every push and pull request. No deploy
-# and no Azure identity yet; that arrives with the infra step.
+# CI, and the deploy gated on it: nothing reaches Azure unless audit, format,
+# lint, typecheck, migrations, tests and the build all pass.
 #
-# Actions are pinned to commits, not tags, as in GLK: a tag can be moved. The
+# On main: `publish` builds both images and pushes them to GitHub Container
+# Registry; `deploy` swaps them onto the Container Apps by digest. Deploy runs
+# only when the repository variable DEPLOY is "true", so the pipeline works
+# before the infrastructure exists. Infra itself is applied by hand from the
+# platform repo (public-zone/deploy-app.sh), never from here.
+#
+# Actions are pinned to commits, not tags, as in GLK: a tag can be moved, and
+# the deploy job holds an OIDC token for the public-zone subscription. The
 # version is in the comment beside each pin so a bump is a one-line change.
 name: ci
 on:
@@ -41,3 +48,77 @@ jobs:
       - run: pnpm test
       # The web build must not need a database: every page renders per request.
       - run: pnpm build
+
+  publish:
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      web: ${{ steps.push.outputs.web }}
+      collector: ${{ steps.push.outputs.collector }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - name: Build and push images
+        id: push
+        env:
+          REGISTRY: ghcr.io/${{ github.repository_owner }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "$TOKEN" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+          for name in web collector; do
+            repo="$REGISTRY/hockey-standings-$name"
+            docker build -f "apps/$name/Dockerfile" --build-arg GIT_SHA="$GITHUB_SHA" \
+              --label org.opencontainers.image.source="https://github.com/${{ github.repository }}" \
+              -t "$repo:$GITHUB_SHA" .
+            docker push "$repo:$GITHUB_SHA"
+            # Deploy by digest, never by tag: a tag can be pushed over.
+            digest="$(docker inspect --format '{{index .RepoDigests 0}}' "$repo:$GITHUB_SHA")"
+            case "$digest" in
+              "$repo@sha256:"*) ;;
+              *) echo "could not read the pushed digest for $name: '$digest'"; exit 1 ;;
+            esac
+            echo "$name=$digest" >> "$GITHUB_OUTPUT"
+            echo "$name: $digest"
+          done
+
+  deploy:
+    needs: publish
+    if: vars.DEPLOY == 'true'
+    runs-on: ubuntu-latest
+    # The deploy identity trusts only this environment's token
+    # (repo:seismik76/hockey-standings:environment:prod).
+    environment: prod
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      RG: rg-hockey-standings
+      WEB: ca-hockey-standings-web
+      COLLECTOR: caj-hockey-standings-collector
+    steps:
+      - uses: azure/login@2035af27c2cea8ff426397d10e3edb28906b51df # v2.3.1
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Swap images
+        env:
+          WEB_IMAGE: ${{ needs.publish.outputs.web }}
+          COLLECTOR_IMAGE: ${{ needs.publish.outputs.collector }}
+        run: |
+          az containerapp update -g "$RG" -n "$WEB" --image "$WEB_IMAGE" -o none
+          az containerapp job update -g "$RG" -n "$COLLECTOR" --image "$COLLECTOR_IMAGE" -o none
+      - name: Wait for the new web build
+        run: |
+          fqdn="$(az containerapp show -g "$RG" -n "$WEB" --query properties.configuration.ingress.fqdn -o tsv)"
+          for i in $(seq 1 40); do
+            build="$(curl -fsS "https://$fqdn/api/health" | jq -r '.data.build' || true)"
+            [ "$build" = "$GITHUB_SHA" ] && { echo "live: $GITHUB_SHA at https://$fqdn"; exit 0; }
+            echo "waiting ($i): serving '${build:-nothing}'"
+            sleep 15
+          done
+          echo "the new build never answered on https://$fqdn"
+          exit 1

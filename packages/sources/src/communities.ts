@@ -99,6 +99,26 @@ export function parseTeamName(name: string): ParsedTeamName {
   return { age, community: hit?.community ?? null, stream, number, colour, rest: tokens.join(" ") };
 }
 
+/**
+ * Clubs from outside Calgary that play in a Community Council league (all in
+ * Junior C, 2026-27). Their teams are real but belong to no association here,
+ * so they have no community and are not reported as unmatched.
+ */
+export const VISITING_CLUBS: readonly string[] = [
+  "Airdrie Dragons",
+  "Chestermere",
+  "Cochrane Generals",
+  "Southside Thunder",
+];
+
+export function isVisitingClub(name: string): boolean {
+  const n = name.trim().toLowerCase();
+  return VISITING_CLUBS.some((c) => {
+    const club = c.toLowerCase();
+    return n.startsWith(club) && (n.length === club.length || n[club.length] === " ");
+  });
+}
+
 export function communityBySlug(slug: string): Community | undefined {
   return COMMUNITIES.find((c) => c.slug === slug);
 }

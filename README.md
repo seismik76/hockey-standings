@@ -17,7 +17,9 @@ Hosting: one scale-to-zero Container App and one collector job in the shared `ca
 
 - `packages/db`: the Drizzle schema, migrations and the collector's upserts; the only place SQL lives. Tests run against a real local Postgres, and prove the web app's role cannot write.
 
-Still to come: the HC calendar feed adapter, the 2020-26 history import, `apps/collector` and `apps/web`. Where the data comes from, and why, is in [docs/SOURCES.md](docs/SOURCES.md).
+- `apps/collector`: one run collects every Community Council league of the current season from TeamLinkt into the database, politely (one request a second, app User-Agent) and logging every request. `pnpm collector` runs it against `.env.local`'s database.
+
+Still to come: the HC calendar feed adapter (start times and arenas), the 2020-26 history import, deployment as a scheduled Container Apps Job, and `apps/web`. Where the data comes from, and why, is in [docs/SOURCES.md](docs/SOURCES.md).
 
 ## Develop
 

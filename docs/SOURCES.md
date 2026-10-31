@@ -53,6 +53,19 @@ We don't reuse this. TeamLinkt's `robots.txt` disallows `/leagues/get*` in all f
 - **League slugs are shared.** All 59 Community Council slugs on the HC league index match a TeamLinkt division slug, except `junior-c`, which is `u21-junior-c` on TeamLinkt. TeamLinkt's other 32 divisions are female, AA/AAA, rec and Junior B leagues outside Community Council.
 - **12 associations.** TeamLinkt's `teams` list for 2026-27 seeding has 492 teams, U9 to U18, from 12 associations: Bow River, Bow Valley, Girls Hockey Calgary, Glenlake, Knights, McKnight, Northwest, Raiders, Southwest, Springbank, Trails West and Wolverines. These are the old scraper's 11 plus Girls Hockey Calgary, so its history probably already covers every association. U7 and Junior C teams are not in the seeding list.
 
+## First full collector run (2026-10-31)
+
+`pnpm collector` against the local database: 240 requests, no errors, about four minutes at one request a second.
+
+| Phase                          | Leagues | Teams | Games | Final |
+| ------------------------------ | ------- | ----- | ----- | ----- |
+| 2026-27 Seeding (61563)        | 59      | 486   | 864   | 849   |
+| 2026-27 Regular Season (60742) | 59      | 69    | 89    | 85    |
+
+- TeamLinkt already has the regular-season divisions. Junior C and the U9, U11 and U13 Flames leagues are playing in them; the tiered leagues start after placement.
+- U7 leagues have no games, as expected: U7 keeps no scores.
+- Teams with no community, by design: the 47 Flames-league teams, named for their league ("U11 SCHHL Black") rather than an association, and four out-of-town Junior C clubs (Airdrie Dragons, Chestermere, Cochrane Generals, Southside Thunder). Every other team matched one of the 12 associations.
+
 ## Waiting on
 
 - [ ] **Hockey Calgary:** permission to read `/standings` and `/schedule/scores`, or the `leagueID` and `typeID` list for the calendar feeds, or a supported results feed.

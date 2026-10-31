@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { COMMUNITIES, communityBySlug, parseTeamName } from "../communities.js";
+import { COMMUNITIES, communityBySlug, isVisitingClub, parseTeamName } from "../communities.js";
 import { parseTeams } from "../teamlinkt.js";
 
 const teams = parseTeams(
@@ -124,5 +124,31 @@ describe("communityBySlug", () => {
 
   it("has unique slugs", () => {
     expect(new Set(COMMUNITIES.map((c) => c.slug)).size).toBe(COMMUNITIES.length);
+  });
+});
+
+describe("isVisitingClub", () => {
+  it("knows the out-of-town Junior C clubs, and nothing else", () => {
+    // From the 2026-27 Junior C team list, captured by the first collector run.
+    for (const name of [
+      "Airdrie Dragons Junior C",
+      "Chestermere Junior C",
+      "Cochrane Generals Junior C",
+      "Southside Thunder Junior C",
+    ]) {
+      expect(isVisitingClub(name)).toBe(true);
+      expect(parseTeamName(name).community).toBeNull();
+    }
+    expect(isVisitingClub("Bow River Bruins Junior C")).toBe(false);
+    expect(isVisitingClub("Chestermere Lakers")).toBe(true);
+    expect(isVisitingClub("Chestermerely")).toBe(false);
+  });
+
+  it("does not overlap any association", () => {
+    expect(
+      ["Bow River Bruins Junior C", "Trails West T-DUBS"].map(
+        (n) => parseTeamName(n).community?.slug,
+      ),
+    ).toEqual(["bow-river", "trails-west"]);
   });
 });

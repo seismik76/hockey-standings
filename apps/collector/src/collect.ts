@@ -20,6 +20,7 @@ import {
   type TeamLinktSeason,
   type TeamRef,
   divisionsRequest,
+  isVisitingClub,
   leagueIndexUrl,
   parseDivisions,
   parseLeagueIndex,
@@ -172,7 +173,11 @@ async function collectLeague(
       tx,
       [...refs.values()].map((t) => {
         const p = parseTeamName(t.name);
-        if (!p.community) ctx.unmatched.add(t.name);
+        // Flames-league teams are named for their league ("U11 SCHHL Black"), not an
+        // association, so having no community is expected there.
+        if (!p.community && division.kind !== "flames" && !isVisitingClub(t.name)) {
+          ctx.unmatched.add(t.name);
+        }
         return {
           source: "teamlinkt" as const,
           sourceId: String(t.sourceId),

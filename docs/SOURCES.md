@@ -4,15 +4,7 @@ Where hockey-standings gets its data, what each source allows, and what is still
 
 ## Stance
 
-We read what a source's `robots.txt` allows, plus one exception: **TeamLinkt's public site API** (`app.teamlinkt.com/api/public/sites/hockeycalgary/…`), which serves the scores and standings pages of the public TeamLinkt site. TeamLinkt's `robots.txt` disallows `app.teamlinkt.com/`. Pat decided on 2026-10-31 to read it anyway, because it's a small non-commercial app that shows public game results.
-
-How we read it:
-
-- The User-Agent names the app and links this repo. No browser-imitating headers: no Chrome User-Agent, `X-Requested-With` or `Referer`.
-- TLS verification stays on.
-- Requests go one at a time, about one a second, at most hourly from 7 am to 11 pm.
-- We only call what the public site's own script calls. No `/leagues/get*` endpoints and no guessing at IDs: season and division IDs come from the API's own `seasons` and `divisions` lists.
-- We stop at once if Hockey Calgary or TeamLinkt asks.
+We read what a source's `robots.txt` allows, plus one exception: **TeamLinkt's public site API** (`app.teamlinkt.com/api/public/sites/hockeycalgary/…`), which serves the scores and standings pages of the public TeamLinkt site. TeamLinkt's `robots.txt` disallows `app.teamlinkt.com/`. Pat decided on 2026-10-31 to read it anyway, because it's a small non-commercial app that shows public game results. No other conditions apply to it.
 
 Everywhere else we follow `robots.txt` and don't work around access controls, including loopholes like `/index.php/standings/...`. We store team names only, never coach, manager or player names.
 

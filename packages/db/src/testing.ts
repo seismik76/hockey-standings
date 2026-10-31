@@ -9,11 +9,12 @@
 import { readFile } from "node:fs/promises";
 import { sql } from "drizzle-orm";
 import pg from "pg";
-import { closeDb, getDb, isLocal } from "../client.js";
-import { runMigrations } from "../migrate.js";
+import { closeDb, getDb, isLocal } from "./client.js";
+import { runMigrations } from "./migrate.js";
 
 const LOCAL_DEFAULT = "postgres://hockey_owner:hockey@localhost:5433/hockey_test";
-const ROLES_SQL = new URL("../../../../infra/neon/roles.sql", import.meta.url);
+// Same depth from src/ and dist/: packages/db/<dir>/ up to the repo root.
+const ROLES_SQL = new URL("../../../infra/neon/roles.sql", import.meta.url);
 
 export function testDatabaseUrl(env: NodeJS.ProcessEnv = process.env): string {
   if (env.HOCKEY_TEST_DATABASE_URL) return env.HOCKEY_TEST_DATABASE_URL;

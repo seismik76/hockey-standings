@@ -1,0 +1,251 @@
+// One collector run: every Community Council league of the current season,
+// from TeamLinkt's public site API, into the database.
+import {
+  type Database,
+  setLeagueTeams,
+  upsertCommunities,
+  upsertGames,
+  upsertLeague,
+  upsertPhase,
+  upsertTeams,
+} from "@hockey/db";
+import {
+  COMMUNITIES,
+  COMMUNITY_COUNCIL,
+  SCORES_PAGE_LIMIT,
+  type ScoresWindow,
+  type TeamLinktDivision,
+  type TeamLinktGame,
+  type TeamLinktRequest,
+  type TeamLinktSeason,
+  type TeamRef,
+  divisionsRequest,
+  leagueIndexUrl,
+  parseDivisions,
+  parseLeagueIndex,
+  parseScores,
+  parseSeasons,
+  parseStandings,
+  parseTeamName,
+  scoresRequest,
+  seasonsRequest,
+  standingsRequest,
+  teamLinktSlug,
+} from "@hockey/sources";
+import type { Client } from "./http.js";
+
+export interface RunSummary {
+  season: string;
+  phases: string[];
+  leagues: number;
+  teams: number;
+  gamesChanged: number;
+  requests: number;
+  /** One line per league that failed; the run carries on past them. */
+  errors: string[];
+  /** Team names that matched no community: a new association, or a rename to add to COMMUNITIES. */
+  unmatchedTeams: string[];
+}
+
+// Exhibition, preseason and admin "seasons" are not collected.
+const COLLECTED = new Set<TeamLinktSeason["phase"]>(["seeding", "regular", "playoffs"]);
+
+/** "2026-10-31" → "2026-27". A hockey season runs September to August. */
+export function seasonLabelFor(date: string): string {
+  const year = Number(date.slice(0, 4));
+  const month = Number(date.slice(5, 7));
+  const start = month >= 9 ? year : year - 1;
+  return `${start}-${String((start + 1) % 100).padStart(2, "0")}`;
+}
+
+/** Today's date in Calgary, YYYY-MM-DD. */
+export function calgaryToday(now = new Date()): string {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "America/Edmonton" }).format(now);
+}
+
+export async function collect(
+  db: Database,
+  client: Client,
+  { today }: { today: string },
+): Promise<RunSummary> {
+  const season = seasonLabelFor(today);
+  const summary: RunSummary = {
+    season,
+    phases: [],
+    leagues: 0,
+    teams: 0,
+    gamesChanged: 0,
+    requests: 0,
+    errors: [],
+    unmatchedTeams: [],
+  };
+  const unmatched = new Set<string>();
+
+  const seasons = await teamlinkt(client, seasonsRequest(), parseSeasons);
+  const councilSlugs = new Set(
+    (
+      await client.request(
+        { source: "hockeycalgary", method: "GET", url: leagueIndexUrl() },
+        (text) => {
+          const leagues = parseLeagueIndex(text);
+          return { value: leagues, records: leagues.length };
+        },
+      )
+    ).map((l) => teamLinktSlug(l.slug)),
+  );
+  await upsertCommunities(
+    db,
+    COMMUNITIES.map(({ slug, name }) => ({ slug, name })),
+  );
+
+  const phases = seasons.filter(
+    (s) => s.label === season && COLLECTED.has(s.phase) && s.startDate <= today,
+  );
+  for (const phase of phases) {
+    summary.phases.push(phase.name);
+    const phaseId = await upsertPhase(db, {
+      seasonLabel: season,
+      kind: phase.phase,
+      source: "teamlinkt",
+      sourceId: String(phase.sourceId),
+      name: phase.name,
+      startDate: phase.startDate,
+      endDate: phase.endDate,
+    });
+    const divisions = await teamlinkt(client, divisionsRequest(phase.sourceId), parseDivisions);
+    const leagues = divisions.filter((d) => d.kind !== "age-group" && councilSlugs.has(d.slug));
+
+    for (const division of leagues) {
+      try {
+        const r = await collectLeague(db, client, { phase, phaseId, division, today, unmatched });
+        summary.leagues++;
+        summary.teams += r.teams;
+        summary.gamesChanged += r.gamesChanged;
+      } catch (err) {
+        summary.errors.push(`${phase.name} / ${division.name}: ${(err as Error).message}`);
+      }
+    }
+  }
+
+  summary.requests = client.count;
+  summary.unmatchedTeams = [...unmatched].sort();
+  return summary;
+}
+
+async function collectLeague(
+  db: Database,
+  client: Client,
+  ctx: {
+    phase: TeamLinktSeason;
+    phaseId: number;
+    division: TeamLinktDivision;
+    today: string;
+    unmatched: Set<string>;
+  },
+): Promise<{ teams: number; gamesChanged: number }> {
+  const { phase, phaseId, division, today } = ctx;
+  const window = { seasonId: phase.sourceId, divisionId: division.sourceId };
+  const standings = await teamlinkt(client, standingsRequest(window), parseStandings);
+  const to = phase.endDate < today ? phase.endDate : today;
+  const games = await scoresBetween(client, { ...window, from: phase.startDate, to });
+
+  // Every team in the table, plus any that only appear in a game.
+  const refs = new Map<number, TeamRef>();
+  for (const s of standings) refs.set(s.team.sourceId, s.team);
+  for (const g of games)
+    for (const t of [g.home, g.away]) if (!refs.has(t.sourceId)) refs.set(t.sourceId, t);
+
+  return db.transaction(async (tx) => {
+    const leagueId = await upsertLeague(tx, {
+      phaseId,
+      sourceId: String(division.sourceId),
+      slug: division.slug,
+      name: division.name,
+      age: division.age,
+      kind: division.kind,
+      tier: division.tier,
+      region: division.region,
+      level: division.level,
+      stream: COMMUNITY_COUNCIL,
+    });
+    const ids = await upsertTeams(
+      tx,
+      [...refs.values()].map((t) => {
+        const p = parseTeamName(t.name);
+        if (!p.community) ctx.unmatched.add(t.name);
+        return {
+          source: "teamlinkt" as const,
+          sourceId: String(t.sourceId),
+          name: t.name,
+          communitySlug: p.community?.slug ?? null,
+          age: p.age,
+          stream: p.stream,
+          number: p.number,
+          colour: p.colour,
+        };
+      }),
+    );
+    await setLeagueTeams(tx, leagueId, [...ids.values()]);
+    const gamesChanged = await upsertGames(
+      tx,
+      games.map((g) => ({
+        source: "teamlinkt" as const,
+        sourceId: g.sourceId,
+        leagueId,
+        date: g.date,
+        homeTeamId: ids.get(String(g.home.sourceId))!,
+        awayTeamId: ids.get(String(g.away.sourceId))!,
+        homeScore: g.homeScore,
+        awayScore: g.awayScore,
+        resultType: g.resultType,
+        status: g.status,
+      })),
+    );
+    return { teams: ids.size, gamesChanged };
+  });
+}
+
+/**
+ * Every game in a date window. A response that fills a whole page may be
+ * missing games, so the window is halved and each half fetched again, down to
+ * a single day.
+ */
+export async function scoresBetween(client: Client, w: ScoresWindow): Promise<TeamLinktGame[]> {
+  if (w.to < w.from) return [];
+  const { games, mayBeTruncated } = await teamlinkt(
+    client,
+    scoresRequest(w),
+    parseScores,
+    (r) => r.games.length,
+  );
+  if (!mayBeTruncated) return games;
+  if (w.from === w.to) {
+    throw new Error(
+      `more than ${SCORES_PAGE_LIMIT} events on ${w.from} in division ${w.divisionId}`,
+    );
+  }
+  const mid = addDays(w.from, Math.floor(daysBetween(w.from, w.to) / 2));
+  const halves = [
+    ...(await scoresBetween(client, { ...w, to: mid })),
+    ...(await scoresBetween(client, { ...w, from: addDays(mid, 1) })),
+  ];
+  return [...new Map(halves.map((g) => [g.sourceId, g])).values()];
+}
+
+/** A TeamLinkt request, logged with how many records the response held (array length by default). */
+async function teamlinkt<T>(
+  client: Client,
+  req: TeamLinktRequest,
+  parse: (json: unknown) => T,
+  records: (value: T) => number = (v) => (v as unknown[]).length,
+): Promise<T> {
+  return client.request({ source: "teamlinkt", ...req }, (text) => {
+    const value = parse(JSON.parse(text));
+    return { value, records: records(value) };
+  });
+}
+
+const DAY = 86_400_000;
+const utc = (d: string) => Date.parse(`${d}T00:00:00Z`);
+const daysBetween = (a: string, b: string) => Math.round((utc(b) - utc(a)) / DAY);
+const addDays = (d: string, n: number) => new Date(utc(d) + n * DAY).toISOString().slice(0, 10);

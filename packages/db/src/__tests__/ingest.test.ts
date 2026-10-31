@@ -13,7 +13,7 @@ import {
   upsertTeams,
 } from "../queries/ingest.js";
 import { games, leagueTeams, phases, teams } from "../schema/index.js";
-import { closeDb, setUpTestDatabase, truncateAll, webDatabaseUrl } from "./_support.js";
+import { closeDb, setUpTestDatabase, truncateAll, webDatabaseUrl } from "../testing.js";
 
 beforeAll(setUpTestDatabase);
 beforeEach(truncateAll);

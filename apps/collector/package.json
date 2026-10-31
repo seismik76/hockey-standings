@@ -1,0 +1,24 @@
+{
+  "name": "@hockey/collector",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit false",
+    "lint": "eslint src",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "start": "tsx --env-file-if-exists=../../.env.local src/cli.ts"
+  },
+  "dependencies": {
+    "@hockey/db": "workspace:*",
+    "@hockey/sources": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "drizzle-orm": "^0.45.2",
+    "pg": "^8.23.0",
+    "tsx": "^4.23.13",
+    "vitest": "^5.0.1"
+  }
+}

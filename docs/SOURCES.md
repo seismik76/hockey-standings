@@ -32,6 +32,15 @@ We read only what a source's `robots.txt` allows, and we don't work around acces
 
 So the calendar feed works, but the collector can't find its IDs for 58 of the 59 leagues without either the disallowed pages or a list from Hockey Calgary. Guessing IDs against the feed endpoint is enumeration, so we don't do it.
 
+## How the old scraper read TeamLinkt
+
+[hockey-calgary-scraper](https://github.com/seismik76/hockey-calgary-scraper) took 2025-26 U13, U18 and U21 standings and scores from TeamLinkt's older datatable endpoints:
+
+- `scraper.py`: it read the `hierarchy_filter` dropdown on `/hockeycalgary/Standings` for league IDs (`{division}-{tier}`), then POSTed `season_id` and `group_ids[division]`/`group_ids[tier]` to `/leagues/getStandings/23957/{season_id}`. The response is JSON with `team_name`, `games_played`, `total_wins`, `total_losses`, `total_ties`, `total_points`, `score_for` and `score_against`.
+- `games_scraper.py`: it POSTed `season_id` to `/leagues/getAllEvents/23957` for every event in the season. Scores come back inside the team-name HTML as a trailing `(N)`, and the game ID is in the event link `/Leagues/event/23957/{id}`.
+
+We don't reuse this. TeamLinkt's `robots.txt` disallows `/leagues/get*` in all four casings, which covers both endpoints. The old scraper also sent a Chrome User-Agent, `X-Requested-With` and `Referer` headers, and turned off TLS verification. Its findings are still useful: they name exactly what to ask TeamLinkt for, and its field mapping will carry over if permission comes.
+
 ## Other findings
 
 - `u11-tier-1-south` redirects to the league index, so some U11 leagues have no league page yet.
@@ -40,4 +49,4 @@ So the calendar feed works, but the collector can't find its IDs for 58 of the 5
 ## Waiting on
 
 - [ ] **Hockey Calgary:** permission to read `/standings` and `/schedule/scores`, or the `leagueID` and `typeID` list for the calendar feeds, or a supported results feed.
-- [ ] **Hockey Calgary or TeamLinkt:** whether the public TeamLinkt site's scores and standings data may be read by a non-commercial app, and how.
+- [ ] **Hockey Calgary or TeamLinkt:** whether the public TeamLinkt site's scores and standings data may be read by a non-commercial app, and how. Name the two endpoints above (`getStandings`, `getAllEvents` for association 23957) in the ask.

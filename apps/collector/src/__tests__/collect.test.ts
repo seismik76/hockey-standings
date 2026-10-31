@@ -6,7 +6,7 @@ import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { collect, scoresBetween, seasonLabelFor } from "../collect.js";
 import { type HttpRequest, type Transport, createClient } from "../http.js";
 
-beforeAll(setUpTestDatabase);
+beforeAll(() => setUpTestDatabase("hockey_test_collector"));
 beforeEach(truncateAll);
 afterAll(closeDb);
 

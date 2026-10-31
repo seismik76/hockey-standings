@@ -5,6 +5,11 @@
  * is not local. HOCKEY_TEST_DATABASE_URL wins if set; otherwise a local
  * DATABASE_URL (CI's service container) is used; otherwise the local default
  * from scripts/pg-local.mjs. A Neon URL in the environment is ignored.
+ *
+ * Each package passes its own database name. Turbo runs package test suites
+ * at the same time, and two suites truncating one database corrupt each
+ * other's runs (CI saw a foreign-key failure and a deadlock), so each package
+ * gets a database of its own on the same server, created on first use.
  */
 import { readFile } from "node:fs/promises";
 import { sql } from "drizzle-orm";
@@ -21,25 +26,48 @@ export function testDatabaseUrl(env: NodeJS.ProcessEnv = process.env): string {
   return env.DATABASE_URL && isLocal(env.DATABASE_URL) ? env.DATABASE_URL : LOCAL_DEFAULT;
 }
 
-/** The same database, as the web app's read-only login. */
+let current: string | undefined;
+
+/** The database set up by setUpTestDatabase, as the web app's read-only login. */
 export function webDatabaseUrl(): string {
-  const url = new URL(testDatabaseUrl());
+  if (!current) throw new Error("setUpTestDatabase has not run");
+  const url = new URL(current);
   url.username = "hockey_web";
   url.password = "hockey";
   return url.toString();
 }
 
 /**
- * Point the client at the test database, give it the production roles, and
- * migrate it. Run once per file, in beforeAll.
+ * Create the package's test database if needed, point the client at it, give
+ * it the production roles, and migrate it. Run once per file, in beforeAll.
  */
-export async function setUpTestDatabase(): Promise<void> {
-  const url = testDatabaseUrl();
-  if (!isLocal(url)) throw new Error(`Refusing to run destructive tests against ${url}`);
-  process.env.DATABASE_URL = url;
+export async function setUpTestDatabase(database: string): Promise<void> {
+  const base = testDatabaseUrl();
+  if (!isLocal(base)) throw new Error(`Refusing to run destructive tests against ${base}`);
+  if (!/^hockey_test(_[a-z]+)?$/.test(database)) {
+    throw new Error(
+      `Test databases are named hockey_test or hockey_test_<package>, not ${database}`,
+    );
+  }
+  const url = new URL(base);
+  url.pathname = `/${database}`;
+  current = url.toString();
+  process.env.DATABASE_URL = current;
   delete process.env.DATABASE_URL_DIRECT;
 
-  const client = new pg.Client({ connectionString: url });
+  const server = new pg.Client({ connectionString: base });
+  await server.connect();
+  try {
+    const exists = await server.query("select 1 from pg_database where datname = $1", [database]);
+    if (exists.rowCount === 0) await server.query(`create database ${database}`);
+  } catch (err) {
+    // Two files of one package can race to create it; the loser finds it made.
+    if ((err as { code?: string }).code !== "42P04") throw err;
+  } finally {
+    await server.end();
+  }
+
+  const client = new pg.Client({ connectionString: current });
   await client.connect();
   try {
     await client.query(await readFile(ROLES_SQL, "utf8"));

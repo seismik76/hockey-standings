@@ -15,7 +15,7 @@ import {
 import { games, leagueTeams, phases, teams } from "../schema/index.js";
 import { closeDb, setUpTestDatabase, truncateAll, webDatabaseUrl } from "../testing.js";
 
-beforeAll(setUpTestDatabase);
+beforeAll(() => setUpTestDatabase("hockey_test_db"));
 beforeEach(truncateAll);
 afterAll(closeDb);
 

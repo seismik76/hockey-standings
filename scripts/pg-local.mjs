@@ -154,12 +154,14 @@ async function ensureRole(admin, name, sql) {
 async function bootstrap() {
   const admin = await connect("postgres", SUPERUSER, SUPERPASS);
   try {
-    // CREATEROLE like Neon's default owner, but not superuser.
+    // CREATEROLE and CREATEDB like Neon's default owner, but not superuser.
+    // CREATEDB lets each package's tests make their own database.
     await ensureRole(
       admin,
       OWNER,
-      `create role ${OWNER} login createrole password '${OWNER_PASS}'`,
+      `create role ${OWNER} login createrole createdb password '${OWNER_PASS}'`,
     );
+    await admin.query(`alter role ${OWNER} createdb`);
     for (const name of [APP_DB, TEST_DB]) {
       const db = await admin.query("select 1 from pg_database where datname = $1", [name]);
       if (db.rowCount === 0) {

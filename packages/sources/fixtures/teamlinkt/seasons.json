@@ -1,0 +1,128 @@
+[
+  {
+    "id": 61460,
+    "associationId": 23957,
+    "name": "Female Interleague",
+    "startDate": "2026-12-05",
+    "endDate": "2027-02-07",
+    "sportId": 19,
+    "type": "default"
+  },
+  {
+    "id": 60742,
+    "associationId": 23957,
+    "name": "2026-2027 Regular Season",
+    "startDate": "2026-10-17",
+    "endDate": "2027-02-21",
+    "sportId": 19,
+    "type": "default"
+  },
+  {
+    "id": 61563,
+    "associationId": 23957,
+    "name": "2026-2027 Seeding ",
+    "startDate": "2026-10-17",
+    "endDate": "2026-11-15",
+    "sportId": 19,
+    "type": "default"
+  },
+  {
+    "id": 60693,
+    "associationId": 23957,
+    "name": "2026-2027 Junior B Preseason",
+    "startDate": "2026-09-01",
+    "endDate": "2026-09-30",
+    "sportId": 19,
+    "type": "default"
+  },
+  {
+    "id": 61014,
+    "associationId": 23957,
+    "name": "2026-2027 Exhibition Games ",
+    "startDate": "2026-09-01",
+    "endDate": "2027-04-30",
+    "sportId": 19,
+    "type": "default"
+  },
+  {
+    "id": 54974,
+    "associationId": 23957,
+    "name": "2026-2027 Season",
+    "startDate": "2026-06-01",
+    "endDate": "2027-05-31",
+    "sportId": 19,
+    "type": "default"
+  },
+  {
+    "id": 56273,
+    "associationId": 23957,
+    "name": "2026-2027 TeamLinkt ",
+    "startDate": "2026-05-01",
+    "endDate": "2027-04-30",
+    "sportId": 19,
+    "type": "default"
+  },
+  {
+    "id": 54118,
+    "associationId": 23957,
+    "name": "Admin",
+    "startDate": "2026-03-31",
+    "endDate": "2027-04-30",
+    "sportId": 19,
+    "type": "default"
+  },
+  {
+    "id": 51574,
+    "associationId": 23957,
+    "name": "TEST",
+    "startDate": "2026-02-03",
+    "endDate": "2028-03-03",
+    "sportId": 19,
+    "type": "default"
+  },
+  {
+    "id": 48988,
+    "associationId": 23957,
+    "name": "2025-2026 U13 Regular Season",
+    "startDate": "2025-12-01",
+    "endDate": "2026-02-22",
+    "sportId": 19,
+    "type": "default"
+  },
+  {
+    "id": 46583,
+    "associationId": 23957,
+    "name": "2025-2026 U13 Seeding",
+    "startDate": "2025-10-18",
+    "endDate": "2025-11-16",
+    "sportId": 19,
+    "type": "default"
+  },
+  {
+    "id": 46005,
+    "associationId": 23957,
+    "name": "2025-2026 TeamLinkt ",
+    "startDate": "2025-09-09",
+    "endDate": "2025-10-09",
+    "sportId": 19,
+    "type": "default"
+  },
+  {
+    "id": 40997,
+    "associationId": 23957,
+    "name": "2025-2026 Season",
+    "startDate": "2025-06-01",
+    "endDate": "2026-05-31",
+    "sportId": 19,
+    "type": "default"
+  },
+  {
+    "id": 29792,
+    "associationId": 23957,
+    "name": "2024-2025 Season",
+    "startDate": "2024-04-18",
+    "endDate": "2024-04-30",
+    "sportId": 19,
+    "type": "default"
+  }
+]

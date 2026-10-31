@@ -1,0 +1,965 @@
+[
+  {
+    "id": 332775,
+    "name": "U7",
+    "slug": "u7",
+    "seasonId": 61563,
+    "path": [
+      "U7"
+    ]
+  },
+  {
+    "id": 332781,
+    "name": "U7 JUNIOR NORTH",
+    "slug": "u7-junior-north",
+    "seasonId": 61563,
+    "path": [
+      "U7",
+      "U7 JUNIOR NORTH"
+    ]
+  },
+  {
+    "id": 332782,
+    "name": "U7 JUNIOR SOUTH",
+    "slug": "u7-junior-south",
+    "seasonId": 61563,
+    "path": [
+      "U7",
+      "U7 JUNIOR SOUTH"
+    ]
+  },
+  {
+    "id": 332783,
+    "name": "U7 JUNIOR WEST",
+    "slug": "u7-junior-west",
+    "seasonId": 61563,
+    "path": [
+      "U7",
+      "U7 JUNIOR WEST"
+    ]
+  },
+  {
+    "id": 332784,
+    "name": "U7 SENIOR NORTH",
+    "slug": "u7-senior-north",
+    "seasonId": 61563,
+    "path": [
+      "U7",
+      "U7 SENIOR NORTH"
+    ]
+  },
+  {
+    "id": 332785,
+    "name": "U7 SENIOR SOUTH",
+    "slug": "u7-senior-south",
+    "seasonId": 61563,
+    "path": [
+      "U7",
+      "U7 SENIOR SOUTH"
+    ]
+  },
+  {
+    "id": 332786,
+    "name": "U7 SENIOR WEST",
+    "slug": "u7-senior-west",
+    "seasonId": 61563,
+    "path": [
+      "U7",
+      "U7 SENIOR WEST"
+    ]
+  },
+  {
+    "id": 332776,
+    "name": "U9",
+    "slug": "u9",
+    "seasonId": 61563,
+    "path": [
+      "U9"
+    ]
+  },
+  {
+    "id": 332787,
+    "name": "U9 FEMALE A",
+    "slug": "u9-female-a",
+    "seasonId": 61563,
+    "path": [
+      "U9",
+      "U9 FEMALE A"
+    ]
+  },
+  {
+    "id": 332792,
+    "name": "U9 FEMALE B",
+    "slug": "u9-female-b",
+    "seasonId": 61563,
+    "path": [
+      "U9",
+      "U9 FEMALE B"
+    ]
+  },
+  {
+    "id": 332793,
+    "name": "U9 TIER 1 NORTH",
+    "slug": "u9-tier-1-north",
+    "seasonId": 61563,
+    "path": [
+      "U9",
+      "U9 TIER 1 NORTH"
+    ]
+  },
+  {
+    "id": 332794,
+    "name": "U9 TIER 2 NORTH",
+    "slug": "u9-tier-2-north",
+    "seasonId": 61563,
+    "path": [
+      "U9",
+      "U9 TIER 2 NORTH"
+    ]
+  },
+  {
+    "id": 332795,
+    "name": "U9 TIER 3 NORTH",
+    "slug": "u9-tier-3-north",
+    "seasonId": 61563,
+    "path": [
+      "U9",
+      "U9 TIER 3 NORTH"
+    ]
+  },
+  {
+    "id": 332800,
+    "name": "U9 TIER 4 NORTH",
+    "slug": "u9-tier-4-north",
+    "seasonId": 61563,
+    "path": [
+      "U9",
+      "U9 TIER 4 NORTH"
+    ]
+  },
+  {
+    "id": 332796,
+    "name": "U9 TIER 1 SOUTH",
+    "slug": "u9-tier-1-south",
+    "seasonId": 61563,
+    "path": [
+      "U9",
+      "U9 TIER 1 SOUTH"
+    ]
+  },
+  {
+    "id": 332797,
+    "name": "U9 TIER 2 SOUTH",
+    "slug": "u9-tier-2-south",
+    "seasonId": 61563,
+    "path": [
+      "U9",
+      "U9 TIER 2 SOUTH"
+    ]
+  },
+  {
+    "id": 332798,
+    "name": "U9 TIER 3 SOUTH",
+    "slug": "u9-tier-3-south",
+    "seasonId": 61563,
+    "path": [
+      "U9",
+      "U9 TIER 3 SOUTH"
+    ]
+  },
+  {
+    "id": 332799,
+    "name": "U9 TIER 4 SOUTH",
+    "slug": "u9-tier-4-south",
+    "seasonId": 61563,
+    "path": [
+      "U9",
+      "U9 TIER 4 SOUTH"
+    ]
+  },
+  {
+    "id": 332828,
+    "name": "U9 FLAMES WCHL",
+    "slug": "u9-flames-wchl",
+    "seasonId": 61563,
+    "path": [
+      "U9",
+      "U9 FLAMES WCHL"
+    ]
+  },
+  {
+    "id": 332829,
+    "name": "U9 FLAMES SCHHL",
+    "slug": "u9-flames-schhl",
+    "seasonId": 61563,
+    "path": [
+      "U9",
+      "U9 FLAMES SCHHL"
+    ]
+  },
+  {
+    "id": 332830,
+    "name": "U9 FLAMES NWHL",
+    "slug": "u9-flames-nwhl",
+    "seasonId": 61563,
+    "path": [
+      "U9",
+      "U9 FLAMES NWHL"
+    ]
+  },
+  {
+    "id": 332831,
+    "name": "U9 FLAMES NCHL",
+    "slug": "u9-flames-nchl",
+    "seasonId": 61563,
+    "path": [
+      "U9",
+      "U9 FLAMES NCHL"
+    ]
+  },
+  {
+    "id": 332777,
+    "name": "U11",
+    "slug": "u11",
+    "seasonId": 61563,
+    "path": [
+      "U11"
+    ]
+  },
+  {
+    "id": 332788,
+    "name": "U11 FEMALE A",
+    "slug": "u11-female-a",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 FEMALE A"
+    ]
+  },
+  {
+    "id": 332801,
+    "name": "U11 FEMALE B",
+    "slug": "u11-female-b",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 FEMALE B"
+    ]
+  },
+  {
+    "id": 332802,
+    "name": "U11 FEMALE C",
+    "slug": "u11-female-c",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 FEMALE C"
+    ]
+  },
+  {
+    "id": 332803,
+    "name": "U11 AA",
+    "slug": "u11-aa",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 AA"
+    ]
+  },
+  {
+    "id": 332804,
+    "name": "U11 TIER 1 NORTH",
+    "slug": "u11-tier-1-north",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 TIER 1 NORTH"
+    ]
+  },
+  {
+    "id": 332805,
+    "name": "U11 TIER 2 NORTH",
+    "slug": "u11-tier-2-north",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 TIER 2 NORTH"
+    ]
+  },
+  {
+    "id": 332806,
+    "name": "U11 TIER 3 NORTH",
+    "slug": "u11-tier-3-north",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 TIER 3 NORTH"
+    ]
+  },
+  {
+    "id": 332807,
+    "name": "U11 TIER 4 NORTH",
+    "slug": "u11-tier-4-north",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 TIER 4 NORTH"
+    ]
+  },
+  {
+    "id": 332808,
+    "name": "U11 TIER 5 NORTH",
+    "slug": "u11-tier-5-north",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 TIER 5 NORTH"
+    ]
+  },
+  {
+    "id": 332809,
+    "name": "U11 TIER 1 SOUTH",
+    "slug": "u11-tier-1-south",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 TIER 1 SOUTH"
+    ]
+  },
+  {
+    "id": 332810,
+    "name": "U11 TIER 2 SOUTH",
+    "slug": "u11-tier-2-south",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 TIER 2 SOUTH"
+    ]
+  },
+  {
+    "id": 332811,
+    "name": "U11 TIER 3 SOUTH",
+    "slug": "u11-tier-3-south",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 TIER 3 SOUTH"
+    ]
+  },
+  {
+    "id": 332812,
+    "name": "U11 TIER 4 SOUTH",
+    "slug": "u11-tier-4-south",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 TIER 4 SOUTH"
+    ]
+  },
+  {
+    "id": 332813,
+    "name": "U11 TIER 5 SOUTH",
+    "slug": "u11-tier-5-south",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 TIER 5 SOUTH"
+    ]
+  },
+  {
+    "id": 332832,
+    "name": "U11 FLAMES WCHL",
+    "slug": "u11-flames-wchl",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 FLAMES WCHL"
+    ]
+  },
+  {
+    "id": 332833,
+    "name": "U11 FLAMES SCHHL",
+    "slug": "u11-flames-schhl",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 FLAMES SCHHL"
+    ]
+  },
+  {
+    "id": 332834,
+    "name": "U11 FLAMES NWHL",
+    "slug": "u11-flames-nwhl",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 FLAMES NWHL"
+    ]
+  },
+  {
+    "id": 332835,
+    "name": "U11 FLAMES NCHL",
+    "slug": "u11-flames-nchl",
+    "seasonId": 61563,
+    "path": [
+      "U11",
+      "U11 FLAMES NCHL"
+    ]
+  },
+  {
+    "id": 332774,
+    "name": "U13",
+    "slug": "u13",
+    "seasonId": 61563,
+    "path": [
+      "U13"
+    ]
+  },
+  {
+    "id": 332854,
+    "name": "U13 FEMALE AA",
+    "slug": "u13-female-aa",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 FEMALE AA"
+    ]
+  },
+  {
+    "id": 332817,
+    "name": "U13 AA",
+    "slug": "u13-aa",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 AA"
+    ]
+  },
+  {
+    "id": 332853,
+    "name": "U13 AAA",
+    "slug": "u13-aaa",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 AAA"
+    ]
+  },
+  {
+    "id": 332814,
+    "name": "U13 FEMALE A",
+    "slug": "u13-female-a",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 FEMALE A"
+    ]
+  },
+  {
+    "id": 332815,
+    "name": "U13 FEMALE B",
+    "slug": "u13-female-b",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 FEMALE B"
+    ]
+  },
+  {
+    "id": 332816,
+    "name": "U13 FEMALE C",
+    "slug": "u13-female-c",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 FEMALE C"
+    ]
+  },
+  {
+    "id": 332818,
+    "name": "U13 TIER 1 NORTH",
+    "slug": "u13-tier-1-north",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 TIER 1 NORTH"
+    ]
+  },
+  {
+    "id": 332819,
+    "name": "U13 TIER 2 NORTH",
+    "slug": "u13-tier-2-north",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 TIER 2 NORTH"
+    ]
+  },
+  {
+    "id": 332820,
+    "name": "U13 TIER 3 NORTH",
+    "slug": "u13-tier-3-north",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 TIER 3 NORTH"
+    ]
+  },
+  {
+    "id": 332821,
+    "name": "U13 TIER 4 NORTH",
+    "slug": "u13-tier-4-north",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 TIER 4 NORTH"
+    ]
+  },
+  {
+    "id": 332822,
+    "name": "U13 TIER 5 NORTH",
+    "slug": "u13-tier-5-north",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 TIER 5 NORTH"
+    ]
+  },
+  {
+    "id": 332823,
+    "name": "U13 TIER 1 SOUTH",
+    "slug": "u13-tier-1-south",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 TIER 1 SOUTH"
+    ]
+  },
+  {
+    "id": 332824,
+    "name": "U13 TIER 2 SOUTH",
+    "slug": "u13-tier-2-south",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 TIER 2 SOUTH"
+    ]
+  },
+  {
+    "id": 332825,
+    "name": "U13 TIER 3 SOUTH",
+    "slug": "u13-tier-3-south",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 TIER 3 SOUTH"
+    ]
+  },
+  {
+    "id": 332826,
+    "name": "U13 TIER 4 SOUTH",
+    "slug": "u13-tier-4-south",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 TIER 4 SOUTH"
+    ]
+  },
+  {
+    "id": 332827,
+    "name": "U13 TIER 5 SOUTH",
+    "slug": "u13-tier-5-south",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 TIER 5 SOUTH"
+    ]
+  },
+  {
+    "id": 332836,
+    "name": "U13 FLAMES NWHL",
+    "slug": "u13-flames-nwhl",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 FLAMES NWHL"
+    ]
+  },
+  {
+    "id": 332789,
+    "name": "U13 REC",
+    "slug": "u13-rec",
+    "seasonId": 61563,
+    "path": [
+      "U13",
+      "U13 REC"
+    ]
+  },
+  {
+    "id": 332778,
+    "name": "U15",
+    "slug": "u15",
+    "seasonId": 61563,
+    "path": [
+      "U15"
+    ]
+  },
+  {
+    "id": 332855,
+    "name": "U15 FEMALE AA",
+    "slug": "u15-female-aa",
+    "seasonId": 61563,
+    "path": [
+      "U15",
+      "U15 FEMALE AA"
+    ]
+  },
+  {
+    "id": 332857,
+    "name": "U15 AA",
+    "slug": "u15-aa",
+    "seasonId": 61563,
+    "path": [
+      "U15",
+      "U15 AA"
+    ]
+  },
+  {
+    "id": 332856,
+    "name": "U15 AAA",
+    "slug": "u15-aaa",
+    "seasonId": 61563,
+    "path": [
+      "U15",
+      "U15 AAA"
+    ]
+  },
+  {
+    "id": 332837,
+    "name": "U15 FEMALE A",
+    "slug": "u15-female-a",
+    "seasonId": 61563,
+    "path": [
+      "U15",
+      "U15 FEMALE A"
+    ]
+  },
+  {
+    "id": 332838,
+    "name": "U15 FEMALE B",
+    "slug": "u15-female-b",
+    "seasonId": 61563,
+    "path": [
+      "U15",
+      "U15 FEMALE B"
+    ]
+  },
+  {
+    "id": 332868,
+    "name": "U15 FEMALE C",
+    "slug": "u15-female-c",
+    "seasonId": 61563,
+    "path": [
+      "U15",
+      "U15 FEMALE C"
+    ]
+  },
+  {
+    "id": 332839,
+    "name": "U15 TIER 1 BC",
+    "slug": "u15-tier-1-bc",
+    "seasonId": 61563,
+    "path": [
+      "U15",
+      "U15 TIER 1 BC"
+    ]
+  },
+  {
+    "id": 332840,
+    "name": "U15 TIER 2 BC",
+    "slug": "u15-tier-2-bc",
+    "seasonId": 61563,
+    "path": [
+      "U15",
+      "U15 TIER 2 BC"
+    ]
+  },
+  {
+    "id": 332841,
+    "name": "U15 TIER 3 BC",
+    "slug": "u15-tier-3-bc",
+    "seasonId": 61563,
+    "path": [
+      "U15",
+      "U15 TIER 3 BC"
+    ]
+  },
+  {
+    "id": 332842,
+    "name": "U15 TIER 1 NBC",
+    "slug": "u15-tier-1-nbc",
+    "seasonId": 61563,
+    "path": [
+      "U15",
+      "U15 TIER 1 NBC"
+    ]
+  },
+  {
+    "id": 332843,
+    "name": "U15 TIER 2 NBC",
+    "slug": "u15-tier-2-nbc",
+    "seasonId": 61563,
+    "path": [
+      "U15",
+      "U15 TIER 2 NBC"
+    ]
+  },
+  {
+    "id": 332844,
+    "name": "U15 TIER 3 NBC",
+    "slug": "u15-tier-3-nbc",
+    "seasonId": 61563,
+    "path": [
+      "U15",
+      "U15 TIER 3 NBC"
+    ]
+  },
+  {
+    "id": 332845,
+    "name": "U15 TIER 4 NBC",
+    "slug": "u15-tier-4-nbc",
+    "seasonId": 61563,
+    "path": [
+      "U15",
+      "U15 TIER 4 NBC"
+    ]
+  },
+  {
+    "id": 332790,
+    "name": "U15 REC",
+    "slug": "u15-rec",
+    "seasonId": 61563,
+    "path": [
+      "U15",
+      "U15 REC"
+    ]
+  },
+  {
+    "id": 332779,
+    "name": "U18",
+    "slug": "u18",
+    "seasonId": 61563,
+    "path": [
+      "U18"
+    ]
+  },
+  {
+    "id": 332860,
+    "name": "U16 AA",
+    "slug": "u16-aa",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U16 AA"
+    ]
+  },
+  {
+    "id": 332861,
+    "name": "U17 AAA",
+    "slug": "u17-aaa",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U17 AAA"
+    ]
+  },
+  {
+    "id": 332858,
+    "name": "U18 FEMALE AA",
+    "slug": "u18-female-aa",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U18 FEMALE AA"
+    ]
+  },
+  {
+    "id": 332859,
+    "name": "U18 FEMALE AAA",
+    "slug": "u18-female-aaa",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U18 FEMALE AAA"
+    ]
+  },
+  {
+    "id": 332862,
+    "name": "U18 AA",
+    "slug": "u18-aa",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U18 AA"
+    ]
+  },
+  {
+    "id": 332863,
+    "name": "U18 AAA",
+    "slug": "u18-aaa",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U18 AAA"
+    ]
+  },
+  {
+    "id": 332846,
+    "name": "U18 FEMALE A",
+    "slug": "u18-female-a",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U18 FEMALE A"
+    ]
+  },
+  {
+    "id": 332847,
+    "name": "U18 FEMALE B",
+    "slug": "u18-female-b",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U18 FEMALE B"
+    ]
+  },
+  {
+    "id": 333542,
+    "name": "U18 FEMALE C",
+    "slug": "u18-female-c",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U18 FEMALE C"
+    ]
+  },
+  {
+    "id": 332848,
+    "name": "U18 TIER 1 BC",
+    "slug": "u18-tier-1-bc",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U18 TIER 1 BC"
+    ]
+  },
+  {
+    "id": 332849,
+    "name": "U18 TIER 2 BC",
+    "slug": "u18-tier-2-bc",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U18 TIER 2 BC"
+    ]
+  },
+  {
+    "id": 332850,
+    "name": "U18 TIER 3 BC",
+    "slug": "u18-tier-3-bc",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U18 TIER 3 BC"
+    ]
+  },
+  {
+    "id": 332851,
+    "name": "U18 TIER 1 NBC",
+    "slug": "u18-tier-1-nbc",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U18 TIER 1 NBC"
+    ]
+  },
+  {
+    "id": 332864,
+    "name": "U18 TIER 2 NBC",
+    "slug": "u18-tier-2-nbc",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U18 TIER 2 NBC"
+    ]
+  },
+  {
+    "id": 332852,
+    "name": "U18 TIER 3 NBC",
+    "slug": "u18-tier-3-nbc",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U18 TIER 3 NBC"
+    ]
+  },
+  {
+    "id": 332869,
+    "name": "U18 TIER 4 NBC",
+    "slug": "u18-tier-4-nbc",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U18 TIER 4 NBC"
+    ]
+  },
+  {
+    "id": 332791,
+    "name": "U18 REC",
+    "slug": "u18-rec",
+    "seasonId": 61563,
+    "path": [
+      "U18",
+      "U18 REC"
+    ]
+  },
+  {
+    "id": 332780,
+    "name": "U21",
+    "slug": "u21",
+    "seasonId": 61563,
+    "path": [
+      "U21"
+    ]
+  },
+  {
+    "id": 332865,
+    "name": "U21 Junior B",
+    "slug": "u21-junior-b",
+    "seasonId": 61563,
+    "path": [
+      "U21",
+      "U21 Junior B"
+    ]
+  },
+  {
+    "id": 332866,
+    "name": "U21 Junior C",
+    "slug": "u21-junior-c",
+    "seasonId": 61563,
+    "path": [
+      "U21",
+      "U21 Junior C"
+    ]
+  },
+  {
+    "id": 332867,
+    "name": "U21 Junior Rec",
+    "slug": "u21-junior-rec",
+    "seasonId": 61563,
+    "path": [
+      "U21",
+      "U21 Junior Rec"
+    ]
+  }
+]

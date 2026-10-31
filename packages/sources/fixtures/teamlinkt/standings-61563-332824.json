@@ -1,0 +1,527 @@
+{
+  "columns": [
+    {
+      "key": "games_played",
+      "label": "Games Played",
+      "abbreviation": "G"
+    },
+    {
+      "key": "total_wins",
+      "label": "Wins",
+      "abbreviation": "W"
+    },
+    {
+      "key": "total_losses",
+      "label": "Losses",
+      "abbreviation": "L"
+    },
+    {
+      "key": "total_ties",
+      "label": "Ties",
+      "abbreviation": "T"
+    },
+    {
+      "key": "total_points",
+      "label": "Points",
+      "abbreviation": "P"
+    },
+    {
+      "key": "score_for",
+      "label": "For",
+      "abbreviation": "F"
+    },
+    {
+      "key": "score_against",
+      "label": "Against",
+      "abbreviation": "A"
+    },
+    {
+      "key": "score_for_percentage",
+      "label": "Score for Percentage",
+      "abbreviation": "SF%"
+    }
+  ],
+  "teams": [
+    {
+      "id": 945191,
+      "name": "U13 Glenlake Hawks 2 Green",
+      "logo": "https://cdn-app.teamlinkt.com/media/team_data/945191/images/logo_800.png?1791006092",
+      "gamesPlayed": 4,
+      "wins": 3,
+      "losses": 0,
+      "ties": 1,
+      "goals_for": 13,
+      "goals_against": 4,
+      "streak": "W2",
+      "division": {
+        "id": 332824,
+        "name": "U13 TIER 2 SOUTH",
+        "slug": "u13-tier-2-south",
+        "seasonId": 61563,
+        "path": [
+          "U13",
+          "U13 TIER 2 SOUTH"
+        ]
+      },
+      "stats": {
+        "total_points": 7,
+        "win_percent": "0.875",
+        "total_wins": 3,
+        "total_losses": 0,
+        "total_ties": 1,
+        "overtime_wins": 0,
+        "overtime_losses": 0,
+        "games_played": 4,
+        "score_for": 13,
+        "score_against": 4,
+        "score_differential": 9,
+        "set_points_for": 0,
+        "set_points_against": 0,
+        "set_points_differential": 0,
+        "games_back": 0,
+        "score_for_percentage": "0.765"
+      }
+    },
+    {
+      "id": 948274,
+      "name": "U13 Knights 2 White",
+      "logo": "https://cdn-app.teamlinkt.com/media/team_data/948274/images/logo_800.png?1790089069",
+      "gamesPlayed": 4,
+      "wins": 3,
+      "losses": 1,
+      "ties": 0,
+      "goals_for": 12,
+      "goals_against": 6,
+      "streak": "W2",
+      "division": {
+        "id": 332824,
+        "name": "U13 TIER 2 SOUTH",
+        "slug": "u13-tier-2-south",
+        "seasonId": 61563,
+        "path": [
+          "U13",
+          "U13 TIER 2 SOUTH"
+        ]
+      },
+      "stats": {
+        "total_points": 6,
+        "win_percent": "0.750",
+        "total_wins": 3,
+        "total_losses": 1,
+        "total_ties": 0,
+        "overtime_wins": 0,
+        "overtime_losses": 0,
+        "games_played": 4,
+        "score_for": 12,
+        "score_against": 6,
+        "score_differential": 6,
+        "set_points_for": 0,
+        "set_points_against": 0,
+        "set_points_differential": 0,
+        "games_back": 0.5,
+        "score_for_percentage": "0.667"
+      }
+    },
+    {
+      "id": 955672,
+      "name": "U13 Wolverines 2",
+      "logo": "https://cdn-app.teamlinkt.com/media/team_data/955672/images/logo_800.png?1790346088",
+      "gamesPlayed": 5,
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "goals_for": 19,
+      "goals_against": 18,
+      "streak": "W2",
+      "division": {
+        "id": 332824,
+        "name": "U13 TIER 2 SOUTH",
+        "slug": "u13-tier-2-south",
+        "seasonId": 61563,
+        "path": [
+          "U13",
+          "U13 TIER 2 SOUTH"
+        ]
+      },
+      "stats": {
+        "total_points": 6,
+        "win_percent": "0.600",
+        "total_wins": 3,
+        "total_losses": 2,
+        "total_ties": 0,
+        "overtime_wins": 0,
+        "overtime_losses": 0,
+        "games_played": 5,
+        "score_for": 19,
+        "score_against": 18,
+        "score_differential": 1,
+        "set_points_for": 0,
+        "set_points_against": 0,
+        "set_points_differential": 0,
+        "games_back": 1,
+        "score_for_percentage": "0.514"
+      }
+    },
+    {
+      "id": 946163,
+      "name": "U13 Bow Valley Flames 2 Red",
+      "logo": "https://cdn-app.teamlinkt.com/media/team_data/946163/images/logo_800.png?1790434484",
+      "gamesPlayed": 4,
+      "wins": 2,
+      "losses": 0,
+      "ties": 2,
+      "goals_for": 17,
+      "goals_against": 12,
+      "streak": "T1",
+      "division": {
+        "id": 332824,
+        "name": "U13 TIER 2 SOUTH",
+        "slug": "u13-tier-2-south",
+        "seasonId": 61563,
+        "path": [
+          "U13",
+          "U13 TIER 2 SOUTH"
+        ]
+      },
+      "stats": {
+        "total_points": 6,
+        "win_percent": "0.750",
+        "total_wins": 2,
+        "total_losses": 0,
+        "total_ties": 2,
+        "overtime_wins": 0,
+        "overtime_losses": 0,
+        "games_played": 4,
+        "score_for": 17,
+        "score_against": 12,
+        "score_differential": 5,
+        "set_points_for": 0,
+        "set_points_against": 0,
+        "set_points_differential": 0,
+        "games_back": 0.5,
+        "score_for_percentage": "0.586"
+      }
+    },
+    {
+      "id": 946164,
+      "name": "U13 Bow Valley Flames 2 Yellow",
+      "logo": "https://cdn-app.teamlinkt.com/media/team_data/946164/images/logo_800.png?1790805046",
+      "gamesPlayed": 4,
+      "wins": 2,
+      "losses": 1,
+      "ties": 1,
+      "goals_for": 18,
+      "goals_against": 11,
+      "streak": "W2",
+      "division": {
+        "id": 332824,
+        "name": "U13 TIER 2 SOUTH",
+        "slug": "u13-tier-2-south",
+        "seasonId": 61563,
+        "path": [
+          "U13",
+          "U13 TIER 2 SOUTH"
+        ]
+      },
+      "stats": {
+        "total_points": 5,
+        "win_percent": "0.625",
+        "total_wins": 2,
+        "total_losses": 1,
+        "total_ties": 1,
+        "overtime_wins": 0,
+        "overtime_losses": 0,
+        "games_played": 4,
+        "score_for": 18,
+        "score_against": 11,
+        "score_differential": 7,
+        "set_points_for": 0,
+        "set_points_against": 0,
+        "set_points_differential": 0,
+        "games_back": 1,
+        "score_for_percentage": "0.621"
+      }
+    },
+    {
+      "id": 946162,
+      "name": "U13 Bow Valley Flames 2 Black",
+      "logo": "https://cdn-app.teamlinkt.com/media/team_data/946162/images/logo_800.png?1791255490",
+      "gamesPlayed": 4,
+      "wins": 2,
+      "losses": 1,
+      "ties": 1,
+      "goals_for": 17,
+      "goals_against": 16,
+      "streak": "W1",
+      "division": {
+        "id": 332824,
+        "name": "U13 TIER 2 SOUTH",
+        "slug": "u13-tier-2-south",
+        "seasonId": 61563,
+        "path": [
+          "U13",
+          "U13 TIER 2 SOUTH"
+        ]
+      },
+      "stats": {
+        "total_points": 5,
+        "win_percent": "0.625",
+        "total_wins": 2,
+        "total_losses": 1,
+        "total_ties": 1,
+        "overtime_wins": 0,
+        "overtime_losses": 0,
+        "games_played": 4,
+        "score_for": 17,
+        "score_against": 16,
+        "score_differential": 1,
+        "set_points_for": 0,
+        "set_points_against": 0,
+        "set_points_differential": 0,
+        "games_back": 1,
+        "score_for_percentage": "0.515"
+      }
+    },
+    {
+      "id": 962279,
+      "name": "U13 Southwest 2 Gold",
+      "logo": "https://cdn-app.teamlinkt.com/media/team_data/962279/images/logo_800.png?1791515226",
+      "gamesPlayed": 3,
+      "wins": 2,
+      "losses": 1,
+      "ties": 0,
+      "goals_for": 13,
+      "goals_against": 7,
+      "streak": "L1",
+      "division": {
+        "id": 332824,
+        "name": "U13 TIER 2 SOUTH",
+        "slug": "u13-tier-2-south",
+        "seasonId": 61563,
+        "path": [
+          "U13",
+          "U13 TIER 2 SOUTH"
+        ]
+      },
+      "stats": {
+        "total_points": 4,
+        "win_percent": "0.667",
+        "total_wins": 2,
+        "total_losses": 1,
+        "total_ties": 0,
+        "overtime_wins": 0,
+        "overtime_losses": 0,
+        "games_played": 3,
+        "score_for": 13,
+        "score_against": 7,
+        "score_differential": 6,
+        "set_points_for": 0,
+        "set_points_against": 0,
+        "set_points_differential": 0,
+        "games_back": 1,
+        "score_for_percentage": "0.650"
+      }
+    },
+    {
+      "id": 945192,
+      "name": "U13 Glenlake Hawks 2 White",
+      "logo": "https://cdn-app.teamlinkt.com/media/team_data/945192/images/logo_800.png?1791896398",
+      "gamesPlayed": 5,
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "goals_for": 20,
+      "goals_against": 23,
+      "streak": "L2",
+      "division": {
+        "id": 332824,
+        "name": "U13 TIER 2 SOUTH",
+        "slug": "u13-tier-2-south",
+        "seasonId": 61563,
+        "path": [
+          "U13",
+          "U13 TIER 2 SOUTH"
+        ]
+      },
+      "stats": {
+        "total_points": 4,
+        "win_percent": "0.400",
+        "total_wins": 2,
+        "total_losses": 3,
+        "total_ties": 0,
+        "overtime_wins": 0,
+        "overtime_losses": 0,
+        "games_played": 5,
+        "score_for": 20,
+        "score_against": 23,
+        "score_differential": -3,
+        "set_points_for": 0,
+        "set_points_against": 0,
+        "set_points_differential": 0,
+        "games_back": 2,
+        "score_for_percentage": "0.465"
+      }
+    },
+    {
+      "id": 948273,
+      "name": "U13 Knights 2 Red",
+      "logo": "https://cdn-app.teamlinkt.com/media/team_data/948273/images/logo_800.png?1790089045",
+      "gamesPlayed": 4,
+      "wins": 1,
+      "losses": 2,
+      "ties": 1,
+      "goals_for": 13,
+      "goals_against": 16,
+      "streak": "L2",
+      "division": {
+        "id": 332824,
+        "name": "U13 TIER 2 SOUTH",
+        "slug": "u13-tier-2-south",
+        "seasonId": 61563,
+        "path": [
+          "U13",
+          "U13 TIER 2 SOUTH"
+        ]
+      },
+      "stats": {
+        "total_points": 3,
+        "win_percent": "0.375",
+        "total_wins": 1,
+        "total_losses": 2,
+        "total_ties": 1,
+        "overtime_wins": 0,
+        "overtime_losses": 0,
+        "games_played": 4,
+        "score_for": 13,
+        "score_against": 16,
+        "score_differential": -3,
+        "set_points_for": 0,
+        "set_points_against": 0,
+        "set_points_differential": 0,
+        "games_back": 2,
+        "score_for_percentage": "0.448"
+      }
+    },
+    {
+      "id": 955748,
+      "name": "U13 Southwest 2 Blue",
+      "logo": "https://cdn-app.teamlinkt.com/media/team_data/955748/images/logo_800.png?1791515208",
+      "gamesPlayed": 4,
+      "wins": 0,
+      "losses": 2,
+      "ties": 2,
+      "goals_for": 13,
+      "goals_against": 22,
+      "streak": "T2",
+      "division": {
+        "id": 332824,
+        "name": "U13 TIER 2 SOUTH",
+        "slug": "u13-tier-2-south",
+        "seasonId": 61563,
+        "path": [
+          "U13",
+          "U13 TIER 2 SOUTH"
+        ]
+      },
+      "stats": {
+        "total_points": 2,
+        "win_percent": "0.250",
+        "total_wins": 0,
+        "total_losses": 2,
+        "total_ties": 2,
+        "overtime_wins": 0,
+        "overtime_losses": 0,
+        "games_played": 4,
+        "score_for": 13,
+        "score_against": 22,
+        "score_differential": -9,
+        "set_points_for": 0,
+        "set_points_against": 0,
+        "set_points_differential": 0,
+        "games_back": 2.5,
+        "score_for_percentage": "0.371"
+      }
+    },
+    {
+      "id": 945190,
+      "name": "U13 Glenlake Hawks 2 Blue",
+      "logo": "https://cdn-app.teamlinkt.com/media/team_data/945190/images/logo_800.png?1791519153",
+      "gamesPlayed": 5,
+      "wins": 0,
+      "losses": 4,
+      "ties": 1,
+      "goals_for": 19,
+      "goals_against": 26,
+      "streak": "L3",
+      "division": {
+        "id": 332824,
+        "name": "U13 TIER 2 SOUTH",
+        "slug": "u13-tier-2-south",
+        "seasonId": 61563,
+        "path": [
+          "U13",
+          "U13 TIER 2 SOUTH"
+        ]
+      },
+      "stats": {
+        "total_points": 1,
+        "win_percent": "0.100",
+        "total_wins": 0,
+        "total_losses": 4,
+        "total_ties": 1,
+        "overtime_wins": 0,
+        "overtime_losses": 0,
+        "games_played": 5,
+        "score_for": 19,
+        "score_against": 26,
+        "score_differential": -7,
+        "set_points_for": 0,
+        "set_points_against": 0,
+        "set_points_differential": 0,
+        "games_back": 3.5,
+        "score_for_percentage": "0.422"
+      }
+    },
+    {
+      "id": 948272,
+      "name": "U13 Knights 2 Black",
+      "logo": "https://cdn-app.teamlinkt.com/media/team_data/948272/images/logo_800.png?1790089022",
+      "gamesPlayed": 4,
+      "wins": 0,
+      "losses": 3,
+      "ties": 1,
+      "goals_for": 7,
+      "goals_against": 20,
+      "streak": "L1",
+      "division": {
+        "id": 332824,
+        "name": "U13 TIER 2 SOUTH",
+        "slug": "u13-tier-2-south",
+        "seasonId": 61563,
+        "path": [
+          "U13",
+          "U13 TIER 2 SOUTH"
+        ]
+      },
+      "stats": {
+        "total_points": 1,
+        "win_percent": "0.125",
+        "total_wins": 0,
+        "total_losses": 3,
+        "total_ties": 1,
+        "overtime_wins": 0,
+        "overtime_losses": 0,
+        "games_played": 4,
+        "score_for": 7,
+        "score_against": 20,
+        "score_differential": -13,
+        "set_points_for": 0,
+        "set_points_against": 0,
+        "set_points_differential": 0,
+        "games_back": 3,
+        "score_for_percentage": "0.259"
+      }
+    }
+  ],
+  "divisionId": 332824
+}

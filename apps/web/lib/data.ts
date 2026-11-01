@@ -2,7 +2,7 @@
 // /leagues render per request (force-dynamic), and the community and league
 // pages are ISR with an empty generateStaticParams, so each renders on its first
 // visit and is then served from cache, re-rendered in the background at most
-// every five minutes. The collector writes once an hour, so the cache adds at
+// every five minutes. The collector writes four times a day, so the cache adds at
 // most five minutes to how old a score can be.
 //
 // The helpers below are wrapped in React's cache() so generateMetadata and the

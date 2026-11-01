@@ -2,6 +2,7 @@ import { leagueData } from "@hockey/db";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { cache } from "react";
 import { StandingsTable } from "@/app/_components/standings-table";
 import { getDb, seasonOrNull } from "@/lib/data";
 import {
@@ -16,19 +17,26 @@ import {
   teamLabel,
 } from "@/lib/view";
 
-export const dynamic = "force-dynamic";
+// ISR: see lib/data.ts.
+export const revalidate = 300;
+export function generateStaticParams(): { phase: string; slug: string }[] {
+  return [];
+}
 
 type Props = { params: Promise<{ phase: string; slug: string }> };
 
-async function load({ phase, slug }: { phase: string; slug: string }) {
+// Positional arguments, not the params object, so cache() matches the call
+// from generateMetadata with the one from the page.
+const load = cache(async (phase: string, slug: string) => {
   if (!(PHASE_KINDS as string[]).includes(phase)) return null;
   const season = await seasonOrNull();
   if (!season) return null;
   return leagueData(getDb(), season, phase as (typeof PHASE_KINDS)[number], slug);
-}
+});
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const data = await load(await params);
+  const { phase, slug } = await params;
+  const data = await load(phase, slug);
   return {
     title: data
       ? `${leagueLabel(data.league.name)} (${phaseLabel(data.league.phase)})`
@@ -37,7 +45,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function LeaguePage({ params }: Props) {
-  const data = await load(await params);
+  const { phase, slug } = await params;
+  const data = await load(phase, slug);
   if (!data) notFound();
   const { league } = data;
   const table = leagueTable(data);

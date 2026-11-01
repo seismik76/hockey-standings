@@ -8,6 +8,15 @@ const config: NextConfig = {
   outputFileTracingRoot: fileURLToPath(new URL("../../", import.meta.url)),
   reactStrictMode: true,
   poweredByHeader: false,
+  // ISR pages (lib/data.ts) revalidate every 300s. Past 600s a cached page is
+  // re-rendered before it is served, and browsers get stale-while-revalidate=300
+  // instead of Next's default of a year.
+  expireTime: 600,
+  experimental: {
+    // Keep ISR in the 50 MB in-memory LRU only. The cache dies with the replica
+    // on scale to zero anyway, and on disk every made-up URL's 404 would stay.
+    isrFlushToDisk: false,
+  },
   async headers() {
     // GLK's hardening set. The app has no login, cookies or forms, so there is
     // little to steal, but nothing should frame it or load scripts into it.

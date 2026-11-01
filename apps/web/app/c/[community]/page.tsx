@@ -1,9 +1,9 @@
-import { communityLeagues, communityName } from "@hockey/db";
+import { communityLeagues } from "@hockey/db";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { StandingsTable } from "@/app/_components/standings-table";
-import { getDb, seasonOrNull } from "@/lib/data";
+import { getDb, nameOfCommunity, seasonOrNull } from "@/lib/data";
 import {
   type TeamCard,
   calgaryToday,
@@ -19,18 +19,22 @@ import {
   teamLabel,
 } from "@/lib/view";
 
-export const dynamic = "force-dynamic";
+// ISR: see lib/data.ts.
+export const revalidate = 300;
+export function generateStaticParams(): { community: string }[] {
+  return [];
+}
 
 type Props = { params: Promise<{ community: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const name = await communityName(getDb(), (await params).community);
+  const name = await nameOfCommunity((await params).community);
   return { title: name ?? "Community not found" };
 }
 
 export default async function CommunityPage({ params }: Props) {
   const { community } = await params;
-  const [name, season] = await Promise.all([communityName(getDb(), community), seasonOrNull()]);
+  const [name, season] = await Promise.all([nameOfCommunity(community), seasonOrNull()]);
   if (!name || !season) notFound();
 
   const today = calgaryToday();

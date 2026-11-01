@@ -19,7 +19,7 @@ Hosting: one scale-to-zero Container App and one collector job in the shared `ca
 
 - `apps/collector`: one run collects every Community Council league of the current season from TeamLinkt into the database, politely (one request a second, app User-Agent) and logging every request. `pnpm collector` runs it against `.env.local`'s database.
 
-- `apps/web`: the read-only Next.js site. `/` picks a community; `/c/glenlake` shows every Glenlake team with its rank, record, last results and next game, and its league table; `/leagues` lists every league; `/l/seeding/u13-tier-2-south` is one league's table and results. Standings are computed from games (`packages/core`). Pages render per request, so building needs no database.
+- `apps/web`: the read-only Next.js site. `/` picks a community; `/c/glenlake` shows every Glenlake team with its rank, record, last results and next game, and its league table; `/leagues` lists every league; `/l/seeding/u13-tier-2-south` is one league's table and results. Standings are computed from games (`packages/core`). `/c/…` and `/l/…` are cached for five minutes (ISR, in memory; see `apps/web/lib/data.ts`); `/` and `/leagues` render per request. Building needs no database.
 
 Still to come: caching, the HC calendar feed adapter (start times and arenas), and the 2020-26 history import.
 

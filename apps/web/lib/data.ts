@@ -1,9 +1,19 @@
-// The pages' only way to the database. Every page renders per request
-// (force-dynamic), so `next build` never needs one.
-import { currentSeason, getDb } from "@hockey/db";
+// The pages' only way to the database. `next build` never needs one: `/` and
+// /leagues render per request (force-dynamic), and the community and league
+// pages are ISR with an empty generateStaticParams, so each renders on its first
+// visit and is then served from cache, re-rendered in the background at most
+// every five minutes. The collector writes once an hour, so the cache adds at
+// most five minutes to how old a score can be.
+//
+// The helpers below are wrapped in React's cache() so generateMetadata and the
+// page share one set of queries per render.
+import { cache } from "react";
+import { communityName, currentSeason, getDb } from "@hockey/db";
 
 export { getDb };
 
-export async function seasonOrNull(): Promise<string | null> {
-  return currentSeason(getDb());
-}
+export const seasonOrNull = cache(async (): Promise<string | null> => currentSeason(getDb()));
+
+export const nameOfCommunity = cache(async (slug: string): Promise<string | null> =>
+  communityName(getDb(), slug),
+);

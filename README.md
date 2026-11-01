@@ -21,7 +21,33 @@ Hosting: one scale-to-zero Container App and one collector job in the shared `ca
 
 - `apps/web`: the read-only Next.js site. `/` picks a community; `/c/glenlake` shows every Glenlake team with its rank, record, last results and next game, and its league table; `/leagues` lists every league; `/l/seeding/u13-tier-2-south` is one league's table and results. Standings are computed from games (`packages/core`). Pages render per request, so building needs no database.
 
-Still to come: deployment (the collector as an hourly Container Apps Job, the web app, Key Vault and the login roles), caching, the HC calendar feed adapter (start times and arenas), and the 2020-26 history import. Where the data comes from, and why, is in [docs/SOURCES.md](docs/SOURCES.md).
+Still to come: caching, the HC calendar feed adapter (start times and arenas), and the 2020-26 history import.
+
+## Production
+
+Live at https://ca-hockey-standings-web.blacksky-345561b6.canadacentral.azurecontainerapps.io.
+
+| Piece     | Where                                                                                                                                                                                                     |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Web app   | `ca-hockey-standings-web`, scale 0 to 2, as Neon login `hockey_web` (read only)                                                                                                                           |
+| Collector | `caj-hockey-standings-collector`, hourly 07:00 to 23:00 Calgary, as `hockey_collector`                                                                                                                    |
+| Secrets   | `kv-hockey-sta-7w3roq`: `database-url-web`, `database-url-collector` (Neon pooled endpoint)                                                                                                               |
+| Infra     | `rg-hockey-standings` in the public-zone subscription, from [platform](https://github.com/seismik76/platform) `public-zone/apps/hockey-standings.bicep`, applied by hand with `public-zone/deploy-app.sh` |
+| Images    | `ghcr.io/seismik76/hockey-standings-{web,collector}`, public, deployed by digest                                                                                                                          |
+
+A green push to main publishes both images and swaps them on (`.github/workflows/ci.yml`), signing in as `id-hockey-standings-deploy` through the `prod` environment. That identity can change only the web app and the collector job.
+
+Migrations are run by hand, as `hockey_owner` on the direct endpoint, before a deploy that needs them:
+
+```bash
+DATABASE_URL="$(neon connection-string --project-id divine-salad-11934800   --role-name hockey_owner --database-name hockey --ssl verify-full)" pnpm db:migrate
+```
+
+Run the collector now instead of waiting for the hour:
+
+````bash
+az containerapp job start --subscription f4a8b0b9-875c-439f-8c01-7ab024797b74   -g rg-hockey-standings -n caj-hockey-standings-collector
+``` Where the data comes from, and why, is in [docs/SOURCES.md](docs/SOURCES.md).
 
 ## Develop
 
@@ -34,6 +60,6 @@ pnpm db:up       # after a reboot
 pnpm collector   # fill the local database from TeamLinkt (about 4 minutes)
 pnpm dev         # the site on http://localhost:3001
 pnpm test        # also: pnpm lint, pnpm typecheck, pnpm format:check, pnpm build
-```
+````
 
 The database is Neon in production; see [infra/neon/](infra/neon/).

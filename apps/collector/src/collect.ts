@@ -51,6 +51,15 @@ export interface RunSummary {
 // Exhibition, preseason and admin "seasons" are not collected.
 const COLLECTED = new Set<TeamLinktSeason["phase"]>(["seeding", "regular", "playoffs"]);
 
+/**
+ * U11 and U13 AA: one team per association, compared as a level above Tier 1
+ * (Pat, 2026-11-01). U11 AA is in Hockey Calgary's Community Council index;
+ * U13 AA is not, so both are named here. U13 AA plays its schedule in one of
+ * TeamLinkt's "other" seasons ("2026-2027 TeamLinkt"), so those seasons are
+ * read too, for these leagues only. An AA league with nothing in it is skipped.
+ */
+export const AA_SLUGS = new Set(["u11-aa", "u13-aa"]);
+
 /** "2026-10-31" → "2026-27". A hockey season runs September to August. */
 export function seasonLabelFor(date: string): string {
   const year = Number(date.slice(0, 4));
@@ -100,7 +109,8 @@ export async function collect(
   );
 
   const phases = seasons.filter(
-    (s) => s.label === season && COLLECTED.has(s.phase) && s.startDate <= today,
+    (s) =>
+      s.label === season && (COLLECTED.has(s.phase) || s.phase === "other") && s.startDate <= today,
   );
   for (const phase of phases) {
     summary.phases.push(phase.name);
@@ -114,11 +124,24 @@ export async function collect(
       endDate: phase.endDate,
     });
     const divisions = await teamlinkt(client, divisionsRequest(phase.sourceId), parseDivisions);
-    const leagues = divisions.filter((d) => d.kind !== "age-group" && councilSlugs.has(d.slug));
+    const leagues = divisions.filter(
+      (d) =>
+        AA_SLUGS.has(d.slug) ||
+        (phase.phase !== "other" && d.kind !== "age-group" && councilSlugs.has(d.slug)),
+    );
 
     for (const division of leagues) {
       try {
-        const r = await collectLeague(db, client, { phase, phaseId, division, today, unmatched });
+        const stream = councilSlugs.has(division.slug) ? COMMUNITY_COUNCIL : "aa";
+        const r = await collectLeague(db, client, {
+          phase,
+          phaseId,
+          division,
+          stream,
+          today,
+          unmatched,
+        });
+        if (!r) continue;
         summary.leagues++;
         summary.teams += r.teams;
         summary.gamesChanged += r.gamesChanged;
@@ -140,10 +163,11 @@ async function collectLeague(
     phase: TeamLinktSeason;
     phaseId: number;
     division: TeamLinktDivision;
+    stream: string;
     today: string;
     unmatched: Set<string>;
   },
-): Promise<{ teams: number; gamesChanged: number }> {
+): Promise<{ teams: number; gamesChanged: number } | null> {
   const { phase, phaseId, division, today } = ctx;
   const window = { seasonId: phase.sourceId, divisionId: division.sourceId };
   const standings = await teamlinkt(client, standingsRequest(window), parseStandings);
@@ -155,6 +179,11 @@ async function collectLeague(
   for (const s of standings) refs.set(s.team.sourceId, s.team);
   for (const g of games)
     for (const t of [g.home, g.away]) if (!refs.has(t.sourceId)) refs.set(t.sourceId, t);
+  // AA leagues turn up empty in seasons they do not play in, and in an "other"
+  // season with a team list but no games; neither is worth a league.
+  if (AA_SLUGS.has(division.slug) && games.length === 0) {
+    if (refs.size === 0 || phase.phase === "other") return null;
+  }
 
   return db.transaction(async (tx) => {
     const leagueId = await upsertLeague(tx, {
@@ -167,7 +196,7 @@ async function collectLeague(
       tier: division.tier,
       region: division.region,
       level: division.level,
-      stream: COMMUNITY_COUNCIL,
+      stream: ctx.stream,
     });
     const ids = await upsertTeams(
       tx,

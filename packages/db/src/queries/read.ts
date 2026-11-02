@@ -206,9 +206,19 @@ async function withTeamsAndGames(db: Queryable, found: LeagueSummary[]): Promise
   }));
 }
 
+/**
+ * U11 and U13 AA count with their age group as a level above Tier 1, tier 0
+ * here (Pat, 2026-11-01). AA plays no seeding of its own, so an AA game counts
+ * in the seeding comparison when it was played by the end of seeding, and in
+ * the regular season after that.
+ */
+export const AA_AGES = ["U11", "U13"];
+export const AA_TIER = 0;
+
 /** A final game in a tiered league, by the two teams' communities (null for a visiting club). */
 export interface TierGameRow {
   age: string;
+  /** 1 is Tier 1; 0 is AA. */
   tier: number;
   homeCommunity: string | null;
   awayCommunity: string | null;
@@ -216,7 +226,7 @@ export interface TierGameRow {
   awayScore: number;
 }
 
-/** Every final game of one phase's tiered leagues: what the community comparison is made of. */
+/** Every final game the community comparison counts for one phase: tiered leagues, plus AA. */
 export async function tierGames(
   db: Queryable,
   season: string,
@@ -224,56 +234,106 @@ export async function tierGames(
 ): Promise<TierGameRow[]> {
   const home = alias(teams, "home");
   const away = alias(teams, "away");
-  const rows = await db
-    .select({
-      age: leagues.age,
-      tier: leagues.tier,
-      homeCommunity: home.communitySlug,
-      awayCommunity: away.communitySlug,
-      homeScore: games.homeScore,
-      awayScore: games.awayScore,
-    })
-    .from(games)
-    .innerJoin(leagues, eq(leagues.id, games.leagueId))
-    .innerJoin(phases, eq(phases.id, leagues.phaseId))
-    .innerJoin(home, eq(home.id, games.homeTeamId))
-    .innerJoin(away, eq(away.id, games.awayTeamId))
-    .where(
-      and(
-        eq(phases.seasonLabel, season),
-        eq(phases.kind, phase),
-        eq(leagues.kind, "tier"),
-        eq(games.status, "final"),
-      ),
-    );
+  const select = () =>
+    db
+      .select({
+        kind: leagues.kind,
+        date: games.date,
+        age: leagues.age,
+        tier: leagues.tier,
+        homeCommunity: home.communitySlug,
+        awayCommunity: away.communitySlug,
+        homeScore: games.homeScore,
+        awayScore: games.awayScore,
+      })
+      .from(games)
+      .innerJoin(leagues, eq(leagues.id, games.leagueId))
+      .innerJoin(phases, eq(phases.id, leagues.phaseId))
+      .innerJoin(home, eq(home.id, games.homeTeamId))
+      .innerJoin(away, eq(away.id, games.awayTeamId));
+  const finalIn = and(eq(phases.seasonLabel, season), eq(games.status, "final"));
+  const [tiered, aa, [seeding]] = await Promise.all([
+    select().where(and(finalIn, eq(phases.kind, phase), eq(leagues.kind, "tier"))),
+    select().where(and(finalIn, eq(leagues.kind, "elite"), inArray(leagues.age, AA_AGES))),
+    db
+      .select({ end: phases.endDate })
+      .from(phases)
+      .where(and(eq(phases.seasonLabel, season), eq(phases.kind, "seeding"))),
+  ]);
+
+  // AA by date: by the end of seeding, or after it. With no seeding phase at
+  // all, every AA game is regular season.
+  const inPhase = (date: string) =>
+    phase === "seeding"
+      ? seeding !== undefined && date <= seeding.end
+      : phase === "regular" && (seeding === undefined || date > seeding.end);
+  // TeamLinkt can list an AA schedule in more than one season. One AA team per
+  // association per age, so date, age and the two communities name one game.
+  const seen = new Set<string>();
+  const aaInPhase = aa.filter((g) => {
+    if (!inPhase(g.date)) return false;
+    const key = [g.date, g.age, g.homeCommunity, g.awayCommunity].join("|");
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
   // A tier league always has an age and a tier, and a final game its scores
   // (the games_scores_match_status check); the filter only narrows the types.
-  return rows.filter(
-    (r): r is TierGameRow =>
-      r.age !== null && r.tier !== null && r.homeScore !== null && r.awayScore !== null,
-  );
+  return [...tiered, ...aaInPhase.map((g) => ({ ...g, tier: AA_TIER }))]
+    .filter(
+      (r): r is typeof r & { age: string; tier: number; homeScore: number; awayScore: number } =>
+        r.age !== null && r.tier !== null && r.homeScore !== null && r.awayScore !== null,
+    )
+    .map(({ age, tier, homeCommunity, awayCommunity, homeScore, awayScore }) => ({
+      age,
+      tier,
+      homeCommunity,
+      awayCommunity,
+      homeScore,
+      awayScore,
+    }));
 }
 
-/** How many of each community's teams play in each tier of one phase, by age. */
+/**
+ * How many of each community's teams play in each tier of one phase, by age,
+ * with AA as tier 0: one team for each community and age with an AA team
+ * anywhere in the season.
+ */
 export async function tierPlacements(
   db: Queryable,
   season: string,
   phase: PhaseKind,
 ): Promise<{ community: string; age: string; tier: number; teams: number }[]> {
-  const rows = await db
-    .select({
-      community: teams.communitySlug,
-      age: leagues.age,
-      tier: leagues.tier,
-      teams: sql<number>`count(*)::int`,
-    })
-    .from(leagueTeams)
-    .innerJoin(teams, eq(teams.id, leagueTeams.teamId))
-    .innerJoin(leagues, eq(leagues.id, leagueTeams.leagueId))
-    .innerJoin(phases, eq(phases.id, leagues.phaseId))
-    .where(and(eq(phases.seasonLabel, season), eq(phases.kind, phase), eq(leagues.kind, "tier")))
-    .groupBy(teams.communitySlug, leagues.age, leagues.tier);
-  return rows.filter(
+  const [tiered, aa] = await Promise.all([
+    db
+      .select({
+        community: teams.communitySlug,
+        age: leagues.age,
+        tier: leagues.tier,
+        teams: sql<number>`count(*)::int`,
+      })
+      .from(leagueTeams)
+      .innerJoin(teams, eq(teams.id, leagueTeams.teamId))
+      .innerJoin(leagues, eq(leagues.id, leagueTeams.leagueId))
+      .innerJoin(phases, eq(phases.id, leagues.phaseId))
+      .where(and(eq(phases.seasonLabel, season), eq(phases.kind, phase), eq(leagues.kind, "tier")))
+      .groupBy(teams.communitySlug, leagues.age, leagues.tier),
+    db
+      .selectDistinct({ community: teams.communitySlug, age: leagues.age })
+      .from(leagueTeams)
+      .innerJoin(teams, eq(teams.id, leagueTeams.teamId))
+      .innerJoin(leagues, eq(leagues.id, leagueTeams.leagueId))
+      .innerJoin(phases, eq(phases.id, leagues.phaseId))
+      .where(
+        and(
+          eq(phases.seasonLabel, season),
+          eq(leagues.kind, "elite"),
+          inArray(leagues.age, AA_AGES),
+        ),
+      ),
+  ]);
+  return [...tiered, ...aa.map((r) => ({ ...r, tier: AA_TIER, teams: 1 }))].filter(
     (r): r is { community: string; age: string; tier: number; teams: number } =>
       r.community !== null && r.age !== null && r.tier !== null,
   );

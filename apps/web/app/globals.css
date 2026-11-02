@@ -30,11 +30,12 @@
   --bar-above: #2a78d6;
   --bar-below: #e34948;
   --range: oklch(0.35 0.01 250);
-  /* Tiers, an ordinal ramp: Tier 1 darkest. */
-  --tier-1: #104281;
-  --tier-2: #1c5cab;
-  --tier-3: #2a78d6;
-  --tier-4: #5598e7;
+  /* Levels, an ordinal ramp: AA darkest, then Tier 1 down. */
+  --tier-0: #0d366b;
+  --tier-1: #184f95;
+  --tier-2: #256abf;
+  --tier-3: #3987e5;
+  --tier-4: #6da7ec;
   --tier-5: #86b6ef;
   --baseline: oklch(0.8 0.008 250);
   color-scheme: light;
@@ -61,12 +62,13 @@
     --bar-above: #3987e5;
     --bar-below: #e66767;
     --range: oklch(0.9 0.005 250);
-    /* Tier 1 lightest on dark: emphasis is lightness here. */
-    --tier-1: #cde2fb;
-    --tier-2: #86b6ef;
-    --tier-3: #5598e7;
-    --tier-4: #2a78d6;
-    --tier-5: #1c5cab;
+    /* AA lightest on dark: emphasis is lightness here. */
+    --tier-0: #cde2fb;
+    --tier-1: #9ec5f4;
+    --tier-2: #6da7ec;
+    --tier-3: #3987e5;
+    --tier-4: #256abf;
+    --tier-5: #184f95;
     --baseline: oklch(0.45 0.01 250);
     color-scheme: dark;
   }
@@ -313,6 +315,9 @@ table.heat tbody .heat-name {
 .tier-seg:hover,
 .tier-seg:focus {
   outline: 2px solid var(--fg);
+}
+.tier-0 {
+  background: var(--tier-0);
 }
 .tier-1 {
   background: var(--tier-1);

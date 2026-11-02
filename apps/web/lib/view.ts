@@ -157,7 +157,8 @@ const PHASE_LABELS: Record<PhaseKind, string> = {
   seeding: "Seeding",
   exhibition: "Exhibition",
   preseason: "Preseason",
-  other: "Other",
+  // Only U11 and U13 AA are read from TeamLinkt's "other" seasons (collector).
+  other: "AA season",
 };
 
 export function phaseLabel(kind: PhaseKind): string {

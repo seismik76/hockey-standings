@@ -69,8 +69,15 @@ describe("collect", () => {
     expect(summary).toMatchObject({
       season: "2026-27",
       // The regular season has started in TeamLinkt's calendar but has no divisions yet.
-      phases: ["2026-2027 Regular Season", "2026-2027 Seeding"],
-      leagues: 59,
+      // The two "other" seasons are read for AA only, and have none here.
+      phases: expect.arrayContaining([
+        "2026-2027 Regular Season",
+        "2026-2027 Seeding",
+        "2026-2027 Season",
+        "2026-2027 TeamLinkt",
+      ]),
+      // 59 Community Council leagues, less U11 AA, empty in seeding and so skipped.
+      leagues: 58,
       teams: 12,
       gamesChanged: 25,
       errors: [],
@@ -80,7 +87,7 @@ describe("collect", () => {
     const [{ n: leagues }] = (await db.select({ n: count() }).from(schema.leagues)) as [
       { n: number },
     ];
-    expect(leagues).toBe(59);
+    expect(leagues).toBe(58);
     const [league] = await db
       .select()
       .from(schema.leagues)
@@ -115,8 +122,9 @@ describe("collect", () => {
     expect(second.gamesChanged).toBe(0);
     const fetches = await db.select().from(schema.fetches);
     expect(fetches).toHaveLength(first.requests + second.requests);
-    // seasons + league index + 2 division lists + standings and scores for 59 leagues
-    expect(first.requests).toBe(4 + 59 * 2);
+    // seasons + league index + 4 division lists + standings and scores for 59
+    // Community Council leagues and U13 AA (looked at, then skipped as empty)
+    expect(first.requests).toBe(6 + 60 * 2);
     expect(
       fetches.every((f) => f.status === 200 && f.contentHash?.length === 64 && f.error === null),
     ).toBe(true);
@@ -141,7 +149,7 @@ describe("collect", () => {
     };
     const summary = await collect(db, createClient(db, flaky, { gapMs: 0 }), { today: TODAY });
 
-    expect(summary.leagues).toBe(58);
+    expect(summary.leagues).toBe(57);
     expect(summary.errors).toEqual([
       expect.stringMatching(
         /^2026-2027 Seeding \/ U13 TIER 2 SOUTH: POST .*\/standings answered 503$/,
@@ -150,6 +158,42 @@ describe("collect", () => {
     const failed = await db.select().from(schema.fetches).where(eq(schema.fetches.status, 503));
     expect(failed).toHaveLength(1);
     expect(failed[0]!.error).toMatch(/answered 503/);
+  });
+});
+
+describe("AA", () => {
+  const OTHER = 56273;
+  const U13_AA = 332817;
+  // The "2026-2027 TeamLinkt" season lists every division, and U13 AA has games.
+  const withAa: Transport = async (req) => {
+    const body = (req.body ?? {}) as { season_id?: number; division_id?: number };
+    const path = new URL(req.url).pathname;
+    if (path.endsWith("/divisions") && req.url.endsWith(`season_id=${OTHER}`)) {
+      return { status: 200, text: fixture("teamlinkt/divisions-61563.json") };
+    }
+    if (body.season_id === OTHER && body.division_id === U13_AA) {
+      if (path.endsWith("/standings")) {
+        return { status: 200, text: fixture("teamlinkt/standings-61563-332824.json") };
+      }
+      if (path.endsWith("/scores")) {
+        return { status: 200, text: fixture("teamlinkt/scores-61563-332824.json") };
+      }
+    }
+    return captured(req);
+  };
+
+  it("reads AA, and only AA, from TeamLinkt's other seasons", async () => {
+    const db = getDb();
+    const summary = await collect(db, createClient(db, withAa, { gapMs: 0 }), { today: TODAY });
+    expect(summary.errors).toEqual([]);
+    const other = await db
+      .select({ slug: schema.leagues.slug, stream: schema.leagues.stream })
+      .from(schema.leagues)
+      .innerJoin(schema.phases, eq(schema.phases.id, schema.leagues.phaseId))
+      .where(eq(schema.phases.kind, "other"));
+    // U11 AA is listed there too, with no games, so skipped.
+    expect(other).toEqual([{ slug: "u13-aa", stream: "aa" }]);
+    expect(summary.leagues).toBe(59);
   });
 });
 

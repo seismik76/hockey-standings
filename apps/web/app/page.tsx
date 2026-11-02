@@ -30,9 +30,10 @@ export default async function Home({ searchParams }: Props) {
   // wins close games and another wins big; its charts get their own order.
   const byDiff = [...rows].sort((a, b) => b.all.diff - a.all.diff);
   const ages = [...new Set(games.map((g) => g.age))].sort(compareAges);
-  const tiers = Math.max(0, ...placements.map((p) => p.tier));
-  // Most teams at the top first: by average tier, lowest first.
-  const placed = [...tierShares(placements, tiers)]
+  // The levels present, AA (0) first, then Tier 1 down.
+  const levels = [...new Set(placements.map((p) => p.tier))].sort((a, b) => a - b);
+  // Most teams at the top first: by average level, lowest first.
+  const placed = [...tierShares(placements, levels)]
     .map(([community, s]) => ({ community, ...s }))
     .sort((a, b) => averageTier(a.shares) - averageTier(b.shares));
 
@@ -41,7 +42,7 @@ export default async function Home({ searchParams }: Props) {
       <h1 className="mt-4 text-2xl font-semibold">How the communities compare</h1>
       <p className="muted mt-1">
         {season} {phaseLabel(phase).toLowerCase()}: points won against teams placed at the same
-        tier, {ages[0] ?? "U9"} to {ages.at(-1) ?? "U18"}. Every tier is its own pool, so an even
+        level, {ages[0] ?? "U9"} to {ages.at(-1) ?? "U18"}. Every tier is its own pool, so an even
         record is 50% wherever a community&apos;s teams were placed.
       </p>
 
@@ -56,7 +57,7 @@ export default async function Home({ searchParams }: Props) {
           <GoalBars rows={byDiff} ages={ages} names={names} />
           <AgeHeatmap rows={byDiff} ages={ages} names={names} metric="diff" />
           {phase === "regular" && placed.length > 0 ? (
-            <TierPlacement rows={placed} names={names} tiers={tiers} />
+            <TierPlacement rows={placed} names={names} levels={levels} />
           ) : (
             <p className="muted mt-5 text-sm">
               Seeding spreads each community&apos;s teams across the tiers by design, so where teams
@@ -83,17 +84,19 @@ export default async function Home({ searchParams }: Props) {
       </ul>
 
       <p className="muted mt-8 text-xs">
-        Tiered Community Council leagues only: no Flames, AA, U7 or Junior. Visiting clubs count as
-        opponents but get no row. A game between two teams of the same community counts as a win and
-        a loss for it. The 90% range treats every game as independent, which they are not quite, so
-        read it as a guide to how much a share could move by chance.
+        Tiered Community Council leagues, plus U11 and U13 AA counted with their age as a level
+        above Tier 1. AA plays no seeding, so an AA game counts in seeding if it was played by the
+        end of seeding, and in the regular season after. No Flames, U7 or Junior. Visiting clubs
+        count as opponents but get no row. A game between two teams of the same community counts as
+        a win and a loss for it. The 90% range treats every game as independent, which they are not
+        quite, so read it as a guide to how much a share could move by chance.
       </p>
     </>
   );
 }
 
 function averageTier(shares: number[]): number {
-  return shares.reduce((sum, s, i) => sum + s * (i + 1), 0);
+  return shares.reduce((sum, s, i) => sum + s * i, 0);
 }
 
 function PhaseTabs({ phase, available }: { phase: ComparePhase; available: ComparePhase[] }) {

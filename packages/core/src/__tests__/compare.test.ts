@@ -65,17 +65,18 @@ describe("goal differential", () => {
 });
 
 describe("tierShares", () => {
-  it("turns team counts into shares by tier", () => {
+  it("turns team counts into shares by level, AA first", () => {
     const shares = tierShares(
       [
         { community: "a", age: "U9", tier: 1, teams: 1 },
         { community: "a", age: "U11", tier: 1, teams: 1 },
         { community: "a", age: "U11", tier: 4, teams: 2 },
         { community: "a", age: "U11", tier: 9, teams: 5 },
+        { community: "a", age: "U13", tier: 0, teams: 4 },
       ],
-      5,
+      [0, 1, 2, 3, 4, 5],
     );
-    expect(shares.get("a")).toEqual({ teams: 4, shares: [0.5, 0, 0, 0.5, 0] });
+    expect(shares.get("a")).toEqual({ teams: 8, shares: [0.5, 0.25, 0, 0, 0.25, 0] });
   });
 });
 

@@ -5,7 +5,7 @@
  * offer. So a community's points share across all its tiered games says how
  * its teams do against peers placed at the same level, and an even record is
  * 50% wherever its teams were placed. Placement is a separate question
- * (placements(), below): seeding spreads each community's teams across the
+ * (tierShares(), below): seeding spreads each community's teams across the
  * tiers by design, and the regular season's tiers come out of seeding.
  *
  * A game between two teams of the same community counts for both sides, a win
@@ -141,19 +141,20 @@ export interface Placement {
 }
 
 /**
- * Each community's teams by tier, as shares of its tiered teams: index 0 is
- * Tier 1. Ages with fewer tiers (U15 and U18 stop at 4) simply never fill the
- * last slot.
+ * Each community's teams by level, as shares of its placed teams, one share
+ * per entry of `levels` (0 is AA, then Tier 1 down). Ages with fewer tiers
+ * (U15 and U18 stop at 4) simply leave the last ones empty.
  */
 export function tierShares(
   placements: readonly Placement[],
-  tiers: number,
+  levels: readonly number[],
 ): Map<string, { teams: number; shares: number[] }> {
   const counts = new Map<string, number[]>();
   for (const p of placements) {
-    if (p.tier < 1 || p.tier > tiers) continue;
-    const row = counts.get(p.community) ?? new Array<number>(tiers).fill(0);
-    row[p.tier - 1]! += p.teams;
+    const i = levels.indexOf(p.tier);
+    if (i < 0) continue;
+    const row = counts.get(p.community) ?? new Array<number>(levels.length).fill(0);
+    row[i]! += p.teams;
     counts.set(p.community, row);
   }
   return new Map(

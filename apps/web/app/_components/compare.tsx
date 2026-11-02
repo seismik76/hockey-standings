@@ -334,20 +334,21 @@ export function AgeHeatmap({
 export function TierPlacement({
   rows,
   names,
-  tiers,
+  levels,
 }: {
   rows: { community: string; teams: number; shares: number[] }[];
   names: Names;
-  tiers: number;
+  /** The level of each share: 0 is AA, then Tier 1 down. */
+  levels: number[];
 }) {
-  const tierList = Array.from({ length: tiers }, (_, i) => i + 1);
+  const label = (level: number) => (level === 0 ? "AA" : `Tier ${level}`);
   return (
     <figure className="card mt-5 p-4">
       <figcaption>
         <h2 className="font-semibold">Where teams were placed</h2>
         <p className="muted mt-0.5 text-sm">
-          Each community&apos;s tiered teams by tier, from seeding. More dark blue means more teams
-          at the top. U15 and U18 stop at Tier 4.
+          Each community&apos;s regular-season teams by level, from AA down. More dark blue means
+          more teams at the top. U15 and U18 stop at Tier 4; AA is U11 and U13 only.
         </p>
       </figcaption>
       <ol className="mt-4 space-y-1.5">
@@ -364,12 +365,12 @@ export function TierPlacement({
                     <span
                       key={i}
                       tabIndex={0}
-                      className={`tier-seg tier-${i + 1} tip ${i >= 2 ? "tip-end" : "tip-start"}`}
+                      className={`tier-seg tier-${levels[i]} tip ${i >= 2 ? "tip-end" : "tip-start"}`}
                       style={{ width: `${s * 100}%` }}
-                      aria-label={`${name}: ${Math.round(s * teams)} teams in Tier ${i + 1}`}
+                      aria-label={`${name}: ${Math.round(s * teams)} teams in ${label(levels[i]!)}`}
                     >
                       <Tip
-                        title={`${name}, Tier ${i + 1}`}
+                        title={`${name}, ${label(levels[i]!)}`}
                         lines={[`${Math.round(s * teams)} of ${teams} teams (${percent(s)})`]}
                       />
                     </span>
@@ -382,10 +383,10 @@ export function TierPlacement({
         })}
       </ol>
       <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1 text-xs">
-        {tierList.map((t) => (
+        {levels.map((t) => (
           <span key={t} className="flex items-center gap-1">
             <span className={`heat-swatch tier-${t}`} aria-hidden="true" />
-            Tier {t}
+            {label(t)}
           </span>
         ))}
         <span className="muted">Right column: teams</span>

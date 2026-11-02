@@ -208,4 +208,117 @@ describe("read queries", () => {
       { phase: "seeding", teams: 2, finals: 1 },
     ]);
   });
+
+  it("count U11 and U13 AA as tier 0, in seeding or the regular season by date, once", async () => {
+    const db = getDb();
+    // Seeding ends Nov 15; AA plays in the regular season and in an "other" season.
+    await upsertPhase(db, { ...phase("seeding", "61563"), endDate: "2026-11-15" });
+    const regular = await upsertPhase(db, phase("regular", "60742"));
+    const other = await upsertPhase(db, {
+      ...phase("regular", "56273"),
+      kind: "other",
+      name: "2026-2027 TeamLinkt",
+    });
+    const aa = (phaseId: number, sourceId: string) =>
+      upsertLeague(db, {
+        phaseId,
+        sourceId,
+        slug: "u11-aa",
+        name: "U11 AA",
+        age: "U11",
+        kind: "elite",
+        level: "AA",
+        stream: "community-council",
+      });
+    const [inRegular, inOther] = [await aa(regular, "331814"), await aa(other, "333251")];
+    const ids = await upsertTeams(db, [
+      {
+        source: "teamlinkt",
+        sourceId: "aa1",
+        name: "Glenlake Hawks U11 AA",
+        communitySlug: "glenlake",
+      },
+      { source: "teamlinkt", sourceId: "aa2", name: "Knights U11 AA", communitySlug: "knights" },
+      {
+        source: "teamlinkt",
+        sourceId: "aa3",
+        name: "Glenlake Hawks U11 AA",
+        communitySlug: "glenlake",
+      },
+      { source: "teamlinkt", sourceId: "aa4", name: "Knights U11 AA", communitySlug: "knights" },
+    ]);
+    await setLeagueTeams(db, inRegular, [ids.get("aa1")!, ids.get("aa2")!]);
+    await setLeagueTeams(db, inOther, [ids.get("aa3")!, ids.get("aa4")!]);
+    const final = {
+      source: "teamlinkt" as const,
+      resultType: "regulation",
+      status: "final" as const,
+    };
+    await upsertGames(db, [
+      {
+        ...final,
+        sourceId: "a1",
+        leagueId: inRegular,
+        homeTeamId: ids.get("aa1")!,
+        awayTeamId: ids.get("aa2")!,
+        date: "2026-11-01",
+        homeScore: 5,
+        awayScore: 2,
+      },
+      {
+        ...final,
+        sourceId: "a2",
+        leagueId: inRegular,
+        homeTeamId: ids.get("aa2")!,
+        awayTeamId: ids.get("aa1")!,
+        date: "2026-12-01",
+        homeScore: 1,
+        awayScore: 1,
+      },
+      // The Nov 1 game again, as the other season lists it.
+      {
+        ...final,
+        sourceId: "a3",
+        leagueId: inOther,
+        homeTeamId: ids.get("aa3")!,
+        awayTeamId: ids.get("aa4")!,
+        date: "2026-11-01",
+        homeScore: 5,
+        awayScore: 2,
+      },
+    ]);
+
+    const aaOnly = (rows: Awaited<ReturnType<typeof tierGames>>) =>
+      rows.filter((r) => r.tier === 0);
+    expect(aaOnly(await tierGames(db, "2026-27", "seeding"))).toEqual([
+      {
+        age: "U11",
+        tier: 0,
+        homeCommunity: "glenlake",
+        awayCommunity: "knights",
+        homeScore: 5,
+        awayScore: 2,
+      },
+    ]);
+    expect(await tierGames(db, "2026-27", "seeding")).toHaveLength(2);
+    expect(aaOnly(await tierGames(db, "2026-27", "regular"))).toEqual([
+      {
+        age: "U11",
+        tier: 0,
+        homeCommunity: "knights",
+        awayCommunity: "glenlake",
+        homeScore: 1,
+        awayScore: 1,
+      },
+    ]);
+    // One AA team each, though it is listed in two seasons.
+    expect(
+      (await tierPlacements(db, "2026-27", "regular")).sort((a, b) =>
+        a.community.localeCompare(b.community),
+      ),
+    ).toEqual([
+      { community: "glenlake", age: "U11", tier: 0, teams: 1 },
+      { community: "knights", age: "U11", tier: 0, teams: 1 },
+    ]);
+  });
 });

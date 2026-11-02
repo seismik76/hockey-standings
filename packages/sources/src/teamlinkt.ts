@@ -437,6 +437,8 @@ const statisticsSchema = z.object({
 export interface StatLine {
   /** A one-way hash of name, team and photo, to join requests in memory. Never stored. */
   key: string;
+  /** A one-way hash of name and team, to find the player on the team's roster. Never stored. */
+  rosterKey: string;
   teamId: number;
   /** By abbreviation: { PTS: 9, G: 4 }. */
   stats: Record<string, number>;
@@ -472,7 +474,63 @@ export function parseStatistics(json: unknown): StatisticsPage {
       const key = createHash("sha256")
         .update(`${p.name}\u0000${p.teamId}\u0000${p.picture ?? ""}`)
         .digest("base64url");
-      return { key, teamId: p.teamId, stats };
+      return { key, rosterKey: rosterKey(p.name, p.teamId), teamId: p.teamId, stats };
     }),
   };
+}
+
+// ----------------------------------------------------------------- roster --
+//
+// Team rosters, read only for jersey numbers (Pat, 2026-11-02): the parser
+// drops names, photos, positions and staff, and keeps the team, the number
+// and a one-way key to match the player's statistics in memory.
+
+/** Name and team as a one-way key: the same on a roster line and a stat line. */
+function rosterKey(name: string, teamId: number): string {
+  return createHash("sha256").update(`${name.trim()}\u0000${teamId}`).digest("base64url");
+}
+
+export function rosterRequest(
+  { seasonId, divisionIds }: { seasonId: number; divisionIds: number[] },
+  site = HOCKEY_CALGARY_SITE,
+): TeamLinktRequest {
+  return {
+    method: "POST",
+    url: siteUrl(site, "roster"),
+    body: { season_id: seasonId, filteredDivisionIds: divisionIds },
+  };
+}
+
+const rosterSchema = z.object({
+  teams: z.array(
+    z.object({
+      id,
+      players: z.array(
+        z.object({
+          name: z.string(),
+          jerseyNumber: z.union([z.string(), z.number()]).nullable().optional(),
+        }),
+      ),
+    }),
+  ),
+});
+
+export interface RosterLine {
+  /** Matches StatLine.rosterKey. Never stored. */
+  rosterKey: string;
+  teamId: number;
+  /** As the roster gives it ("7", "07"); null when blank. */
+  jersey: string | null;
+}
+
+export function parseRoster(json: unknown): RosterLine[] {
+  return parseWith("roster", rosterSchema, json).teams.flatMap((t) =>
+    t.players.map((p) => {
+      const n =
+        p.jerseyNumber === null || p.jerseyNumber === undefined
+          ? ""
+          : String(p.jerseyNumber).trim();
+      return { rosterKey: rosterKey(p.name, t.id), teamId: t.id, jersey: n === "" ? null : n };
+    }),
+  );
 }

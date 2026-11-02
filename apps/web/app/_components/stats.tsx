@@ -1,7 +1,7 @@
 // The stats page: scoring depth by community and age (the thin-talent test),
-// leaderboards, and every player line of a league. Anonymous throughout: a
-// line is "a player on this team", shown with a rank and the team, never a
-// name, number or photo. Same classes, colours and CSS tooltips as the home
+// leaderboards, and every player line of a league. No names: a line is "a
+// player on this team", shown with a rank, the team and the jersey number from
+// the team's roster (AP for an affiliate), never a name or photo. Same classes, colours and CSS tooltips as the home
 // page's heatmaps.
 import type { Depth, DepthTable } from "@hockey/core";
 import type { PlayerLine } from "@hockey/db";
@@ -146,6 +146,21 @@ export function DepthHeatmap({
   );
 }
 
+/** The roster number, or AP for an affiliate player not on this team's roster. */
+function Jersey({ line }: { line: PlayerLine }) {
+  if (line.rostered === false) {
+    return (
+      <abbr
+        title="Affiliate player: called up, not on this team's roster"
+        className="muted no-underline"
+      >
+        AP
+      </abbr>
+    );
+  }
+  return line.jersey ? <>{line.jersey}</> : <span className="muted">–</span>;
+}
+
 function Team({ line }: { line: PlayerLine }) {
   return (
     <>
@@ -164,6 +179,7 @@ export function SkaterTable({ lines, showAge }: { lines: PlayerLine[]; showAge: 
           <tr>
             <th className="rank">#</th>
             <th className="team">Skater</th>
+            <th className="rank">No.</th>
             {showAge && <th>Age</th>}
             <th>GP</th>
             <th>G</th>
@@ -178,6 +194,9 @@ export function SkaterTable({ lines, showAge }: { lines: PlayerLine[]; showAge: 
               <td className="rank muted">{i + 1}</td>
               <td className="team">
                 <Team line={l} />
+              </td>
+              <td className="rank tabular-nums">
+                <Jersey line={l} />
               </td>
               {showAge && <td>{l.age}</td>}
               <td>{l.gp}</td>
@@ -202,6 +221,7 @@ export function GoalieTable({ lines, showAge }: { lines: PlayerLine[]; showAge: 
           <tr>
             <th className="rank">#</th>
             <th className="team">Goalie</th>
+            <th className="rank">No.</th>
             {showAge && <th>Age</th>}
             <th>GP</th>
             <th>GA</th>
@@ -217,6 +237,9 @@ export function GoalieTable({ lines, showAge }: { lines: PlayerLine[]; showAge: 
                 <td className="rank muted">{i + 1}</td>
                 <td className="team">
                   <Team line={l} />
+                </td>
+                <td className="rank tabular-nums">
+                  <Jersey line={l} />
                 </td>
                 {showAge && <td>{l.age}</td>}
                 <td>{games}</td>

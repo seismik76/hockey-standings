@@ -110,7 +110,8 @@ export default async function Stats({ searchParams }: Props) {
       <h1 className="mt-4 text-2xl font-semibold">Player stats</h1>
       <p className="muted mt-1">
         {season} {phaseLabel(phase).toLowerCase()}, from TeamLinkt&apos;s gamesheets. No names: each
-        line is a player on a team, shown with a rank and the team.
+        line is a player on a team, shown with a rank, the team and the jersey number on the team's
+        roster (AP: an affiliate player called up from another team).
       </p>
 
       <nav className="phase-tabs mt-4 flex flex-wrap gap-2" aria-label="Phase">

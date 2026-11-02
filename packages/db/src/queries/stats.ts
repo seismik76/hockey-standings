@@ -57,6 +57,8 @@ export interface PlayerLine {
   g: number;
   a: number;
   pim: number;
+  jersey: string | null;
+  rostered: boolean | null;
   goalie: boolean;
   wins: number | null;
   losses: number | null;
@@ -80,6 +82,8 @@ function lineQuery(db: Queryable) {
       g: playerStats.g,
       a: playerStats.a,
       pim: playerStats.pim,
+      jersey: playerStats.jersey,
+      rostered: playerStats.rostered,
       goalie: playerStats.goalie,
       wins: playerStats.wins,
       losses: playerStats.losses,

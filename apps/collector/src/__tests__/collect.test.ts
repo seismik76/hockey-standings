@@ -42,6 +42,22 @@ const captured: Transport = async (req) => {
         : JSON.stringify({ columns: [], teams: [], divisionId: body.division_id }),
     );
   }
+  if (path.endsWith("/roster")) {
+    // Rosters for the anonymised capture's players, numbered in order.
+    const players = (
+      JSON.parse(fixture("teamlinkt/statistics-61563-332824-pts.json")) as {
+        players: { name: string; teamId: number }[];
+      }
+    ).players;
+    const teamIds = [...new Set(players.map((p) => p.teamId))];
+    const teams = teamIds.map((id) => ({
+      id,
+      players: players
+        .filter((p) => p.teamId === id)
+        .map((p, i) => ({ name: p.name, jerseyNumber: String(i + 2) })),
+    }));
+    return ok(JSON.stringify({ teams, divisionId: null }));
+  }
   if (path.endsWith("/statistics")) {
     // Statistic ids as TeamLinkt numbers them, and one page of players: the
     // anonymised U13 Tier 2 South capture for seeding, nothing elsewhere.
@@ -143,10 +159,12 @@ describe("collect", () => {
   it("writes anonymous player lines for the leagues it collected", async () => {
     const db = getDb();
     const summary = await collect(db, createClient(db, captured, { gapMs: 0 }), { today: TODAY });
-    // The anonymised capture: 50 U13 Tier 2 South players, every team ours.
+    // The anonymised capture: 50 U13 Tier 2 South players, every team ours,
+    // each on its team's roster with a number.
     expect(summary.playerStats).toBe(50);
     const lines = await db.select().from(schema.playerStats);
     expect(lines).toHaveLength(50);
+    expect(lines.every((l) => l.rostered && l.jersey !== null)).toBe(true);
     expect(lines.reduce((n, l) => n + l.g, 0)).toBeGreaterThan(0);
     // Nothing name-like reaches the table: its columns are ids and numbers.
     expect(Object.keys(lines[0]!).sort()).toEqual(
@@ -157,10 +175,12 @@ describe("collect", () => {
         "goalsAgainst",
         "gp",
         "id",
+        "jersey",
         "leagueId",
         "losses",
         "phaseId",
         "pim",
+        "rostered",
         "shutouts",
         "teamId",
         "ties",
@@ -180,10 +200,12 @@ describe("collect", () => {
     // seasons + league index + 4 division lists + standings and scores for 59
     // Community Council leagues and U13 AA (looked at, then skipped as empty),
     // and player stats for seeding: a probe, then games played, points and
-    // three goalie passes, one page each here.
-    expect(first.requests).toBe(6 + 60 * 2 + 6);
+    // three goalie passes, one page each here, and the rosters, ten leagues a request.
+    const rosterCalls = fetches.filter((f) => f.url.endsWith("/roster")).length;
+    expect(rosterCalls).toBeGreaterThan(0);
+    expect(first.requests).toBe(6 + 60 * 2 + 6 + rosterCalls);
     // Player stats are fetched once a day: the second run, straight after, skips them.
-    expect(second.requests).toBe(first.requests - 6);
+    expect(second.requests).toBe(first.requests - 6 - rosterCalls);
     const tomorrow = await collect(db, createClient(db, captured, { gapMs: 0 }), {
       today: TODAY,
       now: new Date(Date.now() + 21 * 3_600_000),

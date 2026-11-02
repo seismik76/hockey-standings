@@ -76,11 +76,13 @@ How they are read and kept:
 
 - **What exists:** games played, goals, assists, points and PIM for skaters; wins, losses, ties, shutouts, goals against, saves, save % and goals-against average for goalies. Saves are rarely entered, so save % and the site's GAA are not used; the stats page shows goals against a game from the record.
 - **Passes:** points with goals (sorted by points, stopping at the first zero), games played with PIM (every player who played), and three goalie passes. Assists are points less goals.
-- **Anonymous by construction:** the parser (`parseStatistics`) turns each player's name, team and photo into a one-way key so the passes can be joined in memory, and returns only the key, the team id and the numbers. `player_stats` stores the team, league and numbers: no name, photo, jersey number, player id or key. Each run replaces a phase's lines whole, so nothing follows a player over time. The fetch log stores request bodies (ids and statistic names only) and a hash of each response.
+- **Anonymous by construction:** the parser (`parseStatistics`) turns each player's name, team and photo into a one-way key so the passes can be joined in memory, and returns only the key, the team id and the numbers. `player_stats` stores the team, league, numbers and jersey number: no name, photo, player id or key. Each run replaces a phase's lines whole, so nothing follows a player over time. The fetch log stores request bodies (ids and statistic names only) and a hash of each response.
 - **Pace:** one run a day fetches them (when the last fetch is more than 20 hours old), for seeding and the regular season while each is on and for three days after. That is a few hundred requests; the other runs skip them.
 - **Coverage:** AA plays in the regular-season or "other" seasons, so it gets stats where TeamLinkt records them. A gamesheet with a score but no scorers leaves goals off the lines; the scoring-depth charts count a team only if its players' goals come to 80% to 125% of its goals in final games.
 
-Even without names, a line names a team, and a parent can often tell who scored most on their own child's team. The page shows a rank and the team, never more.
+**Jersey numbers** (Pat, 2026-11-02): `POST /api/public/sites/hockeycalgary/roster` gives each team's roster with names and numbers. The parser (`parseRoster`) keeps only the team, the number and a one-way key of name and team, matched to the stat lines in memory; names, positions, photos and staff are dropped. A player on the stat lines but not on that team's roster is an affiliate called up from another team (about one line in four in seeding) and shows as AP, since the number they wore is not known. Rosters are fetched with the stats, ten leagues a request.
+
+With a team and a jersey number, anyone who knows the team can tell who a line is. That is Pat's call; names are still never stored or shown.
 
 ## Past seasons (imported 2026-11-01)
 

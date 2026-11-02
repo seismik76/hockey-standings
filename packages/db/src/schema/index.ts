@@ -169,9 +169,9 @@ export const games = pgTable(
 );
 
 /**
- * One player's statistics for a phase, from TeamLinkt's gamesheets. Anonymous
- * by design: no name, no photo, no player id or key, so a line is only "a
- * player on this team". The collector replaces a phase's lines whole on each
+ * One player's statistics for a phase, from TeamLinkt's gamesheets. No name,
+ * no photo, no player id or key: a line is "a player on this team", with the
+ * jersey number from the team's roster. The collector replaces a phase's lines whole on each
  * run (Pat, 2026-11-01: leaderboards and full stats, but no player names).
  */
 export const playerStats = pgTable(
@@ -191,6 +191,16 @@ export const playerStats = pgTable(
     g: smallint().notNull(),
     a: smallint().notNull(),
     pim: smallint().notNull(),
+    /**
+     * The number on the team's roster ("7", "07"), shown with the line (Pat,
+     * 2026-11-02); null when blank or when the player is not on the roster.
+     */
+    jersey: text(),
+    /**
+     * On this team's roster; false for an affiliate player called up from
+     * another team; null for lines written before rosters were read.
+     */
+    rostered: boolean(),
     /** Listed among the team's goalies. Saves are rarely entered, so only these are kept. */
     goalie: boolean().notNull(),
     wins: smallint(),

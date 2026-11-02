@@ -4,7 +4,7 @@
 // over the same players: points with goals, games played with PIM, and the
 // goalies' record and goals against. The passes are joined on the parser's
 // one-way key, in memory; what is written has no name, photo or key, only the
-// team and the numbers (player_stats).
+// team, the numbers and the jersey number from the team's roster (player_stats).
 import {
   type Database,
   hasPlayerStats,
@@ -17,7 +17,9 @@ import {
   STATS_PAGE_LIMIT,
   type StatLine,
   type StatisticsQuery,
+  parseRoster,
   parseStatistics,
+  rosterRequest,
   statisticsRequest,
 } from "@hockey/sources";
 import type { Client } from "./http.js";
@@ -48,19 +50,28 @@ export interface StatPasses {
 }
 
 /**
- * One anonymous line per player, without the key. Assists are points less
+ * One anonymous line per player, without any key. Assists are points less
  * goals; a goalie with no games-played figure gets one from their record.
- * Players with nothing at all (no games, no statistics) are left out.
+ * The jersey number comes from the team's roster, matched on the roster key;
+ * a player not on it is an affiliate called up from another team, with no
+ * number shown. Players with nothing at all (no games, no statistics) are
+ * left out.
  */
 export function mergeStatLines(
   passes: StatPasses,
+  roster: ReadonlyMap<string, string | null>,
 ): (Omit<PlayerStatRow, "teamId" | "leagueId"> & { sourceTeamId: number })[] {
   const lines = new Map<
     string,
-    { teamId: number; stats: Record<string, number>; goalie: boolean }
+    { teamId: number; rosterKey: string; stats: Record<string, number>; goalie: boolean }
   >();
   const add = (l: StatLine, goalie: boolean) => {
-    const line = lines.get(l.key) ?? { teamId: l.teamId, stats: {}, goalie: false };
+    const line = lines.get(l.key) ?? {
+      teamId: l.teamId,
+      rosterKey: l.rosterKey,
+      stats: {},
+      goalie: false,
+    };
     Object.assign(line.stats, l.stats);
     line.goalie ||= goalie;
     lines.set(l.key, line);
@@ -69,7 +80,7 @@ export function mergeStatLines(
   for (const l of passes.scorers) add(l, false);
   for (const l of passes.goalies) add(l, true);
 
-  return [...lines.values()].flatMap(({ teamId, stats: s, goalie }) => {
+  return [...lines.values()].flatMap(({ teamId, rosterKey, stats: s, goalie }) => {
     const n = (k: string) => s[k] ?? 0;
     const record = n("W") + n("L") + n("T");
     const gp = s.GP ?? (goalie ? record : 0);
@@ -83,6 +94,8 @@ export function mergeStatLines(
         g,
         a,
         pim: n("PIM"),
+        jersey: roster.get(rosterKey) ?? null,
+        rostered: roster.has(rosterKey),
         goalie,
         ...(goalie
           ? { wins: n("W"), losses: n("L"), ties: n("T"), shutouts: n("SO"), goalsAgainst: n("GA") }
@@ -181,8 +194,24 @@ export async function collectStats(
     ...(await allPages(client, { ...base, group: "goalie", primary: "GA", sortBy: id("GA") })),
   ];
 
+  // Rosters for the jersey numbers, ten leagues a request.
+  const roster = new Map<string, string | null>();
+  for (let i = 0; i < divisionIds.length; i += 10) {
+    const lines = await client.request(
+      {
+        source: "teamlinkt",
+        ...rosterRequest({ seasonId, divisionIds: divisionIds.slice(i, i + 10) }),
+      },
+      (text) => {
+        const value = parseRoster(JSON.parse(text));
+        return { value, records: value.length };
+      },
+    );
+    for (const l of lines) roster.set(l.rosterKey, l.jersey);
+  }
+
   const teams = await phaseTeams(db, phaseId);
-  const rows: PlayerStatRow[] = mergeStatLines({ scorers, played, goalies }).flatMap(
+  const rows: PlayerStatRow[] = mergeStatLines({ scorers, played, goalies }, roster).flatMap(
     ({ sourceTeamId, ...line }) => {
       const t = teams.get(String(sourceTeamId));
       return t ? [{ ...line, teamId: t.teamId, leagueId: t.leagueId }] : [];

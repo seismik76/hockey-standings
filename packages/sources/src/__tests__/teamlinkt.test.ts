@@ -9,9 +9,11 @@ import {
   parseScores,
   parseSeasons,
   parseStandings,
+  parseRoster,
   parseStatistics,
   scoresRequest,
   seasonsRequest,
+  rosterRequest,
   standingsRequest,
   statisticsRequest,
   teamsRequest,
@@ -260,7 +262,7 @@ describe("statistics", () => {
     expect(new Set(page.lines.map((l) => l.key)).size).toBe(50);
     // Nothing that left the parser carries the name.
     expect(JSON.stringify(page.lines)).not.toMatch(/Player \d/);
-    expect(Object.keys(page.lines[0]!)).toEqual(["key", "teamId", "stats"]);
+    expect(Object.keys(page.lines[0]!)).toEqual(["key", "rosterKey", "teamId", "stats"]);
   });
 
   it("reads a player with no stats sent as an empty list, and numbers sent as strings", () => {
@@ -288,5 +290,59 @@ describe("statistics", () => {
       total: 1,
     });
     expect(page.lines[0]!.stats).toEqual({ GP: 4 });
+  });
+});
+
+describe("roster", () => {
+  const roster = {
+    teams: [
+      {
+        id: 7,
+        name: "U13 Knights 2 White",
+        logo: null,
+        staff: [{ name: "A Coach" }],
+        players: [
+          { id: 1, name: "Sam Example ", jerseyNumber: "07", position: "Forward", picture: null },
+          { id: 2, name: "Alex Example", jerseyNumber: "", position: "Goalie", picture: null },
+          { id: 3, name: "Kit Example", jerseyNumber: 12, position: null, picture: null },
+        ],
+      },
+    ],
+    divisionId: null,
+  };
+
+  it("asks for every team of the given leagues", () => {
+    expect(rosterRequest({ seasonId: 61563, divisionIds: [332824] })).toEqual({
+      method: "POST",
+      url: "https://app.teamlinkt.com/api/public/sites/hockeycalgary/roster",
+      body: { season_id: 61563, filteredDivisionIds: [332824] },
+    });
+  });
+
+  it("keeps the team, the number and a key, and drops names, staff and positions", () => {
+    const lines = parseRoster(roster);
+    expect(lines.map((l) => [l.teamId, l.jersey])).toEqual([
+      [7, "07"],
+      [7, null],
+      [7, "12"],
+    ]);
+    expect(JSON.stringify(lines)).not.toMatch(/Example|Coach|Forward|Goalie/);
+    expect(Object.keys(lines[0]!)).toEqual(["rosterKey", "teamId", "jersey"]);
+  });
+
+  it("gives a roster line and a stat line for the same player the same key", () => {
+    const [onRoster] = parseRoster(roster);
+    const stats = parseStatistics({
+      statistics: [{ id: 1, abbreviation: "GP" }],
+      players: [
+        { name: "Sam Example", teamId: 7, picture: "9", stats: { "1": 3 } },
+        { name: "Sam Example", teamId: 8, picture: "9", stats: { "1": 3 } },
+      ],
+      page: 1,
+      total: 2,
+    });
+    expect(stats.lines[0]!.rosterKey).toBe(onRoster!.rosterKey);
+    // The same name on another team is someone else.
+    expect(stats.lines[1]!.rosterKey).not.toBe(onRoster!.rosterKey);
   });
 });

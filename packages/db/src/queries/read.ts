@@ -1,5 +1,6 @@
 // Reads the web app makes. All of them run as the read-only role in production.
 import { and, asc, desc, eq, inArray, sql } from "drizzle-orm";
+import { alias } from "drizzle-orm/pg-core";
 import type { Queryable } from "../client.js";
 import {
   communities,
@@ -203,4 +204,108 @@ async function withTeamsAndGames(db: Queryable, found: LeagueSummary[]): Promise
     teams: teamRows.filter((t) => t.leagueId === league.id).map(({ leagueId: _, ...t }) => t),
     games: gameRows.filter((g) => g.leagueId === league.id).map(({ leagueId: _, ...g }) => g),
   }));
+}
+
+/** A final game in a tiered league, by the two teams' communities (null for a visiting club). */
+export interface TierGameRow {
+  age: string;
+  tier: number;
+  homeCommunity: string | null;
+  awayCommunity: string | null;
+  homeScore: number;
+  awayScore: number;
+}
+
+/** Every final game of one phase's tiered leagues: what the community comparison is made of. */
+export async function tierGames(
+  db: Queryable,
+  season: string,
+  phase: PhaseKind,
+): Promise<TierGameRow[]> {
+  const home = alias(teams, "home");
+  const away = alias(teams, "away");
+  const rows = await db
+    .select({
+      age: leagues.age,
+      tier: leagues.tier,
+      homeCommunity: home.communitySlug,
+      awayCommunity: away.communitySlug,
+      homeScore: games.homeScore,
+      awayScore: games.awayScore,
+    })
+    .from(games)
+    .innerJoin(leagues, eq(leagues.id, games.leagueId))
+    .innerJoin(phases, eq(phases.id, leagues.phaseId))
+    .innerJoin(home, eq(home.id, games.homeTeamId))
+    .innerJoin(away, eq(away.id, games.awayTeamId))
+    .where(
+      and(
+        eq(phases.seasonLabel, season),
+        eq(phases.kind, phase),
+        eq(leagues.kind, "tier"),
+        eq(games.status, "final"),
+      ),
+    );
+  // A tier league always has an age and a tier, and a final game its scores
+  // (the games_scores_match_status check); the filter only narrows the types.
+  return rows.filter(
+    (r): r is TierGameRow =>
+      r.age !== null && r.tier !== null && r.homeScore !== null && r.awayScore !== null,
+  );
+}
+
+/** How many of each community's teams play in each tier of one phase, by age. */
+export async function tierPlacements(
+  db: Queryable,
+  season: string,
+  phase: PhaseKind,
+): Promise<{ community: string; age: string; tier: number; teams: number }[]> {
+  const rows = await db
+    .select({
+      community: teams.communitySlug,
+      age: leagues.age,
+      tier: leagues.tier,
+      teams: sql<number>`count(*)::int`,
+    })
+    .from(leagueTeams)
+    .innerJoin(teams, eq(teams.id, leagueTeams.teamId))
+    .innerJoin(leagues, eq(leagues.id, leagueTeams.leagueId))
+    .innerJoin(phases, eq(phases.id, leagues.phaseId))
+    .where(and(eq(phases.seasonLabel, season), eq(phases.kind, phase), eq(leagues.kind, "tier")))
+    .groupBy(teams.communitySlug, leagues.age, leagues.tier);
+  return rows.filter(
+    (r): r is { community: string; age: string; tier: number; teams: number } =>
+      r.community !== null && r.age !== null && r.tier !== null,
+  );
+}
+
+/** Per phase of the season: how many teams its tiered leagues have, and how many final games. */
+export async function tierCoverage(
+  db: Queryable,
+  season: string,
+): Promise<{ phase: PhaseKind; teams: number; finals: number }[]> {
+  const teamCount = db
+    .select({ phaseId: leagues.phaseId, n: sql<number>`count(*)::int`.as("team_n") })
+    .from(leagueTeams)
+    .innerJoin(leagues, eq(leagues.id, leagueTeams.leagueId))
+    .where(eq(leagues.kind, "tier"))
+    .groupBy(leagues.phaseId)
+    .as("team_count");
+  const finalCount = db
+    .select({ phaseId: leagues.phaseId, n: sql<number>`count(*)::int`.as("final_n") })
+    .from(games)
+    .innerJoin(leagues, eq(leagues.id, games.leagueId))
+    .where(and(eq(leagues.kind, "tier"), eq(games.status, "final")))
+    .groupBy(leagues.phaseId)
+    .as("final_count");
+  return db
+    .select({
+      phase: phases.kind,
+      teams: sql<number>`coalesce(${teamCount.n}, 0)`,
+      finals: sql<number>`coalesce(${finalCount.n}, 0)`,
+    })
+    .from(phases)
+    .leftJoin(teamCount, eq(teamCount.phaseId, phases.id))
+    .leftJoin(finalCount, eq(finalCount.phaseId, phases.id))
+    .where(eq(phases.seasonLabel, season));
 }

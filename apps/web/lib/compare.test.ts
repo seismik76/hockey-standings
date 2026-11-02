@@ -1,0 +1,55 @@
+import { describe, expect, it } from "vitest";
+import { barPosition, perGame, pickPhase, shareStep } from "./compare";
+
+describe("pickPhase", () => {
+  const seedingOnly = [
+    { phase: "seeding" as const, teams: 480, finals: 850 },
+    { phase: "regular" as const, teams: 0, finals: 0 },
+  ];
+  const regularStarted = [
+    { phase: "seeding" as const, teams: 480, finals: 864 },
+    { phase: "regular" as const, teams: 480, finals: 120 },
+  ];
+
+  it("shows seeding until the regular season has about two games a team", () => {
+    expect(pickPhase(seedingOnly, undefined)).toEqual({ phase: "seeding", available: ["seeding"] });
+    expect(pickPhase(regularStarted, undefined).phase).toBe("seeding");
+    const ready = [regularStarted[0]!, { phase: "regular" as const, teams: 480, finals: 480 }];
+    expect(pickPhase(ready, undefined).phase).toBe("regular");
+  });
+
+  it("honours a phase asked for by name only when it has games", () => {
+    expect(pickPhase(regularStarted, "regular")).toEqual({
+      phase: "regular",
+      available: ["seeding", "regular"],
+    });
+    expect(pickPhase(seedingOnly, "regular").phase).toBe("seeding");
+    expect(pickPhase(seedingOnly, "playoffs").phase).toBe("seeding");
+  });
+});
+
+describe("shareStep", () => {
+  it("bins symmetrically around even, on the printed percentage", () => {
+    expect([0.1, 0.3, 0.399, 0.46, 0.465, 0.5, 0.534, 0.535, 0.6, 0.7, 0.706, 0.9].map(shareStep))
+      // 0.399 prints 40, 0.465 prints 47 and 0.535 prints 54: each lands in the class its label names.
+      .toEqual([-3, -2, -1, -1, 0, 0, 0, 1, 1, 2, 3, 3]);
+  });
+});
+
+describe("perGame", () => {
+  it("signs goal differential with a real minus", () => {
+    expect(perGame(17, 10)).toBe("+1.7");
+    expect(perGame(-4, 10)).toBe("−0.4");
+    expect(perGame(0, 10)).toBe("0.0");
+    expect(perGame(3, 0)).toBe("0.0");
+  });
+});
+
+describe("barPosition", () => {
+  it("maps 20%–80% onto the track and clamps outside it", () => {
+    expect(barPosition(0.5)).toBeCloseTo(50);
+    expect(barPosition(0.2)).toBe(0);
+    expect(barPosition(0.05)).toBe(0);
+    expect(barPosition(0.95)).toBe(100);
+  });
+});

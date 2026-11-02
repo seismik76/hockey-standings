@@ -15,6 +15,28 @@
   --muted: oklch(0.5 0.012 250);
   --accent: oklch(0.5 0.13 255);
   --highlight: oklch(0.96 0.03 255);
+  /* Community comparison. Diverging blue (above even) and red (below) around a
+     gray midpoint, three steps an arm, lightness monotonic along each arm.
+     --on-* is the ink each step takes; every pair clears 4.5:1. */
+  --s-n3: #c4383a;
+  --s-n2: #ec8a83;
+  --s-n1: #f7cdc8;
+  --s-0: #f0efec;
+  --s-p1: #c9def8;
+  --s-p2: #6da7ec;
+  --s-p3: #256abf;
+  --on-strong: #ffffff;
+  --on-soft: #0b0b0b;
+  --bar-above: #2a78d6;
+  --bar-below: #e34948;
+  --range: oklch(0.35 0.01 250);
+  /* Tiers, an ordinal ramp: Tier 1 darkest. */
+  --tier-1: #104281;
+  --tier-2: #1c5cab;
+  --tier-3: #2a78d6;
+  --tier-4: #5598e7;
+  --tier-5: #86b6ef;
+  --baseline: oklch(0.8 0.008 250);
   color-scheme: light;
 }
 
@@ -27,6 +49,25 @@
     --muted: oklch(0.7 0.012 250);
     --accent: oklch(0.75 0.12 255);
     --highlight: oklch(0.3 0.05 255);
+    --s-n3: #b8403d;
+    --s-n2: #7f3532;
+    --s-n1: #4f2d2b;
+    --s-0: #383835;
+    --s-p1: #26405f;
+    --s-p2: #2c5d99;
+    --s-p3: #2f68b5;
+    --on-strong: #f0efec;
+    --on-soft: #f0efec;
+    --bar-above: #3987e5;
+    --bar-below: #e66767;
+    --range: oklch(0.9 0.005 250);
+    /* Tier 1 lightest on dark: emphasis is lightness here. */
+    --tier-1: #cde2fb;
+    --tier-2: #86b6ef;
+    --tier-3: #5598e7;
+    --tier-4: #2a78d6;
+    --tier-5: #1c5cab;
+    --baseline: oklch(0.45 0.01 250);
     color-scheme: dark;
   }
 }
@@ -88,4 +129,264 @@ table.standings .team {
 table.standings tr.mine td {
   background: var(--highlight);
   font-weight: 600;
+}
+
+/* Community comparison (app/_components/compare.tsx). */
+/* Phones: name and value on one line, the plot full width below it. */
+.share-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "name value" "plot plot";
+  align-items: center;
+  column-gap: 0.75rem;
+}
+@media (min-width: 640px) {
+  .share-row {
+    grid-template-columns: minmax(6.5rem, 10rem) 1fr 2.75rem;
+    grid-template-areas: "name plot value";
+  }
+}
+.share-axis-row {
+  grid-template-areas: "plot plot";
+}
+@media (min-width: 640px) {
+  .share-axis-row {
+    grid-template-areas: ". plot .";
+  }
+}
+.row-name {
+  grid-area: name;
+}
+.row-plot {
+  grid-area: plot;
+}
+.row-value {
+  grid-area: value;
+}
+.share-track {
+  position: relative;
+  height: 2rem;
+  outline-offset: 2px;
+}
+/* The even line: the baseline every bar grows from. */
+.share-track::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--baseline);
+}
+.share-bar {
+  position: absolute;
+  top: calc(50% - 5px);
+  height: 10px;
+}
+/* Rounded at the data end only, square on the baseline. */
+.share-bar.above {
+  background: var(--bar-above);
+  border-radius: 0 4px 4px 0;
+}
+.share-bar.below {
+  background: var(--bar-below);
+  border-radius: 4px 0 0 4px;
+}
+.share-range {
+  position: absolute;
+  top: calc(50% - 1px);
+  height: 2px;
+  background: var(--range);
+  opacity: 0.55;
+}
+.share-track:hover .share-bar,
+.share-track:focus .share-bar {
+  filter: brightness(1.12);
+}
+.share-axis {
+  position: relative;
+  height: 1rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.share-axis span {
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+table.heat {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 2px;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+table.heat th {
+  color: var(--muted);
+  font-weight: 500;
+  padding: 0 0 0.25rem;
+}
+table.heat .heat-name {
+  width: 34%;
+  text-align: left;
+  font-weight: 500;
+  padding-right: 0.5rem;
+  line-height: 1.2;
+}
+table.heat tbody .heat-name {
+  color: var(--fg);
+}
+.heat-cell,
+.heat-empty {
+  text-align: center;
+  height: 2rem;
+  border-radius: 4px;
+}
+.heat-cell {
+  outline-offset: 1px;
+}
+.heat-cell:hover,
+.heat-cell:focus {
+  outline: 2px solid var(--fg);
+}
+.heat-cell.thin {
+  opacity: 0.5;
+}
+.heat-empty {
+  color: var(--muted);
+}
+.heat-swatch {
+  display: inline-block;
+  width: 1rem;
+  height: 0.75rem;
+  border-radius: 2px;
+}
+.sn3 {
+  background: var(--s-n3);
+  color: var(--on-strong);
+}
+.sn2 {
+  background: var(--s-n2);
+  color: var(--on-soft);
+}
+.sn1 {
+  background: var(--s-n1);
+  color: var(--on-soft);
+}
+.s0 {
+  background: var(--s-0);
+  color: var(--on-soft);
+}
+.sp1 {
+  background: var(--s-p1);
+  color: var(--on-soft);
+}
+.sp2 {
+  background: var(--s-p2);
+  color: var(--on-soft);
+}
+.sp3 {
+  background: var(--s-p3);
+  color: var(--on-strong);
+}
+
+.tier-bar {
+  display: flex;
+  gap: 2px;
+  height: 0.875rem;
+}
+.tier-seg {
+  position: relative;
+  outline-offset: 1px;
+}
+.tier-seg:first-child {
+  border-radius: 4px 0 0 4px;
+}
+.tier-seg:last-child {
+  border-radius: 0 4px 4px 0;
+}
+.tier-seg:only-child {
+  border-radius: 4px;
+}
+.tier-seg:hover,
+.tier-seg:focus {
+  outline: 2px solid var(--fg);
+}
+.tier-1 {
+  background: var(--tier-1);
+}
+.tier-2 {
+  background: var(--tier-2);
+}
+.tier-3 {
+  background: var(--tier-3);
+}
+.tier-4 {
+  background: var(--tier-4);
+}
+.tier-5 {
+  background: var(--tier-5);
+}
+
+/* CSS tooltips: on hover and on focus (so a tap on a phone shows one). */
+.tip {
+  position: relative;
+}
+.tip-body {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  z-index: 10;
+  width: max-content;
+  max-width: 13rem;
+  padding: 0.5rem 0.625rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--surface);
+  color: var(--fg);
+  box-shadow: 0 4px 16px oklch(0 0 0 / 0.12);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: left;
+  pointer-events: none;
+}
+.tip-body strong {
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+.tip-start .tip-body {
+  left: 0;
+}
+.tip-end .tip-body {
+  right: 0;
+}
+.tip:hover .tip-body,
+.tip:focus .tip-body {
+  display: block;
+}
+
+.phase-tabs a,
+.phase-tabs span {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+.phase-tabs a {
+  color: var(--fg);
+  border: 1px solid var(--border);
+}
+.phase-tabs a[aria-current="page"] {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
+}
+.phase-tabs span {
+  color: var(--muted);
+  border: 1px solid var(--border);
+  opacity: 0.7;
 }

@@ -15,6 +15,9 @@ import {
   leagueData,
   listCommunities,
   listLeagues,
+  tierCoverage,
+  tierGames,
+  tierPlacements,
 } from "../queries/read.js";
 import { closeDb, setUpTestDatabase, truncateAll } from "../testing.js";
 
@@ -175,5 +178,34 @@ describe("read queries", () => {
     expect(await communityLeagues(getDb(), "2026-27", "southwest")).toEqual([]);
     expect(await communityName(getDb(), "glenlake")).toBe("Glenlake");
     expect(await communityName(getDb(), "nowhere")).toBeNull();
+  });
+
+  it("give tiered games and placements by community, and each phase's coverage", async () => {
+    // Junior C is not tiered and the scheduled game is not final: neither counts.
+    expect(await tierGames(getDb(), "2026-27", "seeding")).toEqual([
+      {
+        age: "U13",
+        tier: 2,
+        homeCommunity: "knights",
+        awayCommunity: "glenlake",
+        homeScore: 3,
+        awayScore: 1,
+      },
+    ]);
+    expect(await tierGames(getDb(), "2026-27", "regular")).toEqual([]);
+    expect(
+      (await tierPlacements(getDb(), "2026-27", "seeding")).sort((a, b) =>
+        a.community.localeCompare(b.community),
+      ),
+    ).toEqual([
+      { community: "glenlake", age: "U13", tier: 2, teams: 1 },
+      { community: "knights", age: "U13", tier: 2, teams: 1 },
+    ]);
+    expect(
+      (await tierCoverage(getDb(), "2026-27")).sort((a, b) => a.phase.localeCompare(b.phase)),
+    ).toEqual([
+      { phase: "regular", teams: 0, finals: 0 },
+      { phase: "seeding", teams: 2, finals: 1 },
+    ]);
   });
 });

@@ -20,7 +20,8 @@
     "db:reset": "node scripts/pg-local.mjs reset",
     "db:generate": "pnpm --filter @hockey/db generate",
     "db:migrate": "pnpm --filter @hockey/db migrate",
-    "collector": "pnpm --filter @hockey/collector start"
+    "collector": "pnpm --filter @hockey/collector start",
+    "history:import": "node --env-file-if-exists=.env.local scripts/import-history.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",

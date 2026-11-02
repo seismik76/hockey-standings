@@ -66,6 +66,29 @@ We don't reuse this. TeamLinkt's `robots.txt` disallows `/leagues/get*` in all f
 - U7 leagues have no games, as expected: U7 keeps no scores.
 - Teams with no community, by design: the 47 Flames-league teams, named for their league ("U11 SCHHL Black") rather than an association, and four out-of-town Junior C clubs (Airdrie Dragons, Chestermere, Cochrane Generals, Southside Thunder). Every other team matched one of the 12 associations.
 
+## Past seasons (imported 2026-11-01)
+
+2021-22 to 2025-26 come from the old hockey-calgary-scraper database, as season totals per team (no games), imported once into `history_standings` by `scripts/import-history.mjs` from its seed file, `data/seed/hockey_calgary.db` (last updated 2026-05-16). The collector never reads it.
+
+| Ages              | Seasons            | Where the old scraper read them |
+| ----------------- | ------------------ | ------------------------------- |
+| U13, U15, U18     | 2021-22 to 2024-25 | Hockey Calgary standings pages  |
+| U15, U18          | 2025-26            | Hockey Calgary standings pages  |
+| U11 (with U11 AA) | 2024-25, 2025-26   | RAMP                            |
+| U13               | 2025-26            | TeamLinkt                       |
+
+No U9 at all, and no U11 before 2024-25. 2020-21 (COVID) has nothing usable. Raiders appear from 2023-24 and Wolverines from 2022-23.
+
+What the import fixes or leaves out:
+
+- **Playoff rows** were exact copies of Regular ones (every pair, every season), so they are not imported. Real playoffs were the City Championships, a tournament; tournaments are left out, as are zone AA (`elite-council`: U15 to U18 AA) and girls' leagues.
+- **One table in both phases.** A league existed in one phase, but the scraper asked for both and Hockey Calgary answered the other with the same table (458 rows). Where every team's line is identical, one copy is kept, in seeding if the average games played is 10 or fewer, else the regular season.
+- **Two TeamLinkt ids.** TeamLinkt listed the 2025-26 U13 seeding leagues twice; the 93 repeats were identical and are dropped. A repeat that differed would stop the import.
+
+Result: 3,047 rows, every one with a community and a record that adds up (gp = w + l + t).
+
+**Balance.** In a closed pool, wins equal losses and goals for equal goals against. From 2023-24 every Hockey Calgary pool balances exactly. In 2021-22 and 2022-23 nearly every pool is off by about 8%: those tables include games against teams outside the pool. A few 2025-26 seeding pools (RAMP, TeamLinkt) are off by 2 to 6%, likely teams that changed pools during seeding. Points share still compares communities, but read 2021-23 as rougher.
+
 ## Waiting on
 
 - [ ] **Hockey Calgary:** permission to read `/standings` and `/schedule/scores`, or the `leagueID` and `typeID` list for the calendar feeds, or a supported results feed.

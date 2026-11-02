@@ -189,3 +189,46 @@ export const fetches = pgTable(
   },
   (t) => [index().on(t.fetchedAt)],
 );
+
+/**
+ * Past seasons as season totals, one row per team per league per phase,
+ * imported once from the old hockey-calgary-scraper database (2021-22 to
+ * 2025-26; scripts/import-history.mjs). There are no games behind these rows,
+ * so they live apart from the tables above and nothing reads them as games.
+ */
+export const historyStandings = pgTable(
+  "history_standings",
+  {
+    id: serial().primaryKey(),
+    seasonLabel: text()
+      .notNull()
+      .references(() => seasons.label),
+    phase: phaseKind().notNull(),
+    /** Hockey Calgary's slug: "u15-tier-2-nbc-blue". */
+    leagueSlug: text().notNull(),
+    /** Cleaned and upper-cased like TeamLinkt's: "U15 TIER 2 NBC BLUE". */
+    leagueName: text().notNull(),
+    age: text().notNull(),
+    /** 0 for U11 and U13 AA, as in the comparison; then Tier 1 down. */
+    tier: smallint().notNull(),
+    region: text(),
+    /** A split pool's colour within its tier ("BLUE"); null when the tier is one pool. */
+    pool: text(),
+    teamName: text().notNull(),
+    communitySlug: text().references(() => communities.slug),
+    gp: smallint().notNull(),
+    w: smallint().notNull(),
+    l: smallint().notNull(),
+    t: smallint().notNull(),
+    gf: smallint().notNull(),
+    ga: smallint().notNull(),
+    /** Where the old scraper read it: "hockeycalgary", "ramp" or "teamlinkt". */
+    origin: text().notNull(),
+    sourceUrl: text(),
+  },
+  (t) => [
+    unique().on(t.seasonLabel, t.phase, t.leagueSlug, t.teamName),
+    index().on(t.communitySlug),
+    check("history_standings_record", sql`${t.gp} = ${t.w} + ${t.l} + ${t.t}`),
+  ],
+);

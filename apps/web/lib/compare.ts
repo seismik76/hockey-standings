@@ -123,3 +123,15 @@ export function diffStep(diff: number): number {
   const t = tenths(diff);
   return DIFF_BINS.find((b) => t < b.below)!.step;
 }
+
+export type HistoryPhase = "all" | "seeding" | "regular";
+
+/** The past-seasons page's phase from its query string: seeding and regular together unless one is asked for. */
+export function historyPhase(asked: string | undefined): HistoryPhase {
+  return asked === "seeding" || asked === "regular" ? asked : "all";
+}
+
+/** "2024-25" → "24–25", for narrow column heads. */
+export function seasonShort(label: string): string {
+  return label.replace(/^\d{2}(\d{2})-(\d{2})$/, "$1–$2");
+}

@@ -47,6 +47,9 @@ export default async function Home({ searchParams }: Props) {
       </p>
 
       <PhaseTabs phase={phase} available={available} />
+      <p className="mt-3 text-sm">
+        <Link href="/history">How they compared in past seasons →</Link>
+      </p>
 
       {rows.length === 0 ? (
         <p className="mt-6">No {phaseLabel(phase).toLowerCase()} games have been played yet.</p>

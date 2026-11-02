@@ -1,5 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { type TierGame, compareAges, compareCommunities, tierShares } from "../compare.js";
+import {
+  type TierGame,
+  communityHistory,
+  compareAges,
+  compareCommunities,
+  tierShares,
+  toSeasonTotals,
+  totalsRecord,
+} from "../compare.js";
 
 const game = (
   homeCommunity: string | null,
@@ -83,5 +91,58 @@ describe("tierShares", () => {
 describe("compareAges", () => {
   it("orders by the number", () => {
     expect(["U18", "U9", "U13", "U11"].sort(compareAges)).toEqual(["U9", "U11", "U13", "U18"]);
+  });
+});
+
+describe("communityHistory", () => {
+  const totals = (season: string, community: string, age: string, w: number, l: number, t = 0) => ({
+    season,
+    community,
+    age,
+    gp: w + l + t,
+    w,
+    l,
+    t,
+    gf: w * 3,
+    ga: l * 3,
+  });
+
+  it("rolls totals up by season and by age, best overall first", () => {
+    const [a, b] = communityHistory([
+      totals("2024-25", "a", "U11", 6, 4),
+      totals("2024-25", "a", "U13", 2, 8),
+      totals("2025-26", "a", "U13", 9, 1),
+      totals("2025-26", "b", "U13", 1, 9),
+    ]);
+    expect(a!.community).toBe("a");
+    expect(a!.all).toMatchObject({ gp: 30, w: 17, share: 17 / 30 });
+    expect(a!.bySeason.get("2024-25")!.share).toBe(0.4);
+    expect(a!.byAge.get("U13")!.get("2025-26")!.share).toBe(0.9);
+    expect(a!.byAge.get("U11")!.has("2025-26")).toBe(false);
+    expect(b!.all.share).toBe(0.1);
+  });
+
+  it("gives totals the same share and range as the games behind them", () => {
+    const games = [game("a", "b", 3, 1), game("a", "b", 2, 2), game("b", "a", 4, 0)];
+    const fromGames = compareCommunities(games).find((c) => c.community === "a")!.all;
+    const fromTotals = totalsRecord(fromGames);
+    expect(fromTotals.share).toBe(fromGames.share);
+    expect(fromTotals.low).toBeCloseTo(fromGames.low);
+    expect(fromTotals.high).toBeCloseTo(fromGames.high);
+  });
+
+  it("turns this season's comparison into totals", () => {
+    const now = toSeasonTotals("2026-27", compareCommunities([game("a", "b", 3, 1, "U9")]));
+    expect(now).toContainEqual({
+      season: "2026-27",
+      community: "a",
+      age: "U9",
+      gp: 1,
+      w: 1,
+      l: 0,
+      t: 0,
+      gf: 3,
+      ga: 1,
+    });
   });
 });

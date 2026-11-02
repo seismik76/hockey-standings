@@ -4,8 +4,10 @@ import {
   diffStep,
   goalDomain,
   goalPosition,
+  historyPhase,
   perGame,
   pickPhase,
+  seasonShort,
   shareStep,
   signed,
 } from "./compare";
@@ -97,5 +99,21 @@ describe("diffStep", () => {
         "+2.0",
       ]),
     );
+  });
+});
+
+describe("past seasons", () => {
+  it("reads the phase, defaulting to both", () => {
+    expect([
+      historyPhase("seeding"),
+      historyPhase("regular"),
+      historyPhase(undefined),
+      historyPhase("x"),
+    ]).toEqual(["seeding", "regular", "all", "all"]);
+  });
+
+  it("shortens season labels", () => {
+    expect(seasonShort("2024-25")).toBe("24–25");
+    expect(seasonShort("odd")).toBe("odd");
   });
 });

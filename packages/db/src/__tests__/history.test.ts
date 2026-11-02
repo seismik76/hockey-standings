@@ -2,7 +2,7 @@ import { count, eq } from "drizzle-orm";
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { getDb } from "../client.js";
 import { upsertCommunities } from "../queries/ingest.js";
-import { type HistoryStandingRow, replaceHistory } from "../queries/history.js";
+import { type HistoryStandingRow, historyTotals, replaceHistory } from "../queries/history.js";
 import { historyStandings } from "../schema/index.js";
 import { closeDb, setUpTestDatabase, truncateAll } from "../testing.js";
 
@@ -59,5 +59,29 @@ describe("replaceHistory", () => {
       .from(historyStandings)
       .where(eq(historyStandings.seasonLabel, "2024-25"))) as [{ n: number }];
     expect(n).toBe(0);
+  });
+
+  it("totals past seasons by season, community and age, for a phase or both", async () => {
+    const db = getDb();
+    await replaceHistory(db, [
+      row("2024-25", "Southwest 1", 5),
+      row("2024-25", "Southwest 2", 3),
+      { ...row("2024-25", "Southwest 1", 6), phase: "regular", leagueSlug: "u13-tier-2-south" },
+      { ...row("2024-25", "Okotoks 1", 8), communitySlug: null },
+    ]);
+    expect(await historyTotals(db, "seeding")).toEqual([
+      {
+        season: "2024-25",
+        community: "southwest",
+        age: "U13",
+        gp: 16,
+        w: 8,
+        l: 8,
+        t: 0,
+        gf: 40,
+        ga: 36,
+      },
+    ]);
+    expect((await historyTotals(db))[0]).toMatchObject({ gp: 24, w: 14 });
   });
 });

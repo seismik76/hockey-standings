@@ -21,11 +21,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-CA">
       <body className="min-h-screen">
-        <header className="mx-auto flex max-w-3xl items-baseline justify-between gap-4 px-4 pt-5 pb-2">
+        <header className="mx-auto flex max-w-3xl flex-wrap items-baseline justify-between gap-x-4 gap-y-1 px-4 pt-5 pb-2">
           <Link href="/" className="font-semibold text-[var(--fg)] no-underline">
             Hockey Calgary standings
           </Link>
-          <nav className="text-sm">
+          <nav className="flex gap-4 text-sm whitespace-nowrap">
+            <Link href="/history">Past seasons</Link>
             <Link href="/leagues">All leagues</Link>
           </nav>
         </header>

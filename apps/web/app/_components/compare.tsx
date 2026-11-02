@@ -23,13 +23,14 @@ import {
 
 type Names = Map<string, string>;
 
-const stepClass = (step: number) => (step < 0 ? `sn${-step}` : step > 0 ? `sp${step}` : "s0");
+export const stepClass = (step: number) =>
+  step < 0 ? `sn${-step}` : step > 0 ? `sp${step}` : "s0";
 
-function recordLine(r: ShareRecord): string {
+export function recordLine(r: ShareRecord): string {
   return `${r.w}-${r.l}-${r.t} in ${r.gp} ${r.gp === 1 ? "game" : "games"} · ${perGame(r.gf - r.ga, r.gp)} goals a game`;
 }
 
-function Tip({ title, lines }: { title: string; lines: string[] }) {
+export function Tip({ title, lines }: { title: string; lines: string[] }) {
   return (
     <span className="tip-body" role="tooltip">
       <strong className="block">{title}</strong>

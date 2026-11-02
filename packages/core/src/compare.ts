@@ -170,3 +170,97 @@ export function compareAges(a: string, b: string): number {
   const n = (s: string) => Number(/\d+/.exec(s)?.[0] ?? Infinity);
   return n(a) - n(b) || a.localeCompare(b);
 }
+
+/** A season total for one community at one age: what past seasons are stored as. */
+export interface SeasonTotals {
+  season: string;
+  community: string;
+  age: string;
+  gp: number;
+  w: number;
+  l: number;
+  t: number;
+  gf: number;
+  ga: number;
+}
+
+export interface CommunityHistory {
+  community: string;
+  /** Every season and age together. */
+  all: ShareRecord;
+  /** All ages, by season label. */
+  bySeason: Map<string, ShareRecord>;
+  /** By age, then season. */
+  byAge: Map<string, Map<string, ShareRecord>>;
+}
+
+/**
+ * A record from season totals. The points share and its range come out the
+ * same as from games (they need only the win and tie counts); goal
+ * differential has no per-game spread in totals, so its range is just the value.
+ */
+export function totalsRecord(t: Omit<SeasonTotals, "season" | "community" | "age">): ShareRecord {
+  const r = toRecord({ ...t, diffSquares: 0 });
+  return { ...r, diffLow: r.diff, diffHigh: r.diff };
+}
+
+/** Season totals rolled up per community, best overall share first (then name). */
+export function communityHistory(rows: readonly SeasonTotals[]): CommunityHistory[] {
+  const add = (map: Map<string, Tally>, key: string, r: SeasonTotals) => {
+    const t = map.get(key) ?? empty();
+    t.gp += r.gp;
+    t.w += r.w;
+    t.l += r.l;
+    t.t += r.t;
+    t.gf += r.gf;
+    t.ga += r.ga;
+    map.set(key, t);
+  };
+  const all = new Map<string, Tally>();
+  const bySeason = new Map<string, Map<string, Tally>>();
+  const byAge = new Map<string, Map<string, Tally>>();
+  for (const r of rows) {
+    add(all, r.community, r);
+    if (!bySeason.has(r.community)) bySeason.set(r.community, new Map());
+    add(bySeason.get(r.community)!, r.season, r);
+    if (!byAge.has(r.community)) byAge.set(r.community, new Map());
+    add(byAge.get(r.community)!, `${r.age}|${r.season}`, r);
+  }
+  const record = (t: Tally) => totalsRecord(t);
+  return [...all]
+    .map(([community, tally]) => {
+      const ages = new Map<string, Map<string, ShareRecord>>();
+      for (const [key, t] of byAge.get(community)!) {
+        const [age, season] = key.split("|") as [string, string];
+        if (!ages.has(age)) ages.set(age, new Map());
+        ages.get(age)!.set(season, record(t));
+      }
+      return {
+        community,
+        all: record(tally),
+        bySeason: new Map([...bySeason.get(community)!].map(([s, t]) => [s, record(t)])),
+        byAge: ages,
+      };
+    })
+    .sort((a, b) => b.all.share - a.all.share || a.community.localeCompare(b.community));
+}
+
+/** This season's comparison as season totals, so it can sit beside past seasons. */
+export function toSeasonTotals(
+  season: string,
+  rows: readonly CommunityComparison[],
+): SeasonTotals[] {
+  return rows.flatMap(({ community, byAge }) =>
+    [...byAge].map(([age, r]) => ({
+      season,
+      community,
+      age,
+      gp: r.gp,
+      w: r.w,
+      l: r.l,
+      t: r.t,
+      gf: r.gf,
+      ga: r.ga,
+    })),
+  );
+}

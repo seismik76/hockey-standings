@@ -82,7 +82,16 @@ export function calgaryToday(now = new Date()): string {
 export async function collect(
   db: Database,
   client: Client,
-  { today, now = new Date() }: { today: string; now?: Date },
+  {
+    today,
+    now = new Date(),
+    forceStats = false,
+  }: {
+    today: string;
+    now?: Date;
+    /** Fetch player stats on this run even if they were fetched in the last day. */
+    forceStats?: boolean;
+  },
 ): Promise<RunSummary> {
   const season = seasonLabelFor(today);
   const summary: RunSummary = {
@@ -97,7 +106,7 @@ export async function collect(
     playerStats: 0,
   };
   const unmatched = new Set<string>();
-  const statsThisRun = await statsRunDue(db, now);
+  const statsThisRun = forceStats || (await statsRunDue(db, now));
   // Phases whose player stats to fetch, after every phase's scores are in.
   const statsQueue: { phaseId: number; phase: TeamLinktSeason; divisions: number[] }[] = [];
 

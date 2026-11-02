@@ -43,7 +43,7 @@ Migrations are run by hand, as `hockey_owner` on the direct endpoint, before a d
 DATABASE_URL="$(neon connection-string --project-id divine-salad-11934800   --role-name hockey_owner --database-name hockey --ssl verify-full)" pnpm db:migrate
 ```
 
-Run the collector now instead of waiting for the hour:
+Run the collector now instead of waiting for the next run (add `--args --force-stats` to fetch player stats again within the day):
 
 ````bash
 az containerapp job start --subscription f4a8b0b9-875c-439f-8c01-7ab024797b74   -g rg-hockey-standings -n caj-hockey-standings-collector

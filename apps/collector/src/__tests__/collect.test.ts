@@ -211,6 +211,12 @@ describe("collect", () => {
       now: new Date(Date.now() + 21 * 3_600_000),
     });
     expect(tomorrow.requests).toBe(first.requests);
+    // --force-stats fetches them again straight away.
+    const forced = await collect(db, createClient(db, captured, { gapMs: 0 }), {
+      today: TODAY,
+      forceStats: true,
+    });
+    expect(forced.requests).toBe(first.requests);
     expect(
       fetches.every((f) => f.status === 200 && f.contentHash?.length === 64 && f.error === null),
     ).toBe(true);

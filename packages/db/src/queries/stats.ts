@@ -48,6 +48,7 @@ export async function hasPlayerStats(db: Queryable, phaseId: number): Promise<bo
 
 export interface PlayerLine {
   phase: PhaseKind;
+  teamId: number;
   team: string;
   communitySlug: string | null;
   leagueSlug: string;
@@ -73,6 +74,7 @@ function lineQuery(db: Queryable) {
   return db
     .select({
       phase: phases.kind,
+      teamId: teams.id,
       team: teams.name,
       communitySlug: teams.communitySlug,
       leagueSlug: leagues.slug,

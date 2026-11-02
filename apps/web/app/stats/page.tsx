@@ -12,7 +12,7 @@ import Link from "next/link";
 import { DepthHeatmap, GoalieTable, SkaterTable } from "@/app/_components/stats";
 import { type ComparePhase, type SkaterSortKey, percent, skaterSort } from "@/lib/compare";
 import { getDb, seasonOrNull } from "@/lib/data";
-import { leagueLabel, phaseLabel } from "@/lib/view";
+import { leagueLabel, phaseLabel, teamLabel } from "@/lib/view";
 
 // Stats change with every collector run, and the filters are in the URL.
 export const dynamic = "force-dynamic";
@@ -20,7 +20,13 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Player stats" };
 
 type Props = {
-  searchParams: Promise<{ phase?: string; age?: string; sort?: string; league?: string }>;
+  searchParams: Promise<{
+    phase?: string;
+    age?: string;
+    sort?: string;
+    league?: string;
+    team?: string;
+  }>;
 };
 
 const SORTS: { key: SkaterSortKey; label: string }[] = [
@@ -70,6 +76,13 @@ export default async function Stats({ searchParams }: Props) {
     leagueSlug ? leaguePlayerLines(db, season, phase, leagueSlug) : Promise.resolve([]),
   ]);
   const depth = scoringDepth(scoring);
+  // The chosen league's teams, and the one picked, if any.
+  const leagueTeams = [...new Map(leagueLines.map((l) => [l.teamId, l.team])).entries()].sort(
+    (a, b) => a[1].localeCompare(b[1]),
+  );
+  const askedTeam = Number(params.team);
+  const teamId = leagueTeams.some(([id]) => id === askedTeam) ? askedTeam : undefined;
+  const shown = teamId === undefined ? leagueLines : leagueLines.filter((l) => l.teamId === teamId);
   const names = new Map(communities.map((c) => [c.slug, c.name]));
   // Deepest overall first.
   const rows = [...depth.byCommunity.keys()].sort(
@@ -86,13 +99,16 @@ export default async function Stats({ searchParams }: Props) {
   });
 
   const href = (
-    change: Partial<Record<"phase" | "age" | "sort" | "league", string | undefined>>,
+    change: Partial<Record<"phase" | "age" | "sort" | "league" | "team", string | undefined>>,
   ) => {
+    // A new league, age or phase starts with all its teams.
+    const keepTeam = !("league" in change || "age" in change || "phase" in change);
     const next = {
       phase,
       age,
       sort: sort === "pts" ? undefined : sort,
       league: leagueSlug,
+      team: keepTeam && teamId !== undefined ? String(teamId) : undefined,
       ...change,
     };
     const q = new URLSearchParams();
@@ -199,7 +215,8 @@ export default async function Stats({ searchParams }: Props) {
       <section className="mt-10" id="league">
         <h2 className="text-lg font-semibold">Every player in a league</h2>
         <p className="muted mt-1 text-sm">
-          Pick a league{age ? ` (${age})` : ""} for all its player lines.
+          Pick a league{age ? ` (${age})` : ""} for all its player lines, then a team to see just
+          its players.
         </p>
         <nav className="mt-3 flex flex-wrap gap-1.5" aria-label="League">
           {ageLeagues.map((l) => (
@@ -215,11 +232,41 @@ export default async function Stats({ searchParams }: Props) {
         </nav>
         {chosen && (
           <>
+            <nav className="mt-3 flex flex-wrap gap-1.5" aria-label="Team">
+              <Link
+                href={`${href({ team: undefined })}#league`}
+                aria-current={teamId === undefined ? "page" : undefined}
+                className="year-chip"
+              >
+                All teams
+              </Link>
+              {leagueTeams.map(([id, name]) => (
+                <Link
+                  key={id}
+                  href={`${href({ team: String(id) })}#league`}
+                  aria-current={id === teamId ? "page" : undefined}
+                  className="year-chip"
+                >
+                  {teamLabel(name, chosen.age)}
+                </Link>
+              ))}
+            </nav>
             <h3 className="mt-5 font-semibold">
-              {leagueLabel(chosen.name)}: {leagueLines.length} players
+              {teamId === undefined
+                ? leagueLabel(chosen.name)
+                : teamLabel(leagueTeams.find(([id]) => id === teamId)![1], chosen.age)}
+              : {shown.length} players
             </h3>
-            <SkaterTable lines={leagueLines.filter((l) => !l.goalie)} showAge={false} />
-            <GoalieTable lines={leagueLines.filter((l) => l.goalie)} showAge={false} />
+            <SkaterTable
+              lines={shown.filter((l) => !l.goalie)}
+              showAge={false}
+              showTeam={teamId === undefined}
+            />
+            <GoalieTable
+              lines={shown.filter((l) => l.goalie)}
+              showAge={false}
+              showTeam={teamId === undefined}
+            />
           </>
         )}
       </section>

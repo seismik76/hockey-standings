@@ -170,7 +170,16 @@ function Team({ line }: { line: PlayerLine }) {
   );
 }
 
-export function SkaterTable({ lines, showAge }: { lines: PlayerLine[]; showAge: boolean }) {
+export function SkaterTable({
+  lines,
+  showAge,
+  showTeam = true,
+}: {
+  lines: PlayerLine[];
+  showAge: boolean;
+  /** Off when the table is one team's: its name is in the heading above. */
+  showTeam?: boolean;
+}) {
   if (lines.length === 0) return <p className="muted mt-3 text-sm">No skater lines yet.</p>;
   return (
     <div className="table-wrap mt-3">
@@ -178,7 +187,7 @@ export function SkaterTable({ lines, showAge }: { lines: PlayerLine[]; showAge: 
         <thead>
           <tr>
             <th className="rank">#</th>
-            <th className="team">Skater</th>
+            {showTeam ? <th className="team">Skater</th> : <th className="sr-only">Skater</th>}
             <th className="rank">No.</th>
             {showAge && <th>Age</th>}
             <th>GP</th>
@@ -192,9 +201,13 @@ export function SkaterTable({ lines, showAge }: { lines: PlayerLine[]; showAge: 
           {lines.map((l, i) => (
             <tr key={i}>
               <td className="rank muted">{i + 1}</td>
-              <td className="team">
-                <Team line={l} />
-              </td>
+              {showTeam ? (
+                <td className="team">
+                  <Team line={l} />
+                </td>
+              ) : (
+                <td className="sr-only">Player</td>
+              )}
               <td className="rank tabular-nums">
                 <Jersey line={l} />
               </td>
@@ -212,7 +225,15 @@ export function SkaterTable({ lines, showAge }: { lines: PlayerLine[]; showAge: 
   );
 }
 
-export function GoalieTable({ lines, showAge }: { lines: PlayerLine[]; showAge: boolean }) {
+export function GoalieTable({
+  lines,
+  showAge,
+  showTeam = true,
+}: {
+  lines: PlayerLine[];
+  showAge: boolean;
+  showTeam?: boolean;
+}) {
   if (lines.length === 0) return <p className="muted mt-3 text-sm">No goalie lines yet.</p>;
   return (
     <div className="table-wrap mt-3">
@@ -220,7 +241,7 @@ export function GoalieTable({ lines, showAge }: { lines: PlayerLine[]; showAge: 
         <thead>
           <tr>
             <th className="rank">#</th>
-            <th className="team">Goalie</th>
+            {showTeam ? <th className="team">Goalie</th> : <th className="sr-only">Goalie</th>}
             <th className="rank">No.</th>
             {showAge && <th>Age</th>}
             <th>GP</th>
@@ -235,9 +256,13 @@ export function GoalieTable({ lines, showAge }: { lines: PlayerLine[]; showAge: 
             return (
               <tr key={i}>
                 <td className="rank muted">{i + 1}</td>
-                <td className="team">
-                  <Team line={l} />
-                </td>
+                {showTeam ? (
+                  <td className="team">
+                    <Team line={l} />
+                  </td>
+                ) : (
+                  <td className="sr-only">Player</td>
+                )}
                 <td className="rank tabular-nums">
                   <Jersey line={l} />
                 </td>

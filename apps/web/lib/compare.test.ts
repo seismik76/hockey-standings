@@ -1,6 +1,13 @@
+import { communityHistory } from "@hockey/core";
 import { describe, expect, it } from "vitest";
 import {
+  bandFor,
+  bandLabel,
   barPosition,
+  birthYearRows,
+  birthYears,
+  coverKey,
+  defaultBirthYear,
   diffStep,
   goalDomain,
   goalPosition,
@@ -115,5 +122,66 @@ describe("past seasons", () => {
   it("shortens season labels", () => {
     expect(seasonShort("2024-25")).toBe("24–25");
     expect(seasonShort("odd")).toBe("odd");
+  });
+});
+
+describe("birth years", () => {
+  it("puts a birth year in its band and year, by age on December 31", () => {
+    // Born January 2016: U11 for 2025-26 and 2026-27.
+    expect(bandFor(2016, "2025-26")).toEqual({ age: "U11", year: 1 });
+    expect(bandFor(2016, "2026-27")).toEqual({ age: "U11", year: 2 });
+    expect(bandFor(2016, "2027-28")).toEqual({ age: "U13", year: 1 });
+    expect(bandFor(2019, "2026-27")).toEqual({ age: "U9", year: 1 });
+    expect(bandFor(2009, "2026-27")).toEqual({ age: "U18", year: 3 });
+    expect(bandFor(2008, "2026-27")).toBeNull();
+    expect(bandLabel({ age: "U18", year: 3 })).toBe("U18 · 3rd yr");
+  });
+
+  it("lists the birth years the data covers, and picks the longest-followed, youngest first", () => {
+    const seasons = ["2024-25", "2025-26", "2026-27"];
+    // U11 to U18 every season, U9 only in 2026-27, as the real data has it.
+    const covered = new Set(
+      seasons.flatMap((s) => ["U11", "U13", "U15", "U18"].map((a) => coverKey(a, s))),
+    );
+    covered.add(coverKey("U9", "2026-27"));
+    expect(birthYears(seasons, covered)).toEqual(
+      Array.from({ length: 2019 - 2007 + 1 }, (_, i) => 2007 + i),
+    );
+    // 2016 was U9 in 2024-25, which has no U9, so it is seen twice; 2015 and
+    // older (to 2009) three times. The youngest of those wins.
+    expect(defaultBirthYear(seasons, covered)).toBe(2015);
+    expect(defaultBirthYear(seasons, new Set(seasons.map((s) => coverKey("U13", s))))).toBe(2014);
+    expect(defaultBirthYear([], covered)).toBeNull();
+  });
+});
+
+describe("birthYearRows", () => {
+  const totals = (season: string, community: string, age: string, w: number, l: number) => ({
+    season,
+    community,
+    age,
+    gp: w + l,
+    w,
+    l,
+    t: 0,
+    gf: w,
+    ga: l,
+  });
+
+  it("follows one birth year through its bands, best overall first", () => {
+    const history = communityHistory([
+      // Born 2016: U11 in 2025-26 and 2026-27. U13 in 2026-27 is someone else.
+      totals("2025-26", "a", "U11", 2, 8),
+      totals("2026-27", "a", "U11", 8, 2),
+      totals("2026-27", "a", "U13", 0, 10),
+      totals("2025-26", "b", "U11", 7, 3),
+      totals("2026-27", "c", "U13", 9, 1),
+    ]);
+    const rows = birthYearRows(history, ["2025-26", "2026-27"], 2016);
+    expect(rows.map((r) => r.community)).toEqual(["b", "a"]);
+    const a = rows.find((r) => r.community === "a")!;
+    expect(a.cells.get("2025-26")!.share).toBe(0.2);
+    expect(a.cells.get("2026-27")!.share).toBe(0.8);
+    expect(a.all).toMatchObject({ gp: 20, w: 10, share: 0.5 });
   });
 });

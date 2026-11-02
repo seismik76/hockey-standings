@@ -1,11 +1,18 @@
 // The past-seasons page: each community's points share season by season, and
-// one small age-by-season grid per community, where an age group can be
-// followed down the diagonal. Same classes, colours and CSS tooltips as the
+// one birth year followed through its age bands, community against community. Same classes, colours and CSS tooltips as the
 // home page's heatmaps (compare.tsx).
 import type { CommunityHistory, ShareRecord } from "@hockey/core";
 import Link from "next/link";
 import { Tip, recordLine, stepClass } from "@/app/_components/compare";
-import { SHARE_BINS, THIN_GAMES, percent, seasonShort, shareStep } from "@/lib/compare";
+import {
+  SHARE_BINS,
+  THIN_GAMES,
+  bandFor,
+  bandLabel,
+  percent,
+  seasonShort,
+  shareStep,
+} from "@/lib/compare";
 
 type Names = Map<string, string>;
 
@@ -123,72 +130,109 @@ export function SeasonHeatmap({
   );
 }
 
-export function AgeGroupGrids({
+export function BirthYearGrid({
   rows,
   seasons,
-  ages,
+  born,
+  years,
+  hrefFor,
   current,
   names,
 }: {
-  rows: CommunityHistory[];
+  rows: { community: string; cells: Map<string, ShareRecord>; all: ShareRecord }[];
+  /** The seasons this birth year has data in, oldest first. */
   seasons: string[];
-  ages: string[];
+  born: number;
+  /** Every birth year there is something for, for the picker. */
+  years: number[];
+  hrefFor: (born: number) => string;
   current: string | null;
   names: Names;
 }) {
-  const end = (i: number) => i >= Math.floor(seasons.length / 2);
+  const end = (i: number) => i >= Math.floor((seasons.length + 1) / 2);
   return (
     <section className="mt-8">
-      <h2 className="text-lg font-semibold">Follow an age group</h2>
+      <h2 className="text-lg font-semibold">Follow a birth year</h2>
       <p className="muted mt-1 text-sm">
-        Each age band is two birth years, so the same players move down one row every two seasons:
-        read down the diagonal. Before this season there is no U9, and no U11 before 2024-25.
+        The same kids, season by season, community against community. Bands go by age on December
+        31: U9 is 7 and 8, U11 9 and 10, up to U18 at 15 to 17.
       </p>
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        {rows.map(({ community, byAge }) => {
-          const name = names.get(community) ?? community;
-          return (
-            <figure key={community} className="card p-3">
-              <figcaption className="font-semibold">
-                <Link href={`/c/${community}`}>{name}</Link>
-              </figcaption>
-              <table className="heat heat-mini mt-2">
-                <thead>
-                  <tr>
-                    <th scope="col" className="heat-name">
-                      <span className="sr-only">Age</span>
+      <nav className="mt-3 flex flex-wrap gap-1.5" aria-label="Birth year">
+        {years.map((y) => (
+          <Link
+            key={y}
+            href={hrefFor(y)}
+            aria-current={y === born ? "page" : undefined}
+            className="year-chip"
+          >
+            {y}
+          </Link>
+        ))}
+      </nav>
+      <figure className="card mt-4 p-4">
+        <figcaption>
+          <h3 className="font-semibold">Born {born}</h3>
+          <p className="muted mt-0.5 text-sm">
+            Each season shows the band this birth year played in. A band holds two birth years (U18
+            three) and teams mix them, so a number is shared with the birth year beside it. Best
+            overall for {born} first.
+          </p>
+        </figcaption>
+        {rows.length === 0 ? (
+          <p className="mt-4 text-sm">No games for this birth year yet.</p>
+        ) : (
+          <table className="heat heat-seasons mt-4">
+            <thead>
+              <tr>
+                <th scope="col" className="heat-name">
+                  <span className="sr-only">Community</span>
+                </th>
+                {seasons.map((s) => {
+                  const band = bandFor(born, s)!;
+                  return (
+                    <th key={s} scope="col">
+                      <span className="block">{seasonShort(s)}</span>
+                      <span className="band-head block">{band.age}</span>
+                      <span className="band-head block">
+                        {["1st", "2nd", "3rd"][band.year - 1]} yr
+                      </span>
                     </th>
-                    {seasons.map((s) => (
-                      <th key={s} scope="col">
-                        {seasonShort(s)}
-                      </th>
+                  );
+                })}
+                <th scope="col">All</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map(({ community, cells, all }) => {
+                const name = names.get(community) ?? community;
+                return (
+                  <tr key={community}>
+                    <th scope="row" className="heat-name">
+                      <Link href={`/c/${community}`}>{name}</Link>
+                    </th>
+                    {seasons.map((s, i) => (
+                      <Cell
+                        key={s}
+                        r={cells.get(s)}
+                        title={`${name}, born ${born}, ${s} (${bandLabel(bandFor(born, s)!)})`}
+                        current={s === current}
+                        end={end(i)}
+                      />
                     ))}
+                    <Cell
+                      r={all}
+                      title={`${name}, born ${born}, every season`}
+                      current={false}
+                      end
+                    />
                   </tr>
-                </thead>
-                <tbody>
-                  {ages.map((age) => (
-                    <tr key={age}>
-                      <th scope="row" className="heat-name">
-                        {age}
-                      </th>
-                      {seasons.map((s, i) => (
-                        <Cell
-                          key={s}
-                          r={byAge.get(age)?.get(s)}
-                          title={`${name} ${age}, ${s}`}
-                          current={s === current}
-                          end={end(i)}
-                        />
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </figure>
-          );
-        })}
-      </div>
-      <Legend />
+                );
+              })}
+            </tbody>
+          </table>
+        )}
+        <Legend />
+      </figure>
     </section>
   );
 }

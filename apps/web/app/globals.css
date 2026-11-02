@@ -396,24 +396,31 @@ table.heat tbody .heat-name {
   opacity: 0.7;
 }
 
-/* The past-seasons page's small age-by-season grids (app/_components/history.tsx). */
-table.heat-mini {
-  font-size: 0.6875rem;
-}
-table.heat-mini .heat-name {
-  width: 2.75rem;
-  padding-right: 0.25rem;
-}
-table.heat-mini .heat-cell,
-table.heat-mini .heat-empty {
-  height: 1.625rem;
-}
 /* Season heads ("21–22") stay on one line, even seven of them on a phone. */
-table.heat-seasons thead th,
-table.heat-mini thead th {
+table.heat-seasons thead th {
   white-space: nowrap;
   font-size: 0.6875rem;
 }
 table.heat-seasons .heat-name {
   width: 28%;
+}
+table.heat-seasons .band-head {
+  font-size: 0.625rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.year-chip {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--fg);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+}
+.year-chip[aria-current="page"] {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
 }

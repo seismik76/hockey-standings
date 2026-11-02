@@ -1,9 +1,17 @@
-import { communityHistory, compareAges, compareCommunities, toSeasonTotals } from "@hockey/core";
+import { communityHistory, compareCommunities, toSeasonTotals } from "@hockey/core";
 import { historyTotals, listCommunities, tierGames } from "@hockey/db";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AgeGroupGrids, SeasonHeatmap } from "@/app/_components/history";
-import { type HistoryPhase, historyPhase } from "@/lib/compare";
+import { BirthYearGrid, SeasonHeatmap } from "@/app/_components/history";
+import {
+  type HistoryPhase,
+  bandFor,
+  birthYearRows,
+  birthYears,
+  coverKey,
+  defaultBirthYear,
+  historyPhase,
+} from "@/lib/compare";
 import { getDb, seasonOrNull } from "@/lib/data";
 
 // Past seasons barely change, but this season's column is live.
@@ -11,7 +19,16 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = { title: "Past seasons" };
 
-type Props = { searchParams: Promise<{ phase?: string }> };
+type Props = { searchParams: Promise<{ phase?: string; born?: string }> };
+
+/** The page's URL for a phase and birth year, leaving out the defaults. */
+function href(phase: HistoryPhase, born: number | null): string {
+  const q = new URLSearchParams();
+  if (phase !== "all") q.set("phase", phase);
+  if (born !== null) q.set("born", String(born));
+  const s = q.toString();
+  return s ? `/history?${s}` : "/history";
+}
 
 const TABS: { phase: HistoryPhase; label: string }[] = [
   { phase: "all", label: "Seeding and regular" },
@@ -20,7 +37,8 @@ const TABS: { phase: HistoryPhase; label: string }[] = [
 ];
 
 export default async function History({ searchParams }: Props) {
-  const phase = historyPhase((await searchParams).phase);
+  const params = await searchParams;
+  const phase = historyPhase(params.phase);
   const season = await seasonOrNull();
   const db = getDb();
   const [past, communities, nowSeeding, nowRegular] = await Promise.all([
@@ -35,7 +53,18 @@ export default async function History({ searchParams }: Props) {
   const all = [...past, ...now];
   const rows = communityHistory(all);
   const seasons = [...new Set(all.map((r) => r.season))].sort();
-  const ages = [...new Set(all.map((r) => r.age))].sort(compareAges);
+  // Which ages have data in which seasons: U9 only this season, U11 from 2024-25.
+  const covered = new Set(all.filter((r) => r.gp > 0).map((r) => coverKey(r.age, r.season)));
+  const years = birthYears(seasons, covered);
+  const asked = Number(params.born);
+  const born = years.includes(asked) ? asked : defaultBirthYear(seasons, covered);
+  const bornSeasons =
+    born === null
+      ? []
+      : seasons.filter((s) => {
+          const band = bandFor(born, s);
+          return band !== null && covered.has(coverKey(band.age, s));
+        });
   const current = season && now.length > 0 ? season : null;
   const names = new Map(communities.map((c) => [c.slug, c.name]));
 
@@ -51,7 +80,7 @@ export default async function History({ searchParams }: Props) {
         {TABS.map((t) => (
           <Link
             key={t.phase}
-            href={t.phase === "all" ? "/history" : `/history?phase=${t.phase}`}
+            href={href(t.phase, params.born ? born : null)}
             aria-current={t.phase === phase ? "page" : undefined}
           >
             {t.label}
@@ -64,13 +93,17 @@ export default async function History({ searchParams }: Props) {
       ) : (
         <>
           <SeasonHeatmap rows={rows} seasons={seasons} current={current} names={names} />
-          <AgeGroupGrids
-            rows={rows}
-            seasons={seasons}
-            ages={ages}
-            current={current}
-            names={names}
-          />
+          {born !== null && (
+            <BirthYearGrid
+              rows={birthYearRows(rows, bornSeasons, born)}
+              seasons={bornSeasons}
+              born={born}
+              years={years}
+              hrefFor={(y) => href(phase, y)}
+              current={current}
+              names={names}
+            />
+          )}
         </>
       )}
 

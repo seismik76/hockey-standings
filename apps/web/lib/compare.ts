@@ -1,5 +1,6 @@
 // What the home page's community comparison needs beyond @hockey/core: which
 // phase to show, and how a share maps onto the charts. Pure, so it is tested.
+import { type CommunityHistory, type ShareRecord, totalsRecord } from "@hockey/core";
 import type { PhaseKind } from "@hockey/db";
 
 export type ComparePhase = Extract<PhaseKind, "seeding" | "regular">;
@@ -134,4 +135,109 @@ export function historyPhase(asked: string | undefined): HistoryPhase {
 /** "2024-25" → "24–25", for narrow column heads. */
 export function seasonShort(label: string): string {
   return label.replace(/^\d{2}(\d{2})-(\d{2})$/, "$1–$2");
+}
+
+/**
+ * Hockey Canada's age bands, by age on December 31 of the season's first
+ * year. U18 spans three birth years in community hockey.
+ */
+const BANDS = [
+  { age: "U7", min: 5, max: 6 },
+  { age: "U9", min: 7, max: 8 },
+  { age: "U11", min: 9, max: 10 },
+  { age: "U13", min: 11, max: 12 },
+  { age: "U15", min: 13, max: 14 },
+  { age: "U18", min: 15, max: 17 },
+] as const;
+
+/**
+ * The band a birth year played in that season, and which year of it:
+ * born 2016 is U11 year 1 in 2025-26 and year 2 in 2026-27.
+ */
+export function bandFor(born: number, season: string): { age: string; year: number } | null {
+  const age = Number(season.slice(0, 4)) - born;
+  const band = BANDS.find((b) => age >= b.min && age <= b.max);
+  return band ? { age: band.age, year: age - band.min + 1 } : null;
+}
+
+/** "U11 · 2nd yr". */
+export function bandLabel(band: { age: string; year: number }): string {
+  return `${band.age} · ${["1st", "2nd", "3rd"][band.year - 1]} yr`;
+}
+
+/** The key for "this age has data in this season": "U11|2025-26". */
+export const coverKey = (age: string, season: string) => `${age}|${season}`;
+
+/** How many of these seasons a birth year played in a band with data (keys from coverKey). */
+function seasonsSeen(
+  born: number,
+  seasons: readonly string[],
+  covered: ReadonlySet<string>,
+): number {
+  return seasons.filter((s) => {
+    const band = bandFor(born, s);
+    return band !== null && covered.has(coverKey(band.age, s));
+  }).length;
+}
+
+/** Every birth year seen in at least one season with data, oldest first. */
+export function birthYears(seasons: readonly string[], covered: ReadonlySet<string>): number[] {
+  const years = new Set<number>();
+  for (const season of seasons) {
+    const start = Number(season.slice(0, 4));
+    for (const b of BANDS) {
+      if (!covered.has(coverKey(b.age, season))) continue;
+      for (let age = b.min; age <= b.max; age++) years.add(start - age);
+    }
+  }
+  return [...years].sort((a, b) => a - b);
+}
+
+/**
+ * The birth year shown first: the one followed through the most seasons with
+ * data, the youngest of those if several tie. Not anyone's in particular.
+ */
+export function defaultBirthYear(
+  seasons: readonly string[],
+  covered: ReadonlySet<string>,
+): number | null {
+  let best: { born: number; seen: number } | null = null;
+  for (const born of birthYears(seasons, covered)) {
+    const seen = seasonsSeen(born, seasons, covered);
+    if (!best || seen >= best.seen) best = { born, seen };
+  }
+  return best?.born ?? null;
+}
+
+/**
+ * One birth year across communities: for each, the record of the band that
+ * birth year played in each season, and those seasons together. Best overall
+ * first, then name. Communities with no games for it are left out.
+ */
+export function birthYearRows(
+  rows: readonly CommunityHistory[],
+  seasons: readonly string[],
+  born: number,
+): { community: string; cells: Map<string, ShareRecord>; all: ShareRecord }[] {
+  return rows
+    .map(({ community, byAge }) => {
+      const cells = new Map<string, ShareRecord>();
+      for (const s of seasons) {
+        const band = bandFor(born, s);
+        const r = band ? byAge.get(band.age)?.get(s) : undefined;
+        if (r && r.gp > 0) cells.set(s, r);
+      }
+      const sum = { gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0 };
+      for (const r of cells.values()) {
+        sum.gp += r.gp;
+        sum.w += r.w;
+        sum.l += r.l;
+        sum.t += r.t;
+        sum.gf += r.gf;
+        sum.ga += r.ga;
+      }
+      return { community, cells, all: totalsRecord(sum) };
+    })
+    .filter((r) => r.cells.size > 0)
+    .sort((a, b) => b.all.share - a.all.share || a.community.localeCompare(b.community));
 }

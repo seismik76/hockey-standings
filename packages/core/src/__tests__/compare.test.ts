@@ -48,6 +48,22 @@ describe("compareCommunities", () => {
   });
 });
 
+describe("goal differential", () => {
+  it("averages per game with a range around it", () => {
+    // a: +2, 0, +4 → +2 a game; b mirrors it.
+    const [a, b] = compareCommunities([
+      game("a", "b", 3, 1),
+      game("b", "a", 2, 2),
+      game("a", "b", 5, 1),
+    ]);
+    expect(a!.all.diff).toBe(2);
+    expect(b!.all.diff).toBe(-2);
+    // Sample sd of (2, 0, 4) is 2, so the margin is 1.645 × 2 / √3.
+    expect(a!.all.diffHigh - a!.all.diff).toBeCloseTo((1.645 * 2) / Math.sqrt(3));
+    expect(a!.all.diff - a!.all.diffLow).toBeCloseTo(a!.all.diffHigh - a!.all.diff);
+  });
+});
+
 describe("tierShares", () => {
   it("turns team counts into shares by tier", () => {
     const shares = tierShares(

@@ -1,5 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { barPosition, perGame, pickPhase, shareStep } from "./compare";
+import {
+  barPosition,
+  diffStep,
+  goalDomain,
+  goalPosition,
+  perGame,
+  pickPhase,
+  shareStep,
+  signed,
+} from "./compare";
 
 describe("pickPhase", () => {
   const seedingOnly = [
@@ -51,5 +60,42 @@ describe("barPosition", () => {
     expect(barPosition(0.2)).toBe(0);
     expect(barPosition(0.05)).toBe(0);
     expect(barPosition(0.95)).toBe(100);
+  });
+});
+
+describe("goal scale", () => {
+  it("is symmetric, covers every range, and rounds up to the half goal", () => {
+    expect(
+      goalDomain([
+        { diffLow: -2.6, diffHigh: -1.4 },
+        { diffLow: 0.9, diffHigh: 2.1 },
+      ]),
+    ).toBe(3);
+    expect(goalDomain([{ diffLow: -0.3, diffHigh: 0.2 }])).toBe(1);
+    expect(goalDomain([])).toBe(1);
+  });
+
+  it("puts zero in the middle and clamps outside the domain", () => {
+    expect(goalPosition(0, 2)).toBe(50);
+    expect(goalPosition(1, 2)).toBe(75);
+    expect(goalPosition(-5, 2)).toBe(0);
+    expect([signed(1.5), signed(-1.5), signed(0)]).toEqual(["+1.5", "−1.5", "0"]);
+  });
+});
+
+describe("diffStep", () => {
+  it("bins symmetrically around zero, on the printed tenth", () => {
+    const values = [-2.5, -2.0, -1.96, -1.0, -0.95, -0.3, -0.25, -0.2, 0, 0.25, 0.3, 0.95, 1.96];
+    // Halves round away from zero, so ±0.25 print ±0.3 and −0.95 prints −1.0,
+    // and each lands in the class its printed value names.
+    expect(values.map(diffStep)).toEqual([-3, -3, -3, -2, -2, -1, -1, 0, 0, 1, 1, 2, 3]);
+    expect(values.map((v) => perGame(v, 1))).toEqual(
+      ["−2.5", "−2.0", "−2.0", "−1.0", "−1.0", "−0.3", "−0.3", "−0.2", "0.0"].concat([
+        "+0.3",
+        "+0.3",
+        "+1.0",
+        "+2.0",
+      ]),
+    );
   });
 });

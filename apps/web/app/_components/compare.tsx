@@ -1,5 +1,6 @@
-// The home page's community comparison: ranked share bars, an age heatmap and,
-// once tiers come out of seeding, where each community's teams were placed.
+// The home page's community comparison: ranked share bars and goal
+// differential, each with its heatmap by age, and, once tiers come out of seeding, where each
+// community's teams were placed.
 // Server-rendered HTML and CSS only; tooltips are CSS, shown on hover and on
 // focus, and every value they hold is also printed or in the heatmap.
 import type { CommunityComparison, ShareRecord } from "@hockey/core";
@@ -7,12 +8,17 @@ import Link from "next/link";
 import {
   BAR_MAX,
   BAR_MIN,
+  DIFF_BINS,
   SHARE_BINS,
   THIN_GAMES,
   barPosition,
+  diffStep,
+  goalDomain,
+  goalPosition,
   perGame,
   percent,
   shareStep,
+  signed,
 } from "@/lib/compare";
 
 type Names = Map<string, string>;
@@ -112,7 +118,7 @@ export function ShareBars({ rows, names }: { rows: CommunityComparison[]; names:
   );
 }
 
-export function AgeHeatmap({
+export function GoalBars({
   rows,
   ages,
   names,
@@ -121,6 +127,127 @@ export function AgeHeatmap({
   ages: string[];
   names: Names;
 }) {
+  // Rows come ranked by goal differential (page.tsx).
+  const domain = goalDomain(rows.map((r) => r.all));
+  const ticks = [-domain, -domain / 2, 0, domain / 2, domain];
+  const goals = (n: number, gp: number) => (gp === 0 ? "0.0" : (n / gp).toFixed(1));
+  return (
+    <figure className="card mt-5 p-4">
+      <figcaption>
+        <h2 className="font-semibold">Goal differential, all ages</h2>
+        <p className="muted mt-0.5 text-sm">
+          Goals for minus goals against, per game, against same-tier teams. It shows how big the
+          wins and losses are, not only how many. The thin line is a rough 90% range.
+        </p>
+      </figcaption>
+      <ol className="mt-4 space-y-1">
+        {rows.map(({ community, all, byAge }) => {
+          const pos = goalPosition(all.diff, domain);
+          const name = names.get(community) ?? community;
+          const value = perGame(all.gf - all.ga, all.gp);
+          const perAge = ages
+            .filter((a) => (byAge.get(a)?.gp ?? 0) > 0)
+            .map((a) => {
+              const r = byAge.get(a)!;
+              return `${a} ${perGame(r.gf - r.ga, r.gp)}`;
+            })
+            .join(" · ");
+          return (
+            <li key={community} className="share-row">
+              <div className="row-name min-w-0">
+                <Link href={`/c/${community}`} className="block truncate font-medium">
+                  {name}
+                </Link>
+                <span className="muted block text-xs">
+                  {goals(all.gf, all.gp)} for, {goals(all.ga, all.gp)} against a game
+                </span>
+              </div>
+              <div
+                className="row-plot share-track tip tip-end"
+                tabIndex={0}
+                aria-label={`${name}: ${value} goals a game`}
+              >
+                <span
+                  className={`share-bar ${all.diff >= 0 ? "above" : "below"}`}
+                  style={{ left: `${Math.min(50, pos)}%`, width: `${Math.abs(pos - 50)}%` }}
+                />
+                <span
+                  className="share-range"
+                  style={{
+                    left: `${goalPosition(all.diffLow, domain)}%`,
+                    width: `${goalPosition(all.diffHigh, domain) - goalPosition(all.diffLow, domain)}%`,
+                  }}
+                />
+                <Tip
+                  title={`${name}: ${value} a game`}
+                  lines={[
+                    `${goals(all.gf, all.gp)} scored, ${goals(all.ga, all.gp)} allowed in ${all.gp} games`,
+                    `Likely range ${perGame(all.diffLow, 1)} to ${perGame(all.diffHigh, 1)}`,
+                    perAge,
+                  ]}
+                />
+              </div>
+              <span className="row-value text-right text-sm font-semibold tabular-nums">
+                {value}
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+      <div className="share-row share-axis-row mt-1" aria-hidden="true">
+        <div className="row-plot share-axis">
+          {ticks.map((t) => (
+            <span key={t} style={{ left: `${goalPosition(t, domain)}%` }}>
+              {signed(t)}
+            </span>
+          ))}
+        </div>
+      </div>
+      <p className="sr-only">
+        Bars run from {signed(-domain)} to {signed(domain)} goals a game, starting at zero.
+      </p>
+    </figure>
+  );
+}
+
+/** What a heatmap shows: points share or goal differential, both per age. */
+const METRICS = {
+  share: {
+    title: "Points share by age group",
+    caption:
+      "Points share in each age, same order as the bars above. A row that stays one colour is a pattern across the whole community, not one strong team.",
+    text: (r: ShareRecord) => String(Math.round(r.share * 100)),
+    spoken: (r: ShareRecord) => percent(r.share),
+    step: (r: ShareRecord) => shareStep(r.share),
+    bins: SHARE_BINS,
+    low: "Below even",
+    high: "Above even",
+  },
+  diff: {
+    title: "Goal differential by age group",
+    caption:
+      "Goals for minus against, per game, in each age, same order as the bars above. Big numbers mean lopsided games, not only more wins.",
+    text: (r: ShareRecord) => perGame(r.gf - r.ga, r.gp),
+    spoken: (r: ShareRecord) => `${perGame(r.gf - r.ga, r.gp)} goals a game`,
+    step: (r: ShareRecord) => diffStep(r.diff),
+    bins: DIFF_BINS,
+    low: "Outscored",
+    high: "Outscoring",
+  },
+} as const;
+
+export function AgeHeatmap({
+  rows,
+  ages,
+  names,
+  metric,
+}: {
+  rows: CommunityComparison[];
+  ages: string[];
+  names: Names;
+  metric: keyof typeof METRICS;
+}) {
+  const m = METRICS[metric];
   // The right half of the columns opens its tooltip leftwards, so it never
   // runs off a phone's screen.
   const end = (i: number) => i >= Math.floor((ages.length + 1) / 2);
@@ -138,14 +265,15 @@ export function AgeHeatmap({
       <td
         key={label}
         tabIndex={0}
-        className={`heat-cell tip ${end(i) ? "tip-end" : "tip-start"} ${stepClass(shareStep(r.share))}${thin ? " thin" : ""}`}
-        aria-label={`${name} ${label}: ${percent(r.share)}, ${r.gp} games`}
+        className={`heat-cell tip ${end(i) ? "tip-end" : "tip-start"} ${stepClass(m.step(r))}${thin ? " thin" : ""}`}
+        aria-label={`${name} ${label}: ${m.spoken(r)}, ${r.gp} games`}
       >
-        {Math.round(r.share * 100)}
+        {m.text(r)}
         <Tip
-          title={`${name} ${label}: ${percent(r.share)}`}
+          title={`${name} ${label}: ${m.spoken(r)}`}
           lines={[
             recordLine(r),
+            `${percent(r.share)} of points`,
             ...(thin ? [`Fewer than ${THIN_GAMES} games: a small sample`] : []),
           ]}
         />
@@ -156,13 +284,10 @@ export function AgeHeatmap({
   return (
     <figure className="card mt-5 p-4">
       <figcaption>
-        <h2 className="font-semibold">By age group</h2>
-        <p className="muted mt-0.5 text-sm">
-          Points share in each age, same order as above. A row that stays one colour is a pattern
-          across the whole community, not one strong team.
-        </p>
+        <h2 className="font-semibold">{m.title}</h2>
+        <p className="muted mt-0.5 text-sm">{m.caption}</p>
       </figcaption>
-      <table className="heat mt-4">
+      <table className={`heat mt-4 heat-${metric}`}>
         <thead>
           <tr>
             <th scope="col" className="heat-name">
@@ -190,17 +315,16 @@ export function AgeHeatmap({
       </table>
       <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
         <div className="flex items-center gap-1.5">
-          <span className="muted">Below even</span>
+          <span className="muted">{m.low}</span>
           <span className="flex gap-0.5" aria-hidden="true">
-            {SHARE_BINS.map((b) => (
+            {m.bins.map((b) => (
               <span key={b.step} className={`heat-swatch ${stepClass(b.step)}`} title={b.label} />
             ))}
           </span>
-          <span className="muted">Above even</span>
+          <span className="muted">{m.high}</span>
         </div>
         <span className="muted">
-          Faded: fewer than {THIN_GAMES} games. Classes: {SHARE_BINS.map((b) => b.label).join(", ")}
-          .
+          Faded: fewer than {THIN_GAMES} games. Classes: {m.bins.map((b) => b.label).join(", ")}.
         </span>
       </div>
     </figure>

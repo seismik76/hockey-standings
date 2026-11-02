@@ -37,6 +37,11 @@ export interface ShareRecord {
    */
   low: number;
   high: number;
+  /** Goals for minus against, per game. */
+  diff: number;
+  /** A 90% range for `diff`, read the same way as low and high. */
+  diffLow: number;
+  diffHigh: number;
 }
 
 export interface CommunityComparison {
@@ -52,30 +57,38 @@ interface Tally {
   t: number;
   gf: number;
   ga: number;
+  /** Sum of each game's squared goal differential, for its spread. */
+  diffSquares: number;
 }
 
 const Z90 = 1.645;
 
 function empty(): Tally {
-  return { gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0 };
+  return { gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, diffSquares: 0 };
 }
 
 function add(tally: Tally, gf: number, ga: number): void {
   tally.gp += 1;
   tally.gf += gf;
   tally.ga += ga;
+  tally.diffSquares += (gf - ga) ** 2;
   if (gf > ga) tally.w += 1;
   else if (gf < ga) tally.l += 1;
   else tally.t += 1;
 }
 
-function toRecord({ gp, w, l, t, gf, ga }: Tally): ShareRecord {
-  if (gp === 0) return { gp, w, l, t, gf, ga, share: 0.5, low: 0, high: 1 };
+function toRecord({ gp, w, l, t, gf, ga, diffSquares }: Tally): ShareRecord {
+  if (gp === 0) {
+    return { gp, w, l, t, gf, ga, share: 0.5, low: 0, high: 1, diff: 0, diffLow: 0, diffHigh: 0 };
+  }
   const share = (w + t / 2) / gp;
   // Per-game outcomes are 1, 0.5 or 0; their sample variance.
   const meanSquare = (w + t / 4) / gp;
   const variance = gp > 1 ? ((meanSquare - share * share) * gp) / (gp - 1) : 0.25;
   const margin = Z90 * Math.sqrt(variance / gp);
+  const diff = (gf - ga) / gp;
+  const diffVariance = gp > 1 ? ((diffSquares / gp - diff * diff) * gp) / (gp - 1) : 0;
+  const diffMargin = Z90 * Math.sqrt(diffVariance / gp);
   return {
     gp,
     w,
@@ -86,6 +99,9 @@ function toRecord({ gp, w, l, t, gf, ga }: Tally): ShareRecord {
     share,
     low: Math.max(0, share - margin),
     high: Math.min(1, share + margin),
+    diff,
+    diffLow: diff - diffMargin,
+    diffHigh: diff + diffMargin,
   };
 }
 

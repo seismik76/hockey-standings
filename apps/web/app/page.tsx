@@ -1,7 +1,7 @@
 import { compareAges, compareCommunities, tierShares } from "@hockey/core";
 import { listCommunities, tierCoverage, tierGames, tierPlacements } from "@hockey/db";
 import Link from "next/link";
-import { AgeHeatmap, ShareBars, TierPlacement } from "@/app/_components/compare";
+import { AgeHeatmap, GoalBars, ShareBars, TierPlacement } from "@/app/_components/compare";
 import { type ComparePhase, pickPhase } from "@/lib/compare";
 import { getDb, seasonOrNull } from "@/lib/data";
 import { phaseLabel } from "@/lib/view";
@@ -26,6 +26,9 @@ export default async function Home({ searchParams }: Props) {
 
   const names = new Map(communities.map((c) => [c.slug, c.name]));
   const rows = compareCommunities(games);
+  // Goal differential can rank communities differently from points, when one
+  // wins close games and another wins big; its charts get their own order.
+  const byDiff = [...rows].sort((a, b) => b.all.diff - a.all.diff);
   const ages = [...new Set(games.map((g) => g.age))].sort(compareAges);
   const tiers = Math.max(0, ...placements.map((p) => p.tier));
   // Most teams at the top first: by average tier, lowest first.
@@ -49,7 +52,9 @@ export default async function Home({ searchParams }: Props) {
       ) : (
         <>
           <ShareBars rows={rows} names={names} />
-          <AgeHeatmap rows={rows} ages={ages} names={names} />
+          <AgeHeatmap rows={rows} ages={ages} names={names} metric="share" />
+          <GoalBars rows={byDiff} ages={ages} names={names} />
+          <AgeHeatmap rows={byDiff} ages={ages} names={names} metric="diff" />
           {phase === "regular" && placed.length > 0 ? (
             <TierPlacement rows={placed} names={names} tiers={tiers} />
           ) : (

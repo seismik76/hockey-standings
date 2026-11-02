@@ -15,6 +15,13 @@
       "when": 1793587973473,
       "tag": "0001_talented_wildside",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793592793780,
+      "tag": "0002_graceful_sharon_carter",
+      "breakpoints": true
     }
   ]
 }

@@ -83,7 +83,7 @@ export async function setUpTestDatabase(database: string): Promise<void> {
 
 export async function truncateAll(): Promise<void> {
   await getDb().execute(
-    sql`truncate history_standings, fetches, games, league_teams, teams, leagues, phases, seasons, communities restart identity cascade`,
+    sql`truncate player_stats, history_standings, fetches, games, league_teams, teams, leagues, phases, seasons, communities restart identity cascade`,
   );
 }
 

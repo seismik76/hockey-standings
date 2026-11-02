@@ -8,6 +8,7 @@ import {
   birthYears,
   coverKey,
   defaultBirthYear,
+  depthStep,
   diffStep,
   goalDomain,
   goalPosition,
@@ -17,6 +18,7 @@ import {
   seasonShort,
   shareStep,
   signed,
+  skaterSort,
 } from "./compare";
 
 describe("pickPhase", () => {
@@ -183,5 +185,26 @@ describe("birthYearRows", () => {
     expect(a.cells.get("2025-26")!.share).toBe(0.2);
     expect(a.cells.get("2026-27")!.share).toBe(0.8);
     expect(a.all).toMatchObject({ gp: 20, w: 10, share: 0.5 });
+  });
+});
+
+describe("depth", () => {
+  it("colours a cell by its difference from the city, deeper always positive", () => {
+    // 60% of skaters scored against a city 50%: 10 points deeper.
+    expect(depthStep(0.6, 0.5, true)).toBe(2);
+    expect(depthStep(0.48, 0.5, true)).toBe(0);
+    expect(depthStep(0.3, 0.5, true)).toBe(-3);
+    // Top two scoring 60% of goals against a city 50%: leaning more, so thinner.
+    expect(depthStep(0.6, 0.5, false)).toBe(-2);
+    expect(depthStep(0.45, 0.5, false)).toBe(1);
+  });
+
+  it("reads the leaderboard sort, points by default", () => {
+    expect([skaterSort("g"), skaterSort("pim"), skaterSort(undefined), skaterSort("x")]).toEqual([
+      "g",
+      "pim",
+      "pts",
+      "pts",
+    ]);
   });
 });

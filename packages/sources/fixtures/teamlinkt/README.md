@@ -13,3 +13,5 @@ Real responses from TeamLinkt's public site API for Hockey Calgary, captured on 
 Season 61563 is 2026-27 Seeding; division 332824 is U13 Tier 2 South. The base URL is `https://app.teamlinkt.com`.
 
 To refresh one, repeat its request with the hockey-standings User-Agent and replace the file. Check the diff before committing: the tests pin counts and a few values from this capture.
+
+`statistics-61563-332824-pts.json`: page 1 of the player statistics for U13 Tier 2 South in seeding (offensive group, points with goals as the secondary statistic, sorted by points), captured 2026-11-01. **Anonymised before it was written**: every player's name is replaced with "Player N" and every photo reference with "0". The app never stores names, photos or any player key.

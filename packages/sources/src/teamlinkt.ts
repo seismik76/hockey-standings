@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { z } from "zod";
 
 /**
@@ -368,4 +369,110 @@ export function parseTeams(json: unknown): TeamRef[] {
     sourceId: t.id,
     name: t.name.trim(),
   }));
+}
+
+// ------------------------------------------------------------- statistics --
+//
+// Player statistics, read for counts and leaderboards with no names: the
+// parser turns each player's name into a one-way key so separate requests can
+// be joined in memory, and nothing downstream ever sees or stores the name,
+// the photo or the key. A response carries two statistics at most (a primary
+// and a secondary), 50 players a page.
+
+export const STATS_PAGE_LIMIT = 50;
+export type StatGroup = "offensive" | "goalie";
+
+export interface StatisticsQuery {
+  seasonId: number;
+  /** The leagues to cover; TeamLinkt calls them divisions. */
+  divisionIds: number[];
+  /** Goals, assists and points are "offensive"; goalie stats "goalie"; games played and PIM neither. */
+  group?: StatGroup;
+  primary: string;
+  secondary?: string;
+  /** The primary statistic's id, from a previous response's `statistics`. Sorted high to low. */
+  sortBy?: number;
+  page: number;
+}
+
+export function statisticsRequest(
+  q: StatisticsQuery,
+  site = HOCKEY_CALGARY_SITE,
+): TeamLinktRequest {
+  const body: Record<string, unknown> = {
+    season_id: q.seasonId,
+    mode: "all_players",
+    statistic_abbreviation: q.primary,
+    page: q.page,
+    per_page: STATS_PAGE_LIMIT,
+    filteredDivisionIds: q.divisionIds,
+  };
+  if (q.group) body.statistic_group_type = q.group;
+  if (q.secondary) body.secondary_statistic_abbreviation = q.secondary;
+  if (q.sortBy !== undefined) {
+    body.sort_by = String(q.sortBy);
+    body.sort_dir = "desc";
+  }
+  return { method: "POST", url: siteUrl(site, "statistics"), body };
+}
+
+const statisticsSchema = z.object({
+  statistics: z.array(z.object({ id, abbreviation: z.string() })),
+  players: z.array(
+    z.object({
+      name: z.string(),
+      teamId: id,
+      picture: z.union([z.string(), z.number()]).nullable().optional(),
+      // A JSON string (the default view), an object, or, for a player with no
+      // statistics, an empty list or nothing: PHP sends an empty map as [].
+      stats: z
+        .union([z.string(), z.record(z.string(), z.unknown()), z.array(z.unknown())])
+        .nullable(),
+    }),
+  ),
+  page: z.number().int(),
+  total: z.number().int().nonnegative(),
+});
+
+export interface StatLine {
+  /** A one-way hash of name, team and photo, to join requests in memory. Never stored. */
+  key: string;
+  teamId: number;
+  /** By abbreviation: { PTS: 9, G: 4 }. */
+  stats: Record<string, number>;
+}
+
+export interface StatisticsPage {
+  /** Abbreviation to id, for sorting by a statistic. */
+  ids: Map<string, number>;
+  lines: StatLine[];
+  page: number;
+  total: number;
+}
+
+export function parseStatistics(json: unknown): StatisticsPage {
+  const r = parseWith("statistics", statisticsSchema, json);
+  const ids = new Map(r.statistics.map((s) => [s.abbreviation, s.id]));
+  const byId = new Map(r.statistics.map((s) => [String(s.id), s.abbreviation]));
+  return {
+    ids,
+    page: r.page,
+    total: r.total,
+    lines: r.players.map((p) => {
+      const raw: unknown = typeof p.stats === "string" ? JSON.parse(p.stats || "{}") : p.stats;
+      const stats: Record<string, number> = {};
+      if (raw && typeof raw === "object" && !Array.isArray(raw)) {
+        for (const [k, v] of Object.entries(raw)) {
+          // Numbers, or numbers sent as strings ("0.000" for a percentage).
+          const n =
+            typeof v === "number" ? v : typeof v === "string" && v.trim() !== "" ? Number(v) : NaN;
+          if (Number.isFinite(n)) stats[byId.get(k) ?? k] = n;
+        }
+      }
+      const key = createHash("sha256")
+        .update(`${p.name}\u0000${p.teamId}\u0000${p.picture ?? ""}`)
+        .digest("base64url");
+      return { key, teamId: p.teamId, stats };
+    }),
+  };
 }

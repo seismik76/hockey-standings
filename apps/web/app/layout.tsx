@@ -26,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             Hockey Calgary standings
           </Link>
           <nav className="flex gap-4 text-sm whitespace-nowrap">
+            <Link href="/stats">Stats</Link>
             <Link href="/history">Past seasons</Link>
             <Link href="/leagues">All leagues</Link>
           </nav>

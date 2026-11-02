@@ -1,5 +1,6 @@
 import { sql } from "drizzle-orm";
 import {
+  boolean,
   check,
   date,
   index,
@@ -165,6 +166,40 @@ export const games = pgTable(
           and (${t.homeScore} is null) = (${t.awayScore} is null)`,
     ),
   ],
+);
+
+/**
+ * One player's statistics for a phase, from TeamLinkt's gamesheets. Anonymous
+ * by design: no name, no photo, no player id or key, so a line is only "a
+ * player on this team". The collector replaces a phase's lines whole on each
+ * run (Pat, 2026-11-01: leaderboards and full stats, but no player names).
+ */
+export const playerStats = pgTable(
+  "player_stats",
+  {
+    id: serial().primaryKey(),
+    phaseId: integer()
+      .notNull()
+      .references(() => phases.id),
+    leagueId: integer()
+      .notNull()
+      .references(() => leagues.id, { onDelete: "cascade" }),
+    teamId: integer()
+      .notNull()
+      .references(() => teams.id),
+    gp: smallint().notNull(),
+    g: smallint().notNull(),
+    a: smallint().notNull(),
+    pim: smallint().notNull(),
+    /** Listed among the team's goalies. Saves are rarely entered, so only these are kept. */
+    goalie: boolean().notNull(),
+    wins: smallint(),
+    losses: smallint(),
+    ties: smallint(),
+    shutouts: smallint(),
+    goalsAgainst: smallint(),
+  },
+  (t) => [index().on(t.phaseId), index().on(t.leagueId), index().on(t.teamId)],
 );
 
 /**

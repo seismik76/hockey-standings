@@ -424,3 +424,9 @@ table.heat-seasons .band-head {
   border-color: var(--fg);
   color: var(--bg);
 }
+/* Leaderboard rank: narrow, so the numbers fit on a phone. */
+table.standings .rank {
+  text-align: left;
+  width: 1.75rem;
+  padding-right: 0.25rem;
+}

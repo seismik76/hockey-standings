@@ -1,0 +1,586 @@
+{
+ "statistics": [
+  {
+   "id": 11220792,
+   "name": "Goals",
+   "abbreviation": "G",
+   "statisticGroupType": "offensive",
+   "isLeaderboardStatistic": true
+  },
+  {
+   "id": 11220793,
+   "name": "Assists",
+   "abbreviation": "A",
+   "statisticGroupType": "offensive",
+   "isLeaderboardStatistic": true
+  },
+  {
+   "id": 11220800,
+   "name": "Total Points",
+   "abbreviation": "PTS",
+   "statisticGroupType": "offensive",
+   "isLeaderboardStatistic": false
+  }
+ ],
+ "statisticGroups": [
+  "offensive",
+  "goalie"
+ ],
+ "players": [
+  {
+   "name": "Player 1",
+   "team": "U13 Southwest 2 Blue",
+   "teamId": 955748,
+   "picture": "0",
+   "stats": {
+    "11220792": 4,
+    "11220800": 9
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 2",
+   "team": "U13 Bow Valley Flames 2 Red",
+   "teamId": 946163,
+   "picture": "0",
+   "stats": {
+    "11220792": 6,
+    "11220800": 9
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 3",
+   "team": "U13 Glenlake Hawks 2 White",
+   "teamId": 945192,
+   "picture": "0",
+   "stats": {
+    "11220792": 5,
+    "11220800": 9
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 4",
+   "team": "U13 Bow Valley Flames 2 Red",
+   "teamId": 946163,
+   "picture": "0",
+   "stats": {
+    "11220792": 5,
+    "11220800": 9
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 5",
+   "team": "U13 Knights 2 Red",
+   "teamId": 948273,
+   "picture": "0",
+   "stats": {
+    "11220792": 4,
+    "11220800": 7
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 6",
+   "team": "U13 Glenlake Hawks 2 Blue",
+   "teamId": 945190,
+   "picture": "0",
+   "stats": {
+    "11220792": 4,
+    "11220800": 7
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 7",
+   "team": "U13 Bow Valley Flames 2 Black",
+   "teamId": 946162,
+   "picture": "0",
+   "stats": {
+    "11220792": 4,
+    "11220800": 6
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 8",
+   "team": "U13 Wolverines 2",
+   "teamId": 955672,
+   "picture": "0",
+   "stats": {
+    "11220792": 3,
+    "11220800": 6
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 9",
+   "team": "U13 Southwest 2 Blue",
+   "teamId": 955748,
+   "picture": "0",
+   "stats": {
+    "11220792": 2,
+    "11220800": 6
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 10",
+   "team": "U13 Bow Valley Flames 2 Yellow",
+   "teamId": 946164,
+   "picture": "0",
+   "stats": {
+    "11220792": 2,
+    "11220800": 6
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 11",
+   "team": "U13 Bow Valley Flames 2 Red",
+   "teamId": 946163,
+   "picture": "0",
+   "stats": {
+    "11220792": 5,
+    "11220800": 6
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 12",
+   "team": "U13 Knights 2 White",
+   "teamId": 948274,
+   "picture": "0",
+   "stats": {
+    "11220792": 3,
+    "11220800": 6
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 13",
+   "team": "U13 Wolverines 2",
+   "teamId": 955672,
+   "picture": "0",
+   "stats": {
+    "11220792": 4,
+    "11220800": 5
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 14",
+   "team": "U13 Glenlake Hawks 2 White",
+   "teamId": 945192,
+   "picture": "0",
+   "stats": {
+    "11220792": 2,
+    "11220800": 5
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 15",
+   "team": "U13 Bow Valley Flames 2 Black",
+   "teamId": 946162,
+   "picture": "0",
+   "stats": {
+    "11220792": 2,
+    "11220800": 5
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 16",
+   "team": "U13 Bow Valley Flames 2 Black",
+   "teamId": 946162,
+   "picture": "0",
+   "stats": {
+    "11220792": 1,
+    "11220800": 5
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 17",
+   "team": "U13 Southwest 2 Gold",
+   "teamId": 962279,
+   "picture": "0",
+   "stats": {
+    "11220792": 2,
+    "11220800": 5
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 18",
+   "team": "U13 Bow Valley Flames 2 Red",
+   "teamId": 946163,
+   "picture": "0",
+   "stats": {
+    "11220792": 1,
+    "11220800": 5
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 19",
+   "team": "U13 Bow Valley Flames 2 Yellow",
+   "teamId": 946164,
+   "picture": "0",
+   "stats": {
+    "11220792": 4,
+    "11220800": 5
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 20",
+   "team": "U13 Bow Valley Flames 2 Red",
+   "teamId": 946163,
+   "picture": "0",
+   "stats": {
+    "11220792": 1,
+    "11220800": 5
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 21",
+   "team": "U13 Bow Valley Flames 2 Yellow",
+   "teamId": 946164,
+   "picture": "0",
+   "stats": {
+    "11220792": 5,
+    "11220800": 5
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 22",
+   "team": "U13 Glenlake Hawks 2 White",
+   "teamId": 945192,
+   "picture": "0",
+   "stats": {
+    "11220792": 2,
+    "11220800": 5
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 23",
+   "team": "U13 Knights 2 Red",
+   "teamId": 948273,
+   "picture": "0",
+   "stats": {
+    "11220792": 4,
+    "11220800": 5
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 24",
+   "team": "U13 Southwest 2 Gold",
+   "teamId": 962279,
+   "picture": "0",
+   "stats": {
+    "11220792": 3,
+    "11220800": 5
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 25",
+   "team": "U13 Glenlake Hawks 2 White",
+   "teamId": 945192,
+   "picture": "0",
+   "stats": {
+    "11220792": 3,
+    "11220800": 5
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 26",
+   "team": "U13 Glenlake Hawks 2 Green",
+   "teamId": 945191,
+   "picture": "0",
+   "stats": {
+    "11220792": 3,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 27",
+   "team": "U13 Knights 2 Black",
+   "teamId": 948272,
+   "picture": "0",
+   "stats": {
+    "11220792": 3,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 28",
+   "team": "U13 Bow Valley Flames 2 Black",
+   "teamId": 946162,
+   "picture": "0",
+   "stats": {
+    "11220792": 3,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 29",
+   "team": "U13 Bow Valley Flames 2 Black",
+   "teamId": 946162,
+   "picture": "0",
+   "stats": {
+    "11220792": 4,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 30",
+   "team": "U13 Bow Valley Flames 2 Black",
+   "teamId": 946162,
+   "picture": "0",
+   "stats": {
+    "11220792": 3,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 31",
+   "team": "U13 Bow Valley Flames 2 Yellow",
+   "teamId": 946164,
+   "picture": "0",
+   "stats": {
+    "11220792": 2,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 32",
+   "team": "U13 Bow Valley Flames 2 Yellow",
+   "teamId": 946164,
+   "picture": "0",
+   "stats": {
+    "11220792": 1,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 33",
+   "team": "U13 Glenlake Hawks 2 White",
+   "teamId": 945192,
+   "picture": "0",
+   "stats": {
+    "11220792": 2,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 34",
+   "team": "U13 Bow Valley Flames 2 Red",
+   "teamId": 946163,
+   "picture": "0",
+   "stats": {
+    "11220792": 2,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 35",
+   "team": "U13 Glenlake Hawks 2 White",
+   "teamId": 945192,
+   "picture": "0",
+   "stats": {
+    "11220792": 2,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 36",
+   "team": "U13 Southwest 2 Blue",
+   "teamId": 955748,
+   "picture": "0",
+   "stats": {
+    "11220792": 0,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 37",
+   "team": "U13 Bow Valley Flames 2 Yellow",
+   "teamId": 946164,
+   "picture": "0",
+   "stats": {
+    "11220792": 2,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 38",
+   "team": "U13 Glenlake Hawks 2 Blue",
+   "teamId": 945190,
+   "picture": "0",
+   "stats": {
+    "11220792": 3,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 39",
+   "team": "U13 Glenlake Hawks 2 Blue",
+   "teamId": 945190,
+   "picture": "0",
+   "stats": {
+    "11220792": 2,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 40",
+   "team": "U13 Glenlake Hawks 2 Blue",
+   "teamId": 945190,
+   "picture": "0",
+   "stats": {
+    "11220792": 1,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 41",
+   "team": "U13 Bow Valley Flames 2 Red",
+   "teamId": 946163,
+   "picture": "0",
+   "stats": {
+    "11220792": 3,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 42",
+   "team": "U13 Bow Valley Flames 2 Red",
+   "teamId": 946163,
+   "picture": "0",
+   "stats": {
+    "11220792": 2,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 43",
+   "team": "U13 Glenlake Hawks 2 White",
+   "teamId": 945192,
+   "picture": "0",
+   "stats": {
+    "11220792": 1,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 44",
+   "team": "U13 Bow Valley Flames 2 Red",
+   "teamId": 946163,
+   "picture": "0",
+   "stats": {
+    "11220792": 1,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 45",
+   "team": "U13 Southwest 2 Blue",
+   "teamId": 955748,
+   "picture": "0",
+   "stats": {
+    "11220792": 2,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 46",
+   "team": "U13 Southwest 2 Gold",
+   "teamId": 962279,
+   "picture": "0",
+   "stats": {
+    "11220792": 3,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 47",
+   "team": "U13 Glenlake Hawks 2 Blue",
+   "teamId": 945190,
+   "picture": "0",
+   "stats": {
+    "11220792": 3,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 48",
+   "team": "U13 Bow Valley Flames 2 Yellow",
+   "teamId": 946164,
+   "picture": "0",
+   "stats": {
+    "11220792": 2,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 49",
+   "team": "U13 Glenlake Hawks 2 Green",
+   "teamId": 945191,
+   "picture": "0",
+   "stats": {
+    "11220792": 3,
+    "11220800": 4
+   },
+   "divisionId": null
+  },
+  {
+   "name": "Player 50",
+   "team": "U13 Knights 2 Red",
+   "teamId": 948273,
+   "picture": "0",
+   "stats": {
+    "11220792": 3,
+    "11220800": 4
+   },
+   "divisionId": null
+  }
+ ],
+ "page": 1,
+ "perPage": 50,
+ "total": 192,
+ "primaryStatisticId": 11220800,
+ "secondaryStatisticId": 11220792
+}

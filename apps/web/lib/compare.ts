@@ -241,3 +241,32 @@ export function birthYearRows(
     .filter((r) => r.cells.size > 0)
     .sort((a, b) => b.all.share - a.all.share || a.community.localeCompare(b.community));
 }
+
+/**
+ * A depth cell's class, -3 to 3, from its difference from the city figure for
+ * that age, in percentage points. Positive is deeper: more skaters scoring,
+ * or less leaning on the top two, so the colours read the same way in both
+ * heatmaps (blue deeper, red thinner).
+ */
+export function depthStep(value: number, city: number, higherIsDeeper: boolean): number {
+  const diff = Math.round((value - city) * 100) * (higherIsDeeper ? 1 : -1);
+  const size = Math.abs(diff);
+  const step = size < 3 ? 0 : size < 8 ? 1 : size < 15 ? 2 : 3;
+  return step === 0 ? 0 : Math.sign(diff) * step;
+}
+
+export const DEPTH_BINS = [
+  { step: -3, label: "15+ points thinner" },
+  { step: -2, label: "8 to 14 thinner" },
+  { step: -1, label: "3 to 7 thinner" },
+  { step: 0, label: "within 2" },
+  { step: 1, label: "3 to 7 deeper" },
+  { step: 2, label: "8 to 14 deeper" },
+  { step: 3, label: "15+ deeper" },
+] as const;
+
+export type SkaterSortKey = "pts" | "g" | "a" | "pim";
+
+export function skaterSort(asked: string | undefined): SkaterSortKey {
+  return asked === "g" || asked === "a" || asked === "pim" ? asked : "pts";
+}

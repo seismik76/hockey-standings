@@ -34,6 +34,7 @@ import {
   teamLinktSlug,
 } from "@hockey/sources";
 import type { Client } from "./http.js";
+import { collectStats, statsDue, statsRunDue } from "./stats.js";
 
 export interface RunSummary {
   season: string;
@@ -46,7 +47,12 @@ export interface RunSummary {
   errors: string[];
   /** Team names that matched no community: a new association, or a rename to add to COMMUNITIES. */
   unmatchedTeams: string[];
+  /** Anonymous player lines written, across phases whose stats were due. */
+  playerStats: number;
 }
+
+/** Phases with player statistics worth keeping: the comparison's two. */
+const STATS_PHASES = new Set<TeamLinktSeason["phase"]>(["seeding", "regular"]);
 
 // Exhibition, preseason and admin "seasons" are not collected.
 const COLLECTED = new Set<TeamLinktSeason["phase"]>(["seeding", "regular", "playoffs"]);
@@ -76,7 +82,7 @@ export function calgaryToday(now = new Date()): string {
 export async function collect(
   db: Database,
   client: Client,
-  { today }: { today: string },
+  { today, now = new Date() }: { today: string; now?: Date },
 ): Promise<RunSummary> {
   const season = seasonLabelFor(today);
   const summary: RunSummary = {
@@ -88,8 +94,12 @@ export async function collect(
     requests: 0,
     errors: [],
     unmatchedTeams: [],
+    playerStats: 0,
   };
   const unmatched = new Set<string>();
+  const statsThisRun = await statsRunDue(db, now);
+  // Phases whose player stats to fetch, after every phase's scores are in.
+  const statsQueue: { phaseId: number; phase: TeamLinktSeason; divisions: number[] }[] = [];
 
   const seasons = await teamlinkt(client, seasonsRequest(), parseSeasons);
   const councilSlugs = new Set(
@@ -130,6 +140,8 @@ export async function collect(
         (phase.phase !== "other" && d.kind !== "age-group" && councilSlugs.has(d.slug)),
     );
 
+    // Tiered and AA leagues collected this run: the ones player stats cover.
+    const statDivisions: number[] = [];
     for (const division of leagues) {
       try {
         const stream = councilSlugs.has(division.slug) ? COMMUNITY_COUNCIL : "aa";
@@ -142,12 +154,34 @@ export async function collect(
           unmatched,
         });
         if (!r) continue;
+        if (division.kind === "tier" || division.kind === "elite")
+          statDivisions.push(division.sourceId);
         summary.leagues++;
         summary.teams += r.teams;
         summary.gamesChanged += r.gamesChanged;
       } catch (err) {
         summary.errors.push(`${phase.name} / ${division.name}: ${(err as Error).message}`);
       }
+    }
+
+    if (statsThisRun && STATS_PHASES.has(phase.phase) && statDivisions.length > 0) {
+      statsQueue.push({ phaseId, phase, divisions: statDivisions });
+    }
+  }
+
+  // Player stats last: a stats day takes far longer than the scores, and the
+  // scores should never wait for it.
+  for (const { phaseId, phase, divisions } of statsQueue) {
+    try {
+      if (await statsDue(db, { ...phase, id: phaseId }, today)) {
+        summary.playerStats += await collectStats(db, client, {
+          phaseId,
+          seasonId: phase.sourceId,
+          divisionIds: divisions,
+        });
+      }
+    } catch (err) {
+      summary.errors.push(`${phase.name} / player stats: ${(err as Error).message}`);
     }
   }
 

@@ -9,9 +9,11 @@ import {
   parseScores,
   parseSeasons,
   parseStandings,
+  parseStatistics,
   scoresRequest,
   seasonsRequest,
   standingsRequest,
+  statisticsRequest,
   teamsRequest,
 } from "../teamlinkt.js";
 
@@ -211,5 +213,80 @@ describe("parseStandings", () => {
       ga: 4,
       streak: "W2",
     });
+  });
+});
+
+describe("statistics", () => {
+  const stats = () => fixture("statistics-61563-332824-pts.json");
+
+  it("asks for every player of the given leagues, two statistics at a time", () => {
+    expect(
+      statisticsRequest({
+        seasonId: 61563,
+        divisionIds: [332824],
+        group: "offensive",
+        primary: "PTS",
+        secondary: "G",
+        sortBy: 11220800,
+        page: 2,
+      }),
+    ).toEqual({
+      method: "POST",
+      url: "https://app.teamlinkt.com/api/public/sites/hockeycalgary/statistics",
+      body: {
+        season_id: 61563,
+        mode: "all_players",
+        statistic_group_type: "offensive",
+        statistic_abbreviation: "PTS",
+        secondary_statistic_abbreviation: "G",
+        sort_by: "11220800",
+        sort_dir: "desc",
+        page: 2,
+        per_page: 50,
+        filteredDivisionIds: [332824],
+      },
+    });
+  });
+
+  it("reads lines by abbreviation, with a one-way key and no name", () => {
+    const page = parseStatistics(stats());
+    expect(page.total).toBe(192);
+    expect(page.lines).toHaveLength(50);
+    expect(page.ids.get("PTS")).toBe(11220800);
+    expect(Object.keys(page.lines[0]!.stats).sort()).toEqual(["G", "PTS"]);
+    // Sorted by points, high to low.
+    const pts = page.lines.map((l) => l.stats.PTS!);
+    expect(pts).toEqual([...pts].sort((a, b) => b - a));
+    expect(new Set(page.lines.map((l) => l.key)).size).toBe(50);
+    // Nothing that left the parser carries the name.
+    expect(JSON.stringify(page.lines)).not.toMatch(/Player \d/);
+    expect(Object.keys(page.lines[0]!)).toEqual(["key", "teamId", "stats"]);
+  });
+
+  it("reads a player with no stats sent as an empty list, and numbers sent as strings", () => {
+    const page = parseStatistics({
+      statistics: [
+        { id: 1, abbreviation: "GP" },
+        { id: 2, abbreviation: "SV%" },
+      ],
+      players: [
+        { name: "x", teamId: 5, picture: null, stats: [] },
+        { name: "y", teamId: 5, picture: null, stats: { "1": "3", "2": "0.000", "9": null } },
+        { name: "z", teamId: 5, picture: null, stats: null },
+      ],
+      page: 1,
+      total: 3,
+    });
+    expect(page.lines.map((l) => l.stats)).toEqual([{}, { GP: 3, "SV%": 0 }, {}]);
+  });
+
+  it("reads stats sent as a JSON string, as the default view sends them", () => {
+    const page = parseStatistics({
+      statistics: [{ id: 1, abbreviation: "GP" }],
+      players: [{ name: "x", teamId: 5, picture: null, stats: '{"1":4}' }],
+      page: 1,
+      total: 1,
+    });
+    expect(page.lines[0]!.stats).toEqual({ GP: 4 });
   });
 });

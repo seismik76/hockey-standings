@@ -59,6 +59,15 @@ export default async function LeaguePage({ params }: Props) {
     <>
       <p className="muted mt-4 text-sm">{phaseLabel(league.phase)}</p>
       <h1 className="text-2xl font-semibold">{leagueLabel(league.name)}</h1>
+      {(league.phase === "seeding" || league.phase === "regular") && league.age && (
+        <p className="mt-1 text-sm">
+          <Link
+            href={`/stats?phase=${league.phase}&age=${league.age}&league=${league.slug}#league`}
+          >
+            Player stats →
+          </Link>
+        </p>
+      )}
 
       <section className="card mt-5 p-2 sm:p-4">
         <StandingsTable rows={table} age={league.age} />

@@ -3,3 +3,4 @@ export * from "./migrate.js";
 export * from "./queries/ingest.js";
 export * from "./queries/read.js";
 export * from "./queries/history.js";
+export * from "./queries/stats.js";

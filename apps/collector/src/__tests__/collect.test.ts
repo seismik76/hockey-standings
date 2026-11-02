@@ -42,6 +42,32 @@ const captured: Transport = async (req) => {
         : JSON.stringify({ columns: [], teams: [], divisionId: body.division_id }),
     );
   }
+  if (path.endsWith("/statistics")) {
+    // Statistic ids as TeamLinkt numbers them, and one page of players: the
+    // anonymised U13 Tier 2 South capture for seeding, nothing elsewhere.
+    const statistics = [
+      { id: 11220789, abbreviation: "GP" },
+      { id: 11220792, abbreviation: "G" },
+      { id: 11220793, abbreviation: "A" },
+      { id: 11220800, abbreviation: "PTS" },
+      { id: 11220790, abbreviation: "PIM" },
+      { id: 11220804, abbreviation: "W" },
+      { id: 11220805, abbreviation: "L" },
+      { id: 11220806, abbreviation: "T" },
+      { id: 11220811, abbreviation: "SO" },
+      { id: 11220808, abbreviation: "GA" },
+    ];
+    const statBody = body as { season_id?: number; statistic_abbreviation?: string };
+    const players =
+      statBody.season_id === SEEDING && statBody.statistic_abbreviation === "PTS"
+        ? (
+            JSON.parse(fixture("teamlinkt/statistics-61563-332824-pts.json")) as {
+              players: unknown[];
+            }
+          ).players
+        : [];
+    return ok(JSON.stringify({ statistics, players, page: 1, total: players.length }));
+  }
   if (path.endsWith("/scores")) {
     return ok(
       ours
@@ -114,6 +140,35 @@ describe("collect", () => {
     ]);
   });
 
+  it("writes anonymous player lines for the leagues it collected", async () => {
+    const db = getDb();
+    const summary = await collect(db, createClient(db, captured, { gapMs: 0 }), { today: TODAY });
+    // The anonymised capture: 50 U13 Tier 2 South players, every team ours.
+    expect(summary.playerStats).toBe(50);
+    const lines = await db.select().from(schema.playerStats);
+    expect(lines).toHaveLength(50);
+    expect(lines.reduce((n, l) => n + l.g, 0)).toBeGreaterThan(0);
+    // Nothing name-like reaches the table: its columns are ids and numbers.
+    expect(Object.keys(lines[0]!).sort()).toEqual(
+      [
+        "a",
+        "g",
+        "goalie",
+        "goalsAgainst",
+        "gp",
+        "id",
+        "leagueId",
+        "losses",
+        "phaseId",
+        "pim",
+        "shutouts",
+        "teamId",
+        "ties",
+        "wins",
+      ].sort(),
+    );
+  });
+
   it("logs every request, and changes nothing on a second run", async () => {
     const db = getDb();
     const first = await collect(db, createClient(db, captured, { gapMs: 0 }), { today: TODAY });
@@ -123,8 +178,17 @@ describe("collect", () => {
     const fetches = await db.select().from(schema.fetches);
     expect(fetches).toHaveLength(first.requests + second.requests);
     // seasons + league index + 4 division lists + standings and scores for 59
-    // Community Council leagues and U13 AA (looked at, then skipped as empty)
-    expect(first.requests).toBe(6 + 60 * 2);
+    // Community Council leagues and U13 AA (looked at, then skipped as empty),
+    // and player stats for seeding: a probe, then games played, points and
+    // three goalie passes, one page each here.
+    expect(first.requests).toBe(6 + 60 * 2 + 6);
+    // Player stats are fetched once a day: the second run, straight after, skips them.
+    expect(second.requests).toBe(first.requests - 6);
+    const tomorrow = await collect(db, createClient(db, captured, { gapMs: 0 }), {
+      today: TODAY,
+      now: new Date(Date.now() + 21 * 3_600_000),
+    });
+    expect(tomorrow.requests).toBe(first.requests);
     expect(
       fetches.every((f) => f.status === 200 && f.contentHash?.length === 64 && f.error === null),
     ).toBe(true);

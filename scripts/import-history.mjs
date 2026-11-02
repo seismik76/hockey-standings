@@ -22,9 +22,11 @@ if (!file) {
   process.exit(2);
 }
 
-// Where the old scraper read each league. The other streams are tournaments,
-// zone AA (elite-council) and girls' leagues, none of which the comparison uses.
-const ORIGINS = { "community-council": "hockeycalgary", RAMP: "ramp", TeamLinkt: "teamlinkt" };
+// Where the old scraper read each league. U11 (its RAMP stream) is read from
+// RAMP itself by scripts/import-ramp.mjs, which found divisions the old scraper
+// missed. The other streams are tournaments, zone AA (elite-council) and girls'
+// leagues, none of which the comparison uses.
+const ORIGINS = { "community-council": "hockeycalgary", TeamLinkt: "teamlinkt" };
 
 const old = new DatabaseSync(file, { readOnly: true });
 const raw = old

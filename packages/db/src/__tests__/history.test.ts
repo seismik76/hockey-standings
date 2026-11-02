@@ -52,6 +52,20 @@ describe("replaceHistory", () => {
     ]);
   });
 
+  it("replaces only the origins it brings", async () => {
+    const db = getDb();
+    await replaceHistory(db, [
+      row("2024-25", "Southwest 1"),
+      { ...row("2024-25", "U11 Southwest 1"), origin: "ramp" },
+    ]);
+    await replaceHistory(db, [{ ...row("2024-25", "U11 Southwest 2"), origin: "ramp" }]);
+    const rows = await db.select().from(historyStandings);
+    expect(rows.map((r) => [r.origin, r.teamName]).sort()).toEqual([
+      ["hockeycalgary", "Southwest 1"],
+      ["ramp", "U11 Southwest 2"],
+    ]);
+  });
+
   it("refuses a line whose games do not add up", async () => {
     await expect(replaceHistory(getDb(), [{ ...row("2024-25", "X"), gp: 9 }])).rejects.toThrow();
     const [{ n }] = (await getDb()

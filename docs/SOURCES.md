@@ -6,6 +6,8 @@ Where hockey-standings gets its data, what each source allows, and what is still
 
 We read what a source's `robots.txt` allows, plus one exception: **TeamLinkt's public site API** (`app.teamlinkt.com/api/public/sites/hockeycalgary/…`), which serves the scores and standings pages of the public TeamLinkt site. TeamLinkt's `robots.txt` disallows `app.teamlinkt.com/`. Pat decided on 2026-10-31 to read it anyway, because it's a small non-commercial app that shows public game results. No other conditions apply to it.
 
+A second exception, for past seasons only: **RAMP** (`hockeycalgary.msa4.rampinteractive.com`), where Hockey Calgary kept U11 standings for 2024-25 and 2025-26. Its `robots.txt` allows general user agents but disallows Anthropic's by name; Pat has permission to read it and decided on 2026-11-01 to import it once (`scripts/import-ramp.mjs`). It sits behind Cloudflare, which answers curl but refuses Node's fetch (403), so the four responses were fetched with curl as this app, a few seconds apart, and the script reads the saved files. We don't dress a client up to get past a block. The collector never reads RAMP.
+
 Everywhere else we follow `robots.txt` and don't work around access controls, including loopholes like `/index.php/standings/...`. We store team names only, never coach, manager or player names.
 
 ## Sources
@@ -68,14 +70,14 @@ We don't reuse this. TeamLinkt's `robots.txt` disallows `/leagues/get*` in all f
 
 ## Past seasons (imported 2026-11-01)
 
-2021-22 to 2025-26 come from the old hockey-calgary-scraper database, as season totals per team (no games), imported once into `history_standings` by `scripts/import-history.mjs` from its seed file, `data/seed/hockey_calgary.db` (last updated 2026-05-16). The collector never reads it.
+2021-22 to 2025-26 are season totals per team (no games) in `history_standings`, imported once: U13 to U18 from the old hockey-calgary-scraper database by `scripts/import-history.mjs` (its seed file, `data/seed/hockey_calgary.db`, last updated 2026-05-16), and U11 straight from RAMP by `scripts/import-ramp.mjs`. The collector never reads either.
 
-| Ages              | Seasons            | Where the old scraper read them |
-| ----------------- | ------------------ | ------------------------------- |
-| U13, U15, U18     | 2021-22 to 2024-25 | Hockey Calgary standings pages  |
-| U15, U18          | 2025-26            | Hockey Calgary standings pages  |
-| U11 (with U11 AA) | 2024-25, 2025-26   | RAMP                            |
-| U13               | 2025-26            | TeamLinkt                       |
+| Ages              | Seasons            | Where the old scraper read them  |
+| ----------------- | ------------------ | -------------------------------- |
+| U13, U15, U18     | 2021-22 to 2024-25 | Hockey Calgary standings pages   |
+| U15, U18          | 2025-26            | Hockey Calgary standings pages   |
+| U11 (with U11 AA) | 2024-25, 2025-26   | RAMP, read directly (2026-11-01) |
+| U13               | 2025-26            | TeamLinkt                        |
 
 No U9 at all, and no U11 before 2024-25. 2020-21 (COVID) has nothing usable. Raiders appear from 2023-24 and Wolverines from 2022-23.
 
@@ -85,7 +87,9 @@ What the import fixes or leaves out:
 - **One table in both phases.** A league existed in one phase, but the scraper asked for both and Hockey Calgary answered the other with the same table (458 rows). Where every team's line is identical, one copy is kept, in seeding if the average games played is 10 or fewer, else the regular season.
 - **Two TeamLinkt ids.** TeamLinkt listed the 2025-26 U13 seeding leagues twice; the 93 repeats were identical and are dropped. A repeat that differed would stop the import.
 
-Result: 3,047 rows, every one with a community and a record that adds up (gp = w + l + t).
+Result: 3,047 rows from the old database, every one with a community and a record that adds up (gp = w + l + t). Its 464 U11 rows were then replaced by RAMP's own (below).
+
+**U11 from RAMP.** The old scraper found RAMP's divisions on its home page, which links only the current season's, and asked for those ids in every season, so divisions that existed only in 2024-25 were never read: the split U11 Tier 4 South Blue and Red pools, 16 teams. RAMP's standings endpoint answers every division of a category for division 0, so `scripts/import-ramp.mjs` reads each season and game type whole: 2024-25 now has 113 U11 teams in 12 leagues (was 97 in 10), 2025-26 119 (unchanged). RAMP files seeding results under each team's final division rather than its seeding pool; points share and goals are per team, so the comparison is unaffected. Girls' divisions are skipped as elsewhere.
 
 **Balance.** In a closed pool, wins equal losses and goals for equal goals against. From 2023-24 every Hockey Calgary pool balances exactly. In 2021-22 and 2022-23 nearly every pool is off by about 8%: those tables include games against teams outside the pool. A few 2025-26 seeding pools (RAMP, TeamLinkt) are off by 2 to 6%, likely teams that changed pools during seeding. Points share still compares communities, but read 2021-23 as rougher.
 
@@ -102,7 +106,7 @@ What is missing from past seasons, and why it stays missing:
 | Raiders before 2023-24, Wolverines in 2021-22      | Follows from the row above.                                                                                                                                                                                                                                                                                       | No.                                                                                                  |
 | The old app's live database                        | Not in either Neon org this account can see. `icy-silence-89444878` is an empty Neon Auth project, not it. The seed file (updated 2026-05-16) is the only copy.                                                                                                                                                   | Only if it turns up elsewhere.                                                                       |
 
-RAMP (`hockeycalgary.msa4.rampinteractive.com`) is where the old scraper read U11 for 2024-25 and 2025-26. Its `robots.txt` allows general user agents but disallows Anthropic's by name (ClaudeBot, anthropic-ai, Claude-Web), so Claude does not read it. Whether it has U9 or U13 AA scores for those seasons is unchecked.
+RAMP, read whole on 2026-11-01, has nothing more to give: 2023-24 holds only a U11 development program (U11 HADP), 2024-25 U11 plus U15 and U18 girls' divisions, 2025-26 U11. No U9, no U13 AA, and no tiered U11 before 2024-25.
 
 This season, U13 AA's games (TeamLinkt's "2026-2027 TeamLinkt" season) have had no scores posted so far: 44 past games, none scored on 2026-11-01. The collector picks scores up if they appear.
 
